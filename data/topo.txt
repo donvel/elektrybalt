@@ -1,0 +1,2172 @@
+H. Toruńczyk, Wykład z Topologii I∗ , jesień 2013.
+I-1
+Notatki te są uzupełnieniem wykładu. Układ materiału i jego ujęcie są bliskie skryp-
+towi [BCPP], osiągalnemu pod http://duch.mimuw.edu.pl/~betley/wyklad1/ , i no-
+tatkom [P] prof. R. Pola, których kopie można uzyskać w punkcie xero na parterze bu-
+dynku Wydziału MIM UW. Podstawowa literatura w języku polskim wymieniona jest w
+opisie przedmiotu w USOSie. Znacznie bogatsze wiadomości dotyczące większości wy-
+kładu zawierają piękne książki R. Engelkinga: „Topologia Ogólna” i „Wstęp do topologii
+ogólnej”. Dodatkową literaturę dotyczącą końcowej części wymienię dalej.
+Znak
+oznacza koniec rozumowania; znak
+ma podobne znaczenie, lecz używam
+go, gdy pewne fragmenty rozumowania wymagają uzupełnienia. „Zadaniami” nazwane
+są wyniki (różnej trudności, na ogół bardzo proste), które z pożytkiem powinny być
+udowodnione przez Czytelnika lub omówione na ćwiczeniach; polecenie „dowieść” bywa
+pomijane. Gwiazdka oznacza materiał trudniejszy lub dalej nie wykorzystywany, a przy
+tym wykraczający poza program.
+I
+Metryzowalne przestrzenie topologiczne.
+§ 1.
+Przestrzenie metryczne i ciągłość funkcji między nimi.
+Definicja. Metryką na zbiorze X nazywamy tu taką funkcję d : X × X → [0, ∞], że
+(m0) d(x, x) = 0 dla x ∈ X,
+(m1) gdy x, y ∈ X i x = y, to d(x, y) = d(y, x) > 0 (symetria i dodatność);
+(m2) d(x, y) + d(y, z) ≥ d(x, z) dla x, y, z ∈ X (nierówność trójkąta).
+Przestrzenią metryczną nazywamy zbiór z wyróżnioną metryką na nim.
+Podprzestrzenią takiej przestrzeni (X, d) nazywamy każdy jej podzbiór A, rozpa-
+trywany z metryką d|A×A , indukowaną przez d na A. Bywa, że dla krótkości metrykę
+d|A×A oznaczamy też przez d|A , lub niekiedy nadal przez d.1
+Uwaga 1. a) W większości podręczników żąda się od metryki, by nie przyjmowała
+wartości ∞. Gdy chcemy to zastrzec, będziemy mówić o metryce skończonej.
+b) Z (m2) wynika, że gdy d(x, z) + d(y, z) < ∞, to d(x, y) ≥ |d(x, z) − d(y, z)|.
+Przykład 1. a) X = [−∞, ∞], d(x, y) := |x − y| (znane z AM I; gdy x = ±∞ lub
+y = ±∞ i x = y, przyjmujemy |x − y| = ∞);
+b) X = Rk , de (x, y) :=
+k
+i=1 (xi
+− yi )2 (znane z geometrii, AM II, GAL II);
+k
+2
+c) X = Ck , d(x, y) :=
+i=1 |xi − yi | (znane (?) z GAL II);
+d) Gdy {(Xs , ds ) : s ∈ S} jest rodziną przestrzeni metrycznych, to na zbiorze
+s∈S Xs określimy metrykę ρ wzorem ρ((xs ), (ys )) := sups∈S ds (xs , ys ); nazwiemy ją
+1
+Jednak dZ piszemy dla zaznaczenia, że dZ jest metryką na danym zbiorze Z–tak więc trzeba odróżniać dZ od d|Z .
+I § 1.
+I-2
+metryką pudełkową na iloczynie s Xs , wyznaczoną przez rodzinę {ds }s∈S metryk
+na jego osiach. (Sprawdzenie nierówności trójkąta pozostawione jest jako zadanie.)
+e) Gdy (X, d) jest przestrzenią metryczną, a S dowolnym zbiorem, to następujący
+wzór definiuje metrykę dsup na zbiorze X S wszystkich funkcji z S do X:
+dsup (f, g) := sup{d(f (s), g(s)) : s ∈ S}.
+Wynika to z d), gdy przyjąć tam Xs = X∀s i utożsamić X S z s∈S Xs .
+f) W szczególności, przestrzenią metryczną jest (RS , dsup ), gdzie RS to zbiór funkcji
+rzeczywistych, określonych na S, zaś dsup (f, g) := sups∈S |f (s) − g(s)| dla f, g ∈ RS .
+g) O rodzinie {(Xs , ds ) : s ∈ S} z d) założmy dodatkowo, że zbiory Xs są parami roz-
+łączne. Niech X := s∈S Xs i dla x, y ∈ X przyjmijmy d(x, y) = ds (x, y) jeśli x, y ∈ Xs
+dla pewnego s ∈ S, zaś d(x, y) = ∞ w przeciwnym razie. Wówczas (X, d) jest prze-
+strzenią metryczną, którą nazwiemy sumą rozłączną (lub: dyskretną) rozważanej
+rodziny przestrzeni metrycznych.
+h) Płaszczyzna R2 z metryką rzeka dr , określoną w [BCPP].
+i) Płaszczyzna R2 z metryką kolejową dk , określoną w [BCPP].
+j) Znaczenie w Analizie mają przestrzenie liniowe nad ciałem F ∈ {R, C}, wyposażone
+w normę, tzn. taką funkcję V v → ||v|| ∈ [0, ∞), że
+||v + w|| ≤ ||v|| + ||w||, ||λv|| = |λ| · ||v|| i ||v|| = 0 dla v, w ∈ V \ {0} i λ ∈ F.
+Normie || || odpowiada metryka skończona d, zdefiniowana wzorem d(v, w) := ||v − w||
+dla v, w ∈ V . (Sprawdzenie własności (m0), (m1) i (m2) pozostawione jest jako zadanie.)
+Ważna jej własność to przesuwalność: dla u, v, w ∈ V zachodzi d(v, w) = d(u+v, u+w).
+k) Przykłady takich przestrzeni i dalsze przykłady przestrzeni metrycznych podane
+będą na ćwiczeniach.
+Metryka umożliwia wprowadzenie ciągów zbieżnych i przekształceń ciągłych.
+Definicja. Niech (X, d) będzie przestrzenią metryczną.
+a) Dla x0 ∈ X, przez Bd (x0 , r) := {x ∈ X : d(x, x0 ) < r} oznaczamy kulę otwartą w
+metryce d, o środku w x0 i promieniu r. Gdy mowa o kulach otwartych, zakładamy r > 0.
+b) Ciąg punktów (xn )n∈N w (X, d) nazywamy zbieżnym do punktu x0 ∈ X, co
+oznaczamy xn → x lub x = limn xn , jeśli d(xn , x0 ) → 0.
+Stwierdzenie 1. Niech (X, dX ) i (Y, dY ) będą przestrzeniami metrycznymi, niech x0 ∈
+X i niech f : X → Y będzie funkcją. Wówczas równoważne są warunki:
+(cp1) dla każdego ciągu (xn )n∈N punktów przestrzeni X, zbieżnego do x0 w przestrzeni
+(X, dX ), ciąg (f (xn )) jest zbieżny do f (x0 ) w przestrzeni (Y, dY ).
+(cp2) ∀ε > 0 ∃δ > 0 takie, że f (BdX (x0 , δ)) ⊂ BdY (f (x0 ), ε).
+H. Toruńczyk, Wykład z Topologii I∗ , jesień 2013.
+I-3
+Definicja. Gdy powyższe dwa warunki są spełnione, przekształcenie f nazywamy cią-
+głym w punkcie x0 . Przekształcenie f nazwiemy ciągłym, gdy jest ciągłe w każdym
+punkcie przestrzeni X. By zaznaczyć wybór metryk, w miejsce f : X → Y piszemy
+niekiedy f : (X, dX ) → (Y, dY ) (Wybór metryk jest istotny!)
+Oto przykład wykorzystania definicji:
+Lemat 1. Niech (X, d) oraz (Yi , di ) (i ∈ I) będą przestrzeniami metrycznymi, zaś
+(fi : X → Yi )i∈I układem funkcji ciagłych. Wyposażmy Y := i∈I Yi w metrykę pudeł-
+kową ρ, opisaną w części d) przykładu 1. Gdy zbiór indeksów I jest skończony, to prze-
+kształcenie f : (X, d) → (Y, ρ), dane wzorem f (x) = (fi (x))i∈I dla x ∈ X, jest ciągłe.
+Dowód. Niech ε > 0 i x0 ∈ X będą dane. Wobec ciągłości każdej z funkcji fi i
+skończoności zbioru I istnienieje taka liczba δ > 0, że fi (Bd (x0 , δ)) ⊂ Bdi (f (x0 ), ε) ∀i ∈
+I. Z definicji metryki ρ wynika, że f (Bd (x0 , δ)) ⊂ Bρ (f (x0 ), ε), co dowodzi tezy.
+Zadanie 1. a) Dla i ∈ N, niech (X, d) := (Y, di ) := (R, de ) oraz fi (x) = ix. Czy
+zdefinowana w lemacie funkcja f jest ciągła?
+b) Dowieść, że funkcja f będzie ciągła jeśli założyć dodatkowo, że dla pewnego układu
+(ci )i∈I liczb dodatnich, zbieżnego do zera, zachodzi di ≤ ci ∀i ∈ I. (Zbieżność do zera
+oznacza tu, że dla każdego ε > 0 zbiór {i ∈ I : ci > ε} jest skończony.)
+Ze względu na warunek (cp2), pochodzący od Cauchy’ego, warto mieć wyobraże-
+nie o postaci kul w badanych przestrzeniach. Możemy też ten warunek modyfikować,
+posługując się pojęciem otoczenia i zbioru otwartego.
+Zadanie 2. Naszkicować kule otwarte o promieniu r w sytuacjach opisanych w przy-
+kładzie 1: w b) przy k = 2 i k = 3, w e) przy S = {1, 2} i X = [0, 1], w g) przy
+Xs = R × {s} i S = {1, 2}, oraz w h) i i).
+Definicja. W przestrzeni metrycznej (X, d),
+• otoczenie puktu x0 to zbiór, zawierający pewną kulę otwartą Bd (x0 , r) wokół x0 ;
+• zbiór otwarty to taki, który jest otoczeniem każdego swego punktu;
+• rodzinę wszystkich zbiorów otwartych w (X, d) oznaczmy przez T (d), a rodzinę
+wszystkich kul otwartych – przez B(T ). (Zauważmy, że ∅ ∈ T (d) !)
+Uwaga 2. Gdy G1 i G2 są otoczeniami punktu x0 , to G1 ∩ G2 też nim jest.
+Zadanie 3. a) B(d) ⊂ T (d) – czyli kule otwarte są zbiorami otwartymi.
+b) Wywnioskować, że gdy B1 , B2 ∈ B(d) i x ∈ B1 ∩ B2 , to x ∈ B ⊂ B1 ∩ B2 dla
+pewnej kuli B ∈ B(d).
+Stwierdzenie 2. Warunki (cp1) i (cp2) są też równoważne następującym:
+(cp3) Dla każdej kuli otwartej B w przestrzeni (Y, dY ), o środku w f (x0 ), jej prze-
+ciwobraz f −1 (B) jest otoczeniem punktu x0 w przestrzeni (X, dX ).
+I § 1.
+I-4
+(cp4) Dla każdego otoczenia G punktu f (x0 ) w przestrzeni (Y, dY ), jego przeciwobraz
+f (G) jest otoczeniem punktu x0 w przestrzeni (X, dX ).
+−1
+Wniosek 1. Gdy (Xi , di ) są przestrzeniami metrycznymi, i = 1, 2, 3, a przekształcenia
+f : (X1 , d1 ) → (X2 , d2 ) i g : (X2 , d2 ) → (X3 , d3 ) są ciągłe w punktach x0 ∈ X oraz
+f (x0 ), odpowiednio, to złożenie g ◦ f : (X1 , d1 ) → (X3 , d3 ) jest ciągłe w punkcie x0 . W
+szczególności, gdy f i g są ciągłe, to ich złożenie g ◦ f też jest ciągłe.
+Gdy zastosować kryterium (cp4), dowód wynika z równości (g◦f )−1 (G) = f −1 (g −1 (G))
+dla G ⊂ X3 .
+Twierdzenie 1. Przeształcenie f : (X, dX ) → (Y, dY ) jest ciągłe wtedy i tylko wtedy,
+gdy dla każdego zbioru W ∈ T (dY ) zachodzi f −1 (W ) ∈ T (dX ) (krótko: gdy przeciwobraz
+każdego zbioru, otwartego w przestrzeni (Y, dY ), jest otwarty w przestrzeni (X, dX )).
+Dowód. Niech przekształcenie f będzie ciągłe i niech W ∈ T (dX ). Dla dowolnego
+punktu x0 ∈ f −1 (W ) zachodzi f (x0 ) ∈ W , skąd W jest otoczeniem punktu f (x0 ),
+wobec otwartości zbioru W . Na podstawie stwierdzenia 1 i ciągłości f w punkcie x0 ,
+zbiór f −1 (W ) jest więc otoczeniem (każdego swego) punktu x0 – a zatem jest otwarty.
+Odwrotnie, niech f −1 (W ) ∈ T (dX ) dla każdego zbioru W ∈ T (dY ). By dowieść
+ciągłości f w dowolnym punkcie x0 ∈ X, obierzmy otoczenie G jego obrazu f (x0 ).
+Zauważmy, że f (x0 ) ∈ W ⊂ G dla pewnego W ∈ T (dY ) –możemy bowiem za W
+przyjać kulę wokół f (x0 ), zawartą w G. Ponieważ (z założenia) f −1 (W ) ∈ TX , więc
+zbiór f −1 (G), zawierający f −1 (W ), jest (z definicji) otoczeniem punktu x0 . Warunek
+(cp4) jest więc spełniony i funkcja f jest ciągła w x0 .
+W oparciu o twierdzenie 1, można nie tylko badać ciągłość funkcji, ale –poniekąd
+odwrotnie– dowodzić otwartości zbiorów w oparciu o ciagłość odpowiednich funkcji. Jest
+to schemat dość skuteczny, bo wcześniejsze wyniki ułatwiają uzasadnienie ciągłości.
+Przykład 2. Niech U := {(x, y) ∈ R2 : sin(x2 + y 3 ) < exp(xy)}; dowiedziemy otwartości
+zbioru U w płaszczyźnie R2 , wyposażonej w metrykę dsup opisaną w części f) przykładu 1,
+dla S = {1, 2}. W tym celu zauważmy, że U = f −1 ((0, ∞)), gdzie f (x, y) := exp(xy) −
+sin(x2 + y 3 ). Ponieważ zbiór (0, ∞) jest otwarty w R, więc zbiór U będzie otwarty w R2 ,
+o ile funkcja f jest ciągła. Oczywiście, f = g ◦ (u, v), gdzie g, u, v : R2 → R są takie:
+g(s, t) = s − t, u(x, y) = exp(xy) i v(x, y) = sin(x2 + y 2 )
+Wobec lematu 1 i wniosku 1, pozostaje dowieść ciągłości każdej z tych funkcji. Z nich,
+u i v można w podobny sposób przedstawić jako złożenie, w odpowiedniej kolejności,
+następujących funkcji (niżej, nadal R i R2 rozpatrujemy z opisanymi już metrykami):
+x → x2 i y → y 3 (obie z R do R),
+(s, t) → s + t i (x, y) → xy (obie z R2 do R),
+z → exp(z) i z → sin(z) (obie z R do R).
+H. Toruńczyk, Wykład z Topologii I∗ , jesień 2013.
+I-5
+Ponieważ ciągłość funkcji exp, sin i wielomianowych zapewniają odpowiednie wyniki z
+AM1, więc rzecz sprowadza się do wykazania ciągłości funkcji (s, t) → s + t (co zapewni
+także ciągłość funkcji g) oraz funkcji (x, y) → xy.
+Uwaga 2. Podkreślmy, że dowiedliśmy otwartości zbioru U na płaszczyźnie R2 , wy-
+posażonej w metrykę dsup . Zbiór U jest też otwarty, gdy R2 wyposażyć w metrykę
+euklidesową de , lecz uzasadnienie da dopiero zadanie 3 w następnym paragrafie.
+Użyteczne są proste kryteria, ułatwiające rozpoznawanie funkcji ciągłych.
+Zadanie 4. Niech (X, d) i (Y, ρ) będą przestrzeniami metrycznyczmi.
+a) Jeśli przekształcenie f : (X, d) → (Y, ρ) spełnia warunek Lipschitza, tzn. istnieje
+stała L > 0 taka, że ρ(f (x1 ), f (x2 )) ≤ L · d(x1 , x2 ), to jest ono ciągłe.
+b) Dla każdej rodziny F funkcji z (X, d) do [−∞, ∞], spełniających warunek Lip-
+schitza z daną stałą L, funkcje x → inf f ∈F f (x) i x → supf ∈F f (x) też ten warunek speł-
+niają. W szczególności, gdy ∅ = A ⊂ X, to funkcja x → distd (x, A) := inf a∈A d(x, a)
+spełnia warunek Lipschitza ze stałą 1 i zeruje się dokładnie na domknięciu zbioru A.
+Uwaga 3. Przy oznaczeniach przykładu 1d), każde rzutowanie πt : (
+(Xt , dt ) spełnia warunek Lipschitza ze stałą 1, więc jest ciągłe.
+s∈S
+Xs , ρ) →
+Zadanie 5. ∗ Niech A będzie wypukłym podzbiorem przestrzeni unormowanej (E, || ||).
+Dowieść, że distd ( n ti xi , A) ≤ maxi distd (xi , A) dla x1 , ...., xn ∈ E i t1 , ..., tn ∈
+i=1
+[0, 1] takich, że i ti = 1. (Tu, d jest metryką wyznaczoną przez normę || ||, patrz
+przykład 1j).) Co więcej, distd (tx + (1 − t)x ) ≤ tdistd (x, A) + (1 − t)distd (x , A) dla
+x, x ∈ E i t ∈ [0, 1], wobec czego wyżej distd ( n ti xi , A) ≤ n ti distd (xi , A).
+i=1
+i=1
+§ 2.
+Ogólne przestrzenie topologiczne: podstawowe pojęcia.
+Dla zadanej przestrzeni metrycznej (X, d), zapiszmy podstawowe własności rodzin T =
+T (d) i B = B(d), złożonych z jej wszystkich zbiorów otwartych i wszystkich kul otwar-
+tych, odpowiednio. Rodzina B ma takie własności (co do (B2), patrz zadanie 3b) w §1):
+(B1)
+(B2)
+B=X
+gdy B1 , B2 ∈ B i x ∈ B1 ∩ B2 , to x ∈ B ⊂ B1 ∩ B2 dla pewnego B ∈ B.
+Z definicji rodziny T = T (d) wynika związek między B i T :
+(Z)
+U ∈ T ⇔ (U =
+BU dla pewnej rodziny BU ⊂ B).
+Z (B1), (B2) i (Z) wynikają zaś łatwo trzy proste własności rodziny T zbiorów otwartych:
+(O1)
+(O2)
+(O3)
+X ∈ T i ∅ ∈ T (zbiór pusty i cała przestrzeń są zbiorami otwartymi);
+U1 ∩ U2 ∈ T dla U1 , U2 ∈ T ;
+Gdy U ⊂ T , to U ∈ T .
+I § 2.
+I-6
+Rodzina T jest więc zamknięta względem tworzenia przecięć skończenie wielu swych
+elementów czy tworzenia sum mnogościowych dowolnie wielu swych elementów.
+Twierdzenie 1 w §1 posłużyć może do rozpoznania ciągłości funkcji f : (X, d) →
+(Y, ρ), gdy tylko znane są rodziny T (d) i T (ρ) zbiorów otwartych w (X, d) i w (Y, ρ);
+znajmość metryk d i ρ nie jest do tego potrzebna. Już więc dla uproszczenia rozumowań
+uzasadnia to przyjęcie następujących definicji.
+Definicja. Przestrzenią topologiczną nazywamy zbiór X, wyposażony w rodzinę T
+swych podzbiorów, spełniającą warunki (O1), (O2) i (O3). (Tak więc przestrzenią jest
+para (X, T ).) Rodzinę T nazywamy topologią tej przestrzeni, a jej elementy – zbio-
+rami otwartymi. Często przestrzenią nazywamy zbiór X, zakładając, że topologia T
+została wskazana.
+Definicja. Zbiór F w przestrzeni topologicznej (X, T ) nazywamy domkniętym, jeśli
+zbiór X \ F jest otwarty (czyli X \ F ∈ T ).
+Oczywiście, z własności (O1)–(O3) rodziny T i praw de Morgana wynika, że:
+(C1)
+(C2)
+(C3)
+zbiór pusty i cała przestrzeń są zbiorami domkniętymi;
+suma skończenie wielu zbiorów domkniętych jest zbiorem domkniętym;
+część wspólna dowolnie wielu zbiorów domkniętych jest zbiorem domkniętym.
+Definicja. a) Dla zbioru A w przestrzeni topologicznej (X, T ) przyjmujemy:
+IntA :=
+{U ∈ T : U ⊂ A}, A :=
+{F : F ⊃ A i F jest zbiorem domkniętym X}
+IntA nazywamy wnętrzem, a A domknięciem zbioru A; inne oznaczenie na A to clA.
+b) Zbiór A nazywamy gęstym, gdy A = X, zaś brzegowym gdy IntA = ∅.
+c) Zbiór G ⊂ X nazywamy otoczeniem punktu x0 ∈ X w przestrzeni (X, T ), jeśli
+x0 ∈ IntG (równoważnie: jeśli G zawiera zbiór otwarty, do którego x0 należy). G nazy-
+wamy otoczeniem zbioru A ⊂ X, gdy A ⊂ IntG.
+Zadanie 1. Gdy (X, d) jest przestrzenią metryczną i T = T (d), to powyższa definicja
+otoczeń punktu x0 jest zgodna z podaną w §1.
+Uwaga 1. a) Zbiór A jest domknięty, na podstawie (C3), i zawiera A; z definicji
+wynika więc, że jest on najmniejszym (wględem inkluzji) zbiorem o tych własnościach.
+Podobnie, IntA jest największym zbiorem otwartym, zawartym w A.
+b) Stąd zaś wynika, że A = A gdy zbiór A jest domknięty, jak również, że operacja
+domkniecia A → A jest monotoniczna: gdy A ⊂ B, to A ⊂ B. Tak samo, operacja
+wnętrza jest monotoniczna i IntA = A gdy zbiór A jest otwarty.
+c) Ponadto, X \ IntA = X \ A, bo dopełnienie największego zbioru otwartego, za-
+wartego w A, jest najmniejszym zbiorem domkniętym, zawierającym X \ A. Tak więc
+IntA = X \ X \ A,
+A = X \ Int(X \ A).
+(1)
+I-7
+H. Toruńczyk, Wykład z Topologii I∗ , jesień 2013.
+Stwierdzenie 1. a) A ∪ B = A ∪ B i Int(A ∩ B) = IntA ∩ IntB.
+b) x ∈ A ⇔ (G ∩ A = ∅ dla każdego otoczenia G punktu x).
+Dowód. Ad a). Inkluzja A ∪ B ⊂ A ∪ B wynika stąd, że zbiór po prawej jest domknięty
+(jako suma dwóch zbiorów domkniętych) i zawiera zbiór A ∪ B –więc zawiera i jego
+domknięcie. Z drugiej strony, A ∪ B ⊃ A, bo A ∪ B ⊃ A, i podobnie A ∪ B ⊃ B, skąd
+A ∪ B ⊃ A ∪ B. Równość Int(A ∩ B) = IntA ∩ IntB wynika z definicji i własności (O2).
+Ad b). Na podstawie (1), x ∈ A ⇔ x ∈ Int(X \ A) ⇔ U ∈ T : x ∈ U ⊂ X \ A.
+Uwaga 2. Z części b) wynika, że zbiór gęsty to taki, który zawiera punkty każdego nie-
+pustego otwartego podzbioru przestrzeni. Również, jeśli T = T (d) dla pewnej metryki d,
+to x ∈ A wtedy i tylko wtedy, gdy d(an , x) → 0 dla pewnego ciągu {an }∞ ⊂ A.
+n=1
+Definicja. a) Gdy (X, TX ) i (Y, TY ) są przestrzeniami topologicznymi, to przekształcenie
+f : X → Y nazywamy ciągłym w puncie x0 ∈ X, jeśli przeciwobraz przy f każdego
+otoczenia punktu f (x0 ) (w przestrzeni Y ) jest otoczeniem punktu x0 (w przestrzeni X).
+Przekształcenie, ciągłe w każdym punkcie, nazywamy ciągłym.
+b) Przekształcenie f : X → Y nazywamy homeomorfizmem, jeśli jest bijektywne
+i oba przekszałcenia f i f −1 są ciągłe.
+Wyżej, piszemy czasem f : (X, TX ) → (Y, TY ) w miejsce f : X → Y , by zaznaczyć
+wybór topologii TX i TY (od którego definicje zależą), a także piszemy f : (X, dX ) →
+(Y, dY ) w miejsce f : (X, T (dX )) → (Y, T (dY )). W ostatnim przypadku, definicje z a)
+są zgodne z podanymi w §1, ze względu na zadanie 1.
+Przykład 1. Traktujmy X := {0, 1, 2, ...} i Z := {0, 1, 1/2, 1/3, ...} jako podprzestrzenie
+prostej (R, de ). Przekształcenie f : (X, dX ) → (Z, dZ ), dane wzorem f (0) = 0 i f (n) =
+1/n dla n > 0, jest ciągłe i bijektywne, lecz nie jest homeomorfizmem.
+Zadanie 2. Niech (A, d|A ) będzie podprzestrzenią przestrzeni (X, d) i niech funkcja
+f : (A, d|A ) → (Y, dY ) będzie ciągła. Dowieść, że przekształcenie A a → (a, f (a)) jest
+homeomorfizmem przestrzeni (A, dA ) na wykres W (f ) := {(a, f (a)) : a ∈ A} funkcji f ,
+traktowany jako podprzestrzeń przestrzeni X × Y , wyposażonej w metrykę pudełkową.
+Zadanie 3. Przedział w R, nie składający się z jednego punktu, jest homeomorficzny
+z którymś z przedziałów [0, 1], [0, 1) lub (0, 1). (Przedziały rozpatrujemy z metryką
+(x, y) → |x − y|; mogą one być nieograniczone.)
+Uwaga 3. a) Gdy przeksztalcenia f : (X, TX ) → (Y, TY ) i g : (Y, TY ) → (Z, TZ ) są
+ciągłe, to ich złożenie g ◦ f : (X, TX ) → (Z, TZ ) też jest ciągłe.
+b) Wynika stąd, że złożenie homeomorfizmów jest homeomorfizmem.
+c) Gdy f : (X, TX ) → (Y, TY ) jest homeomorfizmem, to wzór W → f −1 (W ) ustala
+bijekcję z TY na TX : jej odwrotność jest zadana analogicznym wzorem, przy f zastąpio-
+nym przez f −1 –czyli wzorem wzorem U → f (U ) dla U ∈ TX .
+I § 2.
+I-8
+Opiszmy też ciągłość w sposób równoprawnie traktujący zbiory otwarte i domknięte:
+Stwierdzenie 2. Dla przekształcenia f : X → Y pomiędzy przestrzeniami topologicz-
+nymi (X, TX ) i (Y, TY ), równoważne są warunki:
+a) Przekształcenie to jest ciągłe;
+b) Przeciwobraz, przy f , każdego zbioru otwartego w Y jest otwarty w X (tzn.
+−1
+f (U ) ∈ TX dla każdego zbioru U ∈ TY );
+c) Przeciwobraz, przy f , każdego zbioru domkniętego w Y jest domknięty w X.
+Dowód. Dowód równoważności a)⇔b) jest taki, jak dowód twierdzenia 1 w §1. Równo-
+ważność zaś b)⇔c) wynika stąd, że f −1 (Y \ A) = X \ f −1 (A) dla A ⊂ Y .
+Zadanie 4. Warunki powyższe są równoważne każdemu z następujących:
+d) f −1 (B) ⊂ f −1 (B) dla każdego zbioru B ⊂ Y ;
+e) f (A) ⊂ f (A) dla każdego zbioru A ⊂ X;
+f) f −1 (IntA) ⊂ Int(f −1 (A)) dla każdego zbioru A ⊂ Y .
+Definicja. Nech d i ρ będą metrykami na zbiorze X.
+• Topologią, generowaną przez metrykę d, nazywamy topologię T (d);
+• metryki d i ρ są równoważne, jeśli generują tę samą topologię. (Inaczej: gdy
+identyczność jest homeomorfizmem z (X, d) do (X, ρ).
+Przykład 2. Niech przestrzeń (X, T ) będzie dyskretna, tzn. niech każdy zbiór w X
+będzie otwarty. Wówczas T = T (d) dla metryki d określonej tak, że d(x1 , x2 ) = 1 dla
+każdej pary różnych punktów x1 , x2 ∈ X.
+Zadanie 5. Udowodnić, że przekształcenie identycznościowe z (Rn , de ) do (Rn , dsup )
+√
+spełnia warunek Lipschitza ze stałą 1, a z (Rn , dsup ) do (Rn , de ) – ze stałą n. Wywnio-
+skować, że metryki de i dsup są równoważne.
+Zadanie 6. a) Dla A ⊂ X dowieść równości:
+T (d|A ) = {U ∩ A : U ∈ T (d)}
+(2)
+Wywnioskować, że:
+b) Zbiór F jest domknięty w przestrzeni (A, d|A ) wtedy i tylko wtedy, gdy jest postacj
+K ∩ A dla pewnego zbioru K, domkniętego w (X, d).
+c) Gdy A ∈ T (d), to T (d|A ) ⊂ T (d) (czyli: zbiór otwarty w otwartej podprzestrzeni
+przestrzeni (X, d) jest otwarty w (X, d)).
+d) Gdy metryki d i ρ na X są równoważne, to metryki d|A i ρ|A na zbiorze A – też.
+Przestrzeń topologiczną nazywamy metryzowalną, jeśli jej topologia jest genero-
+wana przez pewną metrykę. Nie każda topologia jest metryzowalna (przykłady podamy
+dalej); ponadto różne metryki mogą wyznaczać tę samą topologię – patrz zadanie 5.
+H. Toruńczyk, Wykład z Topologii I∗ , jesień 2013.
+I-9
+Uwaga 4. Przestrzeń, homeomorficzna z przestrzenią metryzowalną, jest metryzo-
+walna. Co więcej, gdy f jest homeomorfizmem z (X, T ) na (Y, T (ρ)), to topologia T
+jest generowana przez metrykę d, określoną wzorem d(x, x ) := ρ(f (x), f (x )). Istotnie,
+przekształcenie identycznościowe (X, T ) → (X, T (d)) jest homemomorfzmem, jako zło-
+żenie przekształceń f : (X, T ) → (Y, T (ρ)) i f −1 : (Y, T (ρ) → (X, T (d)), z których
+każde jest homeomorfizmem: pierwsze z założenia, a drugie – bo jest izometrią.
+Dla dalszych celów zauważmy, że gdy przestrzeń (Y, ρ) jest zupełna, to (X, d) –też, bo
+jest izometryczna z przestrzenią zupełną (Y, ρ). (Definicja zupełności będzie w §3).
+§ 3.
+Powrót do przestrzeni metrycznych: przestrzenie metryczne zupełne.
+Niech (X, d) będzie przestrzenią metryczną.
+Definicja. Ciąg {xn }∞ ⊂ X spełnia warunek Cauchy’ego, jeśli dla każdej liczby
+n=1
+ε > 0 istnieje liczba naturalna n = n(ε) taka, że d(xk , xl ) < ε dla wszystkich k, l > n.
+(Gdyby od n = n(ε) żądać tylko, by d(xn , xk ) < ε dla k > n, otrzymamy warunek
+równoważny – dlaczego?) Można ten warunek zapisać też tak:
+lim diamd ({xn , xn+1 , ...}) = 0, gdzie diamd (A) := sup{d(a, a ) : a, a ∈ A}.
+n→∞
+(3)
+Krótko, mówimy też o ciągach Cauchy’ego (lub d–Cauchy’ego, by uwidocznić rolę d).
+Uwaga 1. a) Ciąg zbieżny w (X, d) spełnia warunek Cauchy’ego w metryce d.
+b) Ciąg Cauchy’ego, posiadający podciąg zbieżny, sam jest zbieżny.
+Definicja. Przestrzeń (X, d), lub metrykę d, nazywamy zupełną, jeśli każdy ciąg d–
+Cauchy’ego jest zbieżny.
+Przykład 1. Przestrzeń (R, de ) jest zupełna – dowiedziono tego na AM I.
+Uwaga 2. Z definicji wynika, że domknięta podprzestrzeń (A, d|A ) przestrzeni metrycz-
+nej zupełnej (X, d) też jest przestrzenią zupełną. Również odwrotnie, jeśli podprzestrzeń
+(A, d|A ) jest zupełna, to A jest zbiorem domkniętym w X. (Wynika to z uwagi 1a).)
+Zupełność przestrzeni (X, d) zależy od metryki d, a nie tylko od topologii T (d):
+Przykład 2. Odcinek J := (−1, 1) nie jest zupełny w metryce de , bo nie jest domknięty w
+(R, de ); patrz wyżej. Gdy jednak przyjmiemy d(x, y) := |f (x) − f (y)|, gdzie f : J → R
+jest homeomorfizmem (można n.p. wziąć f (t) = tan(πt/2)), to otrzymamy metrykę d
+na J, która na podstawie uwagi 1 w §I.3 jest zupełna i równoważna metryce de|J×J .
+Lemat 1 (G. Cantora). Niech F1 ⊃ F2 ⊃ ... będzie ciągiem domkniętych, niepustych
+podzbiorów przestrzeni zupełnej (X, d). Jeśli diamd (Fn ) → 0, to n Fn = ∅.
+I § 3.
+I-10
+Dowód. Obierzmy punkty x1 ∈ F1 , x2 ∈ F2 , .... Ponieważ diamd {xi }∞ ≤ diamd (Fn ) →
+i=n
+∞
+0, więc ciąg (xn )n=1 spełnia warunek Cauchy’ego (3) i wobec tego jest zbieżny do pewnego
+punktu x. A że dla n ∈ N zachodzi {xi }i≥n ⊂ Fn = F n , to x = limi xi ∈ Fn , ∀n ∈ N.
+Uwaga 3. Założenie diamd (Fn ) → 0 i zupełność metryki d są wyżej istotne. Świadczą
+o tym ciągi zbiorów Fn = [n, ∞) w przestrzeni (R, de ) oraz Fn = (0, 1/n] w przestrzeni
+((0, ∞), de ), odpowiednio.
+By nadać twierdzeniu 1 postać poręczną dla zastosowań w Analizie i związaną z
+badanym dalej pojęciem zwartości, nazwijmy rodzinę zbiorów F skierowaną,2 jeśli dla
+każdych F1 , F2 ∈ F istnieje zbiór F ∈ F taki, że F ⊂ F1 ∩ F2 .
+Twierdzenie 1 (G. Cantora, postać poszerzona). Niech F będzie niepustą, skiero-
+waną rodziną domkniętych, niepustych podzbiorów zupełnej przestrzeni (X, d). Jeśli
+inf{diamd (F ) : F ∈ F} =0, to zbiór F składa się z jednego punktu.
+Dowód. Obierzmy zbiory H1 , H2 , ... ∈ F tak, by diamd (Hn ) < 1/n dla n ∈ N. Dla
+zadanego zbioru H0 ∈ F wybierzmy indukcyjnie F1 , F2 ... ∈ F tak, by Fn ⊂ Hn−1 ∩ Hn .
+Z lematu wynika istnienie punktu x ∈ n Fn ⊂ ∞ Hn ; a że diamd ∞ Hn = 0, to
+n=0
+n=1
+∞
+n=1 Hn = {x} – co wyznacza x w sposób niezależy od H0 . Przy tym x ∈ H0 , a H0 ∈ F
+można obrać dowolnie –więc x należy do każdego zbioru H0 ∈ F. Zatem F = {x}.
+Twierdzenie Cantora zastosujmy do przedłużania funkcji jednostajnie ciągłych.
+Definicja. Niech (X, d) i (Y, ρ) będą przestrzeniami metrycznymi. Przekształcenie f :
+X → Y jest jednostajnie ciągłe, jeśli każdej liczbie ε > 0 można przyporządkować
+liczbę δ = δ(ε) > 0 tak, by dla każdych δ–bliskich punktów x1 , x2 ∈ X, ich obrazy przy
+f były ε–bliskie (tzn., by d(x1 , x2 ) ≤ δ ⇒ ρ(f (x1 ), f (x2 )) ≤ ε dla x1 , x2 ∈ X.)
+Modułem jednostajnej ciągłości funkcji f nazwiemy każdą funkcję φ : (0, ∞) →
+(0, ∞) taką, że limr→0 φ(r) = 0 i nierówność ρ(f (x1 ), f (x2 )) ≤ φ(r) zachodzi dla wszyst-
+kich x1 , x2 ∈ X z d(x1 , x2 ) < r. Odnotujmy, że funkcja jednostajnie ciągła ma pewien
+moduł jednostajnej ciągłości, i vice versa.
+Twierdzenie 2. Niech (X, d) i (Y, ρ) będą przestrzeniami metrycznymi, a f : A → Y
+jednostajnie ciągłą funkcją, określoną na zbiorze A ⊂ X. Jeśli przestrzeń (Y, ρ) jest
+zupełna, to funkcję f można przedłużyć do jednostajnie ciągłej funkcji f : A → Y .
+Ponadto, moduł φ jednostajnej ciągłości funkcji f pozostaje nim i dla f .
+Dowód. Ustalmy punkt x ∈ A \ A i przyjmijmy Cr := f (Bd (x, r) ∩ A) dla r > 0.
+Otrzymujemy skierowaną rodzinę {Cr : r > 0} niepustych zbiorów domkniętych, przy
+czym diamρ Cr = diamρ Cr ≤ 2φ(r). (Niepustość wynika stąd, że B(x, r) ∩ A = ∅, bo
+x ∈ A.) Wobec limr→0 φ(r) = 0 mamy więc inf r diamρ Cr = 0, skąd na mocy twierdzenia
+2
+ściślej, należałoby powiedzieć „skierowaną w dół” –czego nie robimy, bo rodzin „skierowanych w górę” nie użyjemy.
+I-11
+H. Toruńczyk, Wykład z Topologii I∗ , jesień 2013.
+Cantora istnieje jedyny punkt należący do r>0 Cr ; oznaczmy go f (x). Prowadzi to do
+funkcji A ∪ {x} → Y , równej f na A i f (x) w punkcie x. Jest ona ciągła w x, bo
+dla a ∈ B(x, r) ∩ A otrzymujemy ρ(f (x), f (a)) ≤ diamρ f (Bd (x, r)) ≤ 2φ(r). Gdy
+więc przeprowadzimy tę konstrukcję dla każdego x ∈ A \ A, to wobec ciągłości f na
+A ∪ {x, y} zachodzi ρ(f (x), f (y)) ≤ φ(r) dla punktów x, y ∈ A takich, że d(x, y) < r.
+(Korzystamy z tego, że każdy z punktów x, y można aproksymować punktami z A, a
+dla nich nierówność jest spełniona.) Tak więc φ jest modułem jednostajnej ciągłości
+otrzymanej funkcji f : A → Y .
+Zadanie 1. Niech f : A → Y będzie przekształceniem ciągłym podzbioru A przestrzeni
+(X, d) w przestrzeń (Y, ρ). Dla x ∈ A niech osc(f, x) := inf r>0 diamρ f (B(x, r) ∩ A).
+(„osc(f, x)” jest od „oscylacja funkcji f w punkcie x”.) Udowodnić, że:
+a) Jeśli metryka ρ jest zupełna, to f można przedłużyć do funkcji ciągłej f : (A, d) →
+(Y, ρ), gdzie A := {x ∈ A : osc(f, x) = 0}.
+b) Zbiór A jest typu Gδ w A, a tym samym i w X. (Definicja będzie dopiero w §4.)
+Innym bezpośrednim zastosowaniem zupełności jest zasada odwzorowań zwężających,
+w tak ogólnej postaci podana przez S. Banacha.
+Twierdzenie 3. Niech (X, d) będzie przestrzenią ze skończoną metryką zupełną d, a
+przekształcenie f : X → X niech spełnia w tej metryce warunek Lipschitza ze stałą
+L < 1. Wówczas istnieje jedyny punkt x ∈ X taki, że f (x) = x.
+Dowód. Przypomnijmy, iż wymieniony warunek Lipschitza oznacza, że d(f (x1 ), f (x2 )) ≤
+L · d(x1 , x2 ) dla x1 , x2 ∈ X. Jeśli więc f (x) = x i f (x ) = x , to d(x, x ) ≤ Ld(x, x ), co
+wobec L < 1 daje d(x, x ) = 0 i x = x . Pozostaje dowieść istnienia punktu stałego x.
+W tym celu obierzmy dowolny punkt x0 ∈ X i przyjmijmy indukcyjnie xn+1 = f (xn )
+dla n ≥ 0. Mamy d(xn , xn+1 ) = d(f (xn−1 ), f (xn )) ≤ Ld(xn−1 , xn ), skąd
+d(xn , xn+1 ) ≤ Ld(xn−1 , xn ) ≤ L2 d(xn−2 , xn−1 ) ≤ ... ≤ Ln d(x0 , x1 ).
+Tym samym d(xn , xn+k ) ≤ (Ln +...+Ln+k )d(x0 , x1 ) ≤ Ln C, gdzie C = d(x0 , x1 )/(1−L).
+Ciąg (xn ) spełnia więc warunek Cauchy’ego (bo L < 1) i wobec zupełności (X, d) jest
+zbieżny do pewnego punktu x ∈ X. Z ciągłości f wynika, że f (xn ) → f (x); a że
+f (xn ) = xn+1 → x, to x = f (x). (Odnotujmy, że także d(x0 , x) ≤ d(x0 ,x1 ) – dlaczego?)
+1−L
+Zadanie 2. Niech F będzie podprzestrzenią liniową przestrzeni B(X, R) wszystkich
+ograniczonych funkcji z X do R, przy czym taką, że 1 ∈ F i f 2 ∈ F dla każdej funkcji
+√
+f ∈ F. Udowodnić, że jeśli F jest zbiorem domkniętym w metryce dsup , to f ∈ F dla
+każdej nieujemnej funkcji f ∈ F. Rozumować następująco:
+a) Gdy 1 ≥ f ≥ ε dla pewnego ε > 0, rozpatrzeć przekształcenie u → (1 + u2 − f )/2
+i dowieść, że przy L := 1 − ε przekształca ono kulę B(0, L) w siebie i spełnia na tej kuli
+warunek Lipschitza ze stałą L < 1.
+2
+b) Gdy uε jest punktem stałym tego przekształcenia i vε := 1−uε , to vε = f i vε ≥ 0.
+I § 4.
+I-12
+1
+2
+c) Gdy 1/2 ≥ f , to rozpatrzeć ciąg funkcji {vn }n∈N ⊂ F, taki, że vn ≥ 0 i vn = f + n .
+§ 4.
+Twierdzenie Baire’a; przykładowe zastosowania.
+Twierdzenie 1 (R. L. Baire’a). 3 W przestrzeni metrycznej zupełnej (X, d),
+a) przecięcie przeliczalnie wielu zbiorów, które są gęste i otwarte, jest zbiorem gęstym.
+b) (sformułowanie dualne) suma przeliczalnie wielu brzegowych zbiorów domkniętych
+jest zbiorem brzegowym.
+Przypomnjmy, że zbiór nazywamy brzegowym, jeśli jego wnętrze jest puste (równo-
+ważnie: gdy zbiór ten nie zawiera niepustego zbioru otwartego w (X, d)).
+Dowód. Ad a). Niech zbiory U1 , U2 , ... będą gęste i otwarte w X; dowiedziemy, że n Un
+ma punkty wspólne z dowolnym zbiorem otwartym U . Ustalmy więc U i obierzmy
+za B0 kulę domkniętą, o dodatnim promieniu, zawartą w U0 := U . Gdy znamy już
+zbiór domknięty Bn ⊂ Un , o niepustym wnętrzu, to obierzmy punkt x ∈ Int(Bn ) ∩
+Un+1 . (Punkt taki istnieje, bo zbiór gęsty Un+1 ma punkty wspólne z każdym niepustym
+zbiorem otwartym.) Następnie obierzmy kulę domkniętą Bn+1 wokół x, o promieniu r ∈
+(0, 1/n) tak małym, by Bn+1 ⊂ Bn ∩ Un+1 . W ten sposób utworzone zbiory domknięte
+Bn tworzą ciąg, spełniający założenia twierdzenia Cantora. Ponieważ n Bn ⊂ n Un ,
+więc z twierdzenia tego wynika teza a).
+Ad b). Ta część wynika z poprzedniej, przez przejście do dopełnień i wykorzystanie
+wzorów de Morgana. (Sprawdzić to!)
+By twierdzenie to sformułować dogodniej, nazwijmy podzbiór A przestrzeni topolo-
+gicznej X:
+• zbiorem typu Gδ , jeśli A =
+• zbiorem typu Fσ , jeśli A =
+n Un
+dla pewnych zbiorów otwartych U1 , U2 , ....
+n Fn dla pewnych zbiorów domkniętych F1 , F2 , ...
+Powiemy też, że przestrzeń topologiczna (X, T ) jest metryzowalna w sposób zu-
+pełny, jeśli T = T (d) dla pewnej metryki zupełnej d.
+Wniosek 1. W przestrzeni, metryzowalnej w sposób zupełny,
+a) gdy G1 , G2 , ... są gęstymi zbiorami typu Gδ , to n Gn też ma te (obie) własności;
+b) gdy F1 , F2 , ... są brzegowymi zbiorami typu Fσ , to n Fn też ma te własności.
+Wniosek ten uwidacznia, że w przestrzeniach metryzowalnych w sposób zupełny, brze-
+gowe zbiory typu Fσ zachowują się podobnie, jak zbiory miary 0 w przestrzeniach z miarą,
+a gęste zbiory typu Gδ – podobnie jak zbiory pełnej miary. Analogii tej poświęcona jest
+książka J. Oxtoby’ego ”Measure and category.”
+Baire dowiódł tego twierdzenia dla (Rn , de ) w 1899r, niezależnie od W. F. Osgooda, który w 1897r. rozważył
+przypadek n = 1.
+3
+I-13
+H. Toruńczyk, Wykład z Topologii I∗ , jesień 2013.
+Przykład 1. Przestrzeń Q liczb wymiernych, traktowana jako podprzestrzeń prostej (R, de ),
+nie jest więc metryzowalna w sposób zupełny, bo jest sumą przeliczalnie wielu zbiorów
+jednopunktowych, z których każdy jest w Q brzegowy i domknięty.
+Zadanie 1. W przestrzeni metryzowalnej, każdy podzbiór domknięty jest typu Gδ , a
+otwarty – typu Fσ .
+Zadanie 2. W dowolnej przestrzeni topologicznej, przecięcie skończenie wielu zbiorów,
+z których każdy jest gęsty i otwarty w X, jest zbiorem gęstym w X.
+Pewne zastosowania twierdzenia Baire’a (zadania).
+Niżej, (X, d) i Y, ρ) to przestrzenie metryczne, przy czym (X, d) jest zupełna i ρ ≤ 1.
+3. Niech przestrzeń X będzie sumą przeliczalnie wielu zbiorów domkniętych Fn . Do-
+wieść, że zbiór n IntFn jest gęsty w X. (Wskazówka: zbiory Fn \ IntFn są brzegowe.)
+4. Dowieść następującego twierdzenia Osgooda: gdy ciąg funkcji ciągłych fn :
+X → [0, ∞) jest punktowo ograniczony, to na pewnym niepustym zbiorze otwartym
+wszystkie funkcje fn są z góry ograniczone wspólną stałą. (Ciąg (fn ) jest punktowo
+ograniczony, jesli supn |fn (x)| < ∞ ∀x ∈ X.)
+5. Niech ciąg funkcji ciągłych fn : X → Y będzie zbieżny punktowo do funkcji φ
+(niekoniecznie ciągłej). Dowieść, że:
+ε
+a) Dla każdego ε > 0 pewien ze zbiorów Fn = {x ∈ X : ρ(fk (x), fn (x)) ≤ ε ∀k ≥ n}
+ε
+ma niepuste wnętrze; co więcej, zbiór U ε := n intFn jest gęsty w X.
+b) Zbiór G := ε>0 U ε ma tę własność, że dla dowolnych x ∈ G i ε > 0 istnieje
+otoczenie punktu x (w przestrzeni X), na którym prawie wszystkie funkcje fi różnią się
+od φ o mniej, niż ε.
+c) Powyższy zbiór G jest gęsty i typu Gδ w X, a funkcja graniczna φ jest ciągła w
+każdym punkcie x ∈ G. (Jest to jedno z twierdzeń Baire’a; zbieżność punktowa
+ciągu (fn )∞ do φ oznacza, że limn fn (x) = φ(x) ∀x ∈ X, zaś funkcje f i g różnią
+n=1
+się na A o mniej, niż ε, jeśli supa∈A ρ(f (a), g(a)) < ε.)
+6. Wywnioskować z zadania 5, że gdy φj : X → Y (j ∈ N) są funkcjami, z których
+każda jest granicą punktową ciągu funkcji ciągłych, to istnieje taki gęsty zbiór G typu
+Gδ w X, że w każdym jego punkcie wszystkie funkcje φj są ciągłe.
+Problem 1. Udowodnić za C. Lennardem, że gdy dla każdego n ∈ N przestrzeń (Xn , dn )
+jest zupełna, przekształcenie Tn : Xn+1 → Xn jest ciągłe i ma gęsty obraz, a zbiór
+Un ⊂ Xn jest otwarty i gęsty, to zbiór n T1 T2 ...Tn (Un+1 ) jest gęsty w X1 .
+Problem 2. (Funkcja Weierstrassa.) Udowodnić istnienie funkcji ciągłej f : [0, 1] → R,
+nie różniczkowalnej w żadnym punkcie. (Wolno użyć twierdzenia 2 z §5, znanego z AM.)
+Problem 3. (Twierdzenie Baire’a o rozdzielnej ciągłości; wersja późniejsza. Definicje bazy
+I § 5.
+I-14
+topologii i iloczynu kartezjańskiego przestrzeni topologicznych będą dane w §II.2–II.4.)
+Niech funkcja f : X × S → Y będzie ciągła ze względu na każdą zmienną przy ustalonej
+pozostałej, przy czym o S zakładamy, że ma bazę przeliczalną. Udowodnić, że:
+a) Dla dowolnych podzbiorów S1 , S2 , ... przestrzeni S istnieje gęsty zbiór G ⊂ X,
+typu Gδ w X i taki, że wszystkie funkcje X
+x → diamρ f ({x} × Sn ) są ciągłe w
+każdym jego punkcie. (Wskazówka: użyć zadania 6 i tego, że gdy ciąg (sj ) jest gęsty
+w Sn , to diamρ f ({x} × Sn ) = supk,l ρ(f (x, sk ), f (x, sl )) .)
+b) Gdy wyżej za (Sn ) przyjąć bazę topologii przestrzeni S , to otrzymany zbiór G ma
+tę własność, że funkcja f jest ciągła w każdym punkcie zbioru G × S.
+§ 5.
+Konstrukcje, prowadzące do przestrzeni zupełnych.
+Wiele zastosowań zupełności uzależnionych jest od umiejętności rozpoznania pewnych
+przestrzeni, n.p. funkcyjnych, jako zupełne. Omówmy więc wybrane konstrukcje, pro-
+wadzące do przestrzeni zupełnych.
+Lemat 1. Dla rodziny {(Xs , ds ) : s ∈ S} zupełnych przestrzeni metrycznych, zupełna
+jest metryka pudełkowa ρ na zbiorze X = s∈S Xs , opisana w przykładzie 1e) z §I.1.
+Dowód. Niech ciąg (xn )∞ spełnia warunek Cauchy’ego w (X, ρ). Dla każdego s ∈ S,
+n=1
+naturalne rzutowanie πs : (X, ρ) → (Xs , ds ) spełnia warunek Lipschitza ze stałą 1,
+wobec czego ciąg (πs (xn ))∞ spełnia warunek Cauchy’ego w (Xs , ds ) i jest zbieżny w
+n=1
+metryce ds do pewnego punktu ys . Dla s ∈ S i k ∈ N mają miejsce oszacowania
+ds (ys , πs (xk )) = lim ds (πs (y n ), πs (xk )) ≤ lim sup ρ(xn , xk ) ≤ diamρ ({xn }∞ ),
+n=k
+n
+n
+skąd punkt y := (ys )s∈S ∈ X jest granicą ciągu (xk )∞ , bo ρ(y, xk ) = sups ds (ys , πs (xk ))
+k=1
+≤ diamρ ({xn }∞ ) → 0 na mocy warunku Cauchy’ego (3) dla ciągu (xn )n∈N .
+n=k
+Definicja. Przestrzeń topologiczną nazwiemy metryzowalną w sposób zupełny, jeśli
+jej topologia jest generowana przez pewną metrykę zupełną.
+Przykład 1. Ocinek (−1, 1), z topologią euklidesową, jest metryzowalny w sposób zu-
+pełny; patrz przykład 2 w §1.
+Twierdzenie 1. Niech (X, dX ) i (Y, d) będą przestrzeniami metrycznymi.
+a) Zbiór C(X, Y ) funkcji ciągłych z X do Y jest domknięty w przestrzeni metrycznej
+X
+Y wszystkich funkcji z X do Y , wyposażonej w metrykę dsup . Domknięty w tej prze-
+strzeni jest też zbiór B(X, Y ) wszystkich ograniczonych funkcji z X do Y (tzn. takich,
+których obraz jest zbiorem ograniczonym – czyli ma skończoną średnicę diamd ).
+b) Jeśli przestrzeń (Y, d) jest zupełna, to zupełne w metryce dsup są przestrzenie
+X
+Y , C(X, Y ), B(X, Y ) i Cb (X, Y ) := C(X, Y ) ∩ B(X, Y ).
+I-15
+H. Toruńczyk, Wykład z Topologii I∗ , jesień 2013.
+Dowód. Ad a). Sprawdzimy tylko domkniętość zbioru C(X, Y ). Niech fn ∈ C(X, Y )
+dla n ∈ N, przy czym dsup (fn , f ) → 0 dla pewnej funkcji f : X → Y . By dowieść
+ciągłości f w punkcie x, dla danego ε > 0 ustalmy n ∈ N tak, by dsup (fn , f ) < ε/3.
+Ponieważ funkcja fn jest ciągła w x, więc diamd (fn (BdX (x, δ)) < ε/3 dla pewnego δ > 0.
+Wówczas diamd (f (BdX (x, δ)) < ε/3 + 2 · ε/3 = ε, skąd f (BdX (x, δ)) ⊂ Bd (f (x), ε).
+Ad b). Wobec a) i uwagi 2 w §1, wystarczy dowieść zupełności przestrzeni (Y X , dsup ).
+Ta jednak wynika z lematu, zastosowanego przy S := X i (Xs , ds ) := (Y, d) dla s ∈ S.
+Twierdzenie 2 (o istnieniu i jednoznaczności uzupełnienia). Niech (X, d) będzie prze-
+strzenią ze skończoną metryką d.
+a) Istnieje uzupełnienie tej przestrzeni, tzn. zupełna przestrzeń metryczna (Y, ρ), ze
+skończoną metryką ρ, zawierająca (X, d) jako gęstą podprzestrzeń: ρ|X = d i clρ X = Y .
+b) Jeśli (Y, ρ) i (Y , ρ ) są uzupełnieniami przestrzeni (X, d), to istnieje izometria
+przestrzeni Y na Y , będąca identycznością na X.
+Dowód. Ad a). Ustalmy punkt p ∈ X i każdemu punktowi x ∈ X przyporządkujmy
+funkcję φx ∈ RX , określoną wzorem φx (x ) = d(x, x ) − d(p, x ). Na ćwiczeniach dowie-
+dziono, że zanurzenie Kuratowskiego X x → φx jest izometrią przestrzeni (X, d)
+na pewien podzbiór Y0 przestrzeni (Cb (X), dsup ). Gdy przyjmiemy Y := Y0 (domknięcie
+w Cb (X)) i ρ := dsup |Y , to przestrzeń (Y, ρ) będzie zupełna na podstawie twierdzenia
+2b), wraz z uwagą 2 z §1. Warunki tezy są więc spełnione, z tym, że X należy przy
+pomocy izometrii f utożsamić z gęstym podzbiorem f (X) przestrzeni Y . (Jeśli chcieć
+dosłownie uzyskać inkluzję X ⊂ Y , należy przyjąć Y := X ∪ (Y \ Y0 ) i zdefiniować
+metrykę ρ odpowiednio; szczegóły pomijamy.)
+Ad b) Z definicji uzupełnienia, identyczność idX , jako przekształcenie poprzestrzeni
+przestrzeni (Y, ρ) w przestrzeń zupełną (Y , ρ ), spełnia warunek Lipschitza ze stałą 1.
+Przedłuża się więc ono do przekształcenia f : (Y, ρ) → (Y , ρ ), też spełniającego ten
+warunek. (Korzystamy z twierdzenia 2 w §1 i gęstości X w (Y, ρ).) Tak samo, istnieje
+przekształcenie g : (Y , ρ ) → (Y, ρ), spełniajace warunek Lipschitza ze stałą 1 i będące
+identycznością na X. Ponieważ złożenie gf : Y → Y jest identycznością na zbiorze
+gęstym X, to jest identycznością wszędzie; tak samo, f g jest identycznością na Y .
+W szczególności, f i g są wzajemnie odwrotnymi bijekcjami. A że nie zwiększają one
+odległości, to wynika stąd, że są izometriami.
+Zakończmy podając charakteryzację przestrzeni, metryzowalnych w sposób zupełny:
+Twierdzenie 3. ∗ Niech A będzie podzbiorem przestrzeni metrycznej (X, d).
+a) (Twierdzenie Aleksandrowa.) Jeśli A jest typu Gδ w X i metryka d jest zupełna,
+to przestrzeń (A, T (d|A )) jest metryzowalna w sposób zupełny.
+b) (Twierdzenie Mazurkiewicza i Lawrientiewa.) Odwrotnie, jeśli podprzestrzeń (A, T (d|A ))
+jest metryzowalna w sposób zupełny, to A jest zbiorem typu Gδ w przestrzeni (X, d).
+I § 5.
+I-16
+Dowód. Ad a). W dowodzie oznaczymy przez (Rn , dn ) prostą R, z metryką dn =
+1
+min( n , de ). Przyjmijmy Y := X × R1 × R2 ..., zaś na Y i n Rn rozpatrzmy me-
+tryki pudełkowe ρ i ρ0 , odpowiednio, wyznaczone przez metryki d, d1 , d2 , ... na „osiach”
+X, R1 , R2 , .... Zgodnie z lematem 1, metryka ρ jest zupełna.
+Niech A = k Un , gdzie zbiory Un są otwarte w X. Obierzmy funkcje φn : X → Rn
+tak, by φ−1 (0) = X \ Un , np. przyjmimy φn (x) = distd (x, X \ Un ). Z zadań 1b) w §1
+n
+i 2 w §2 wynika, że funkcja ψ = (1/φ1 , 1/φ2 , ...) : (A, d) → ( n Rn , ρ0 ) jest ciągła, a
+przekształcenie A a → (a, ψ(a)) jest homeomorfizmem na jej wykres Z, traktowany
+jako podprzestrzeń przestrzeni (Y, ρ). Jeśli dowiedziemy, że zbiór Z jest domknięty w Y ,
+to zakończymy dowód a), bo przestrzeń (A, d|A ) okaże się homeomorficzna z domkniętą
+podprzestrzenią Z zupełnej przestrzeni metrycznej (Y, ρ) – a przez to będzie metryzo-
+walna w sposób zupełny. (Korzystamy z uwagi 2 w §3.)
+Domkniętość zbioru Z wynika jednak stąd, że gdy ciąg punktów (ak , ψ(ak ))∞ jest
+k=1
+ρ–zbieżny w Y = X × n Rn do punktu (x, (tn )∞ ), to przy x ∈ Ul dla pewnego l,
+n=1
+zachodziłoby też 1/φl (ak ) → ∞ – wbrew temu, że limk→∞ 1/φl (ak ) = tl ∈ Rn . Tak więc
+x ∈ A i (ak , ψ(ak )) → (x, ψ(x)) ∈ Z (z ciągłości funkcji ψ) – czego należało dowieść.
+Ad b). Tym razem oznaczmy przez ρ metrykę zupełną na A, dla której T (ρ) =
+T (d|A ), a przez f – funkcję a → a (a ∈ A), z podprzestrzeni (A, d) w przestrzeń (A, ρ).
+(Metryki, indukowane przez d na podzbiorach zbioru X, nadal oznaczajmy przez d.) Na
+podstawie zadania 1 z §1, f przedłuża się w sposób ciągły na podprzestrzeń A typu Gδ w
+(X, d), zawartą w domknięciu cld A zbioru A. Daje to funkcję ciągłą f : (A, d) → (A, d)
+taką, że im(f ) ⊂ A i f (a) = a dla a ∈ A; a że zbiór A jest gęsty w A, to f (a) = a
+wszędzie w A. Stąd A = A –co kończy dowód, bo A jest typu Gδ w (X, d).
+Uwaga 1. Dowód części a) prowadzi do jawnych wzorów na metrykę zupełną na A,
+1
+równoważną metryce dA . Jednym z nich jest wzór (x, y) → d(x, y)+supn min( n , | φn1 −
+(x)
+1
+φn (x) |), gdzie φn są jak w dowodzie. (Żądanych metryk jest wiele.)
+W dotychczasowej dyskusji zabrakło ustalenia, przy jakich założeniach iloczyn karte-
+zjański przestrzeni metryzowalnych w sposób zupełny też jest metryzowalny w sposób
+zupełny. Wiąże się to z tym, że dopiero w następnym rozdziale ustalimy, w jaką topologię
+chcemy ten iloczyn wyposażyć.
+H. Toruńczyk, Wykład z Topologii I∗ , jesień 2013.
+II-17
+II
+Topologia ogólna: iloczyny kartezjańskie, aksjomaty oddzie-
+lania i konstrukcja funkcji ciągłych.
+§ 1.
+Podstawowe pojęcia topologiczne (uzupełnienie).
+W tym rozdziale badać będziemy ogólne przestrzenie topologiczne, nie zakładając ich
+metryzowalności. Prócz definicji z §I.2 wykorzystywać będziemy następującą:
+Definicja. Brzegiem podzbioru A przestrzeni topologicznej(X, T ) nazywamy zbiór
+Fr(A) = A ∩ X \ A. (Inne spotykane oznaczenie to Bd(A).) Z (1) w §I.2 wynika, że
+Fr(A) = A \ IntA.
+(4)
+Zadanie 1. ∗ Udowodnić, że funkcja f : (X, TX ) → (Y, TY )) jest ciągła wtedy i
+tylko wtedy, gdy Fr(f −1 (A)) ⊂ f −1 (Fr(A)) dla każdego zbioru A ⊂ Y . (Wcześniejsze
+charakteryzacje ciągłości są w §I.3, stwierdzenie 2 i zadanie 4.)
+§ 2.
+Sposoby generowania topologii.
+Opiszemy sposoby otrzymywania topologii, z ktorymi najczęściej się tu spotkamy.
+A. Generowanie topologii przez metrykę – patrz poprzedni rozdział.
+B. Generowanie topologii przez bazę lub podbazę.
+Definicja. Gdy T jest topologią na pewnym zbiorze, to rodzinę B nazywamy jej bazą,
+jeśli T = { B : B ⊂ B}. Mówimy też wtedy, że topologią T jest generowana przez
+bazę B. (Zadanie 1 z §I.2 pokazuje, że topologia może mieć różne bazy).
+Zadanie 1. a) Rodzina B wtedy i tylko wtedy jest bazą topologii T , gdy B ⊂ T i dla
+każdego zbioru U ∈ T i każdego punktu x ∈ U istnieje zbiór B ∈ B taki, że x ∈ B ⊂ U .
+b) Gdy B jest bazą pewnej topologii na zbiorze X, to spełnione są warunki (B1) i (B2)
+z §I.2, tzn. B = X i B1 ∩ B2 ∈ B ∀B1 , B2 ∈ B.
+c) Odwrotnie, gdy te dwa warunki są spełnione, to rodzina T := { B : B ⊂ B}
+jest topologią w zbiorze X.
+Przykład 1. a) Rodzina B(d) kul otwartych w metryce d jest bazą topologii T (d).
+a) W zbiorze X z liniowym porządkiem <, rodzina przedziałów {x : a < x < b}, {x :
+x < a} i {x : x > a}, gdzie a, b ∈ X, spełnia warunki (B1) i (B1) jeśli #X > 1.
+Topologię generowaną przez tę rodzinę oznaczamy T (<).
+b) Gdy X = [0, 1]2 jest kwadratem na płaszczyźnie R2 , a < porządkiem leksyko-
+graficznym, to otrzymaną przestrzeń ([0, 1]2 , T (<)) nazywamy kwadratem leksyko-
+graficznym. Wyżej, porządek leksykograficzny zdefiniowany jest tak: [(a1 , a2 ) <
+(b1 , b2 )] ⇔ [(a1 < a2 ) lub (a1 = a2 i b1 < b2 )].
+II § 2.
+II-18
+Uwaga 1. Ogólniej, dla każdej rodziny B0 podzbiorów zbioru X, istnieje topologia T ,
+zawierająca U i zawarta w każdej topologii, zawierającej B0 – co wyrażamy mówiąc, że
+jest ona najsłabsza z nich. Topologia T ma jako bazę rodzinę B, składającą się z ∅, X i
+wszystkich przecięć skończenie wielu zbiorów z B0 . Jest widoczne, że B spełnia warunki
+(B1) i (B2), a także, że generowana przez B topologia ma żądane własności.
+W tym kontekście mówimy, że B0 jest podbazą topologii T .
+Ćwiczenie. Przeczytać w http://en.wikipedia.org/wiki/Furstenberg%27s_proof_
+of_the_infinitude_of_primes dowód, że istnieje nieskończenie wiele liczb pierwszych.
+Dowód ten (podany przez H. Fürstenberga, gdy był studentem) wykorzystuje topologię
+na prostej R, której podbazą jest rodzina wszystkich postępów arytmetycznych. Czy
+jest ona zarazem bazą topologii?
+Przykład 2. Podbazą topologii T (<) z części a) przykładu 1 jest rodzina, złożona z
+przedziałów {x : x < a} i {x : x > a}, gdzie a przebiega X.
+Zadanie 2. Do ciągłości przekształcenia f : (Z, TZ ) → (X, T ) wystarcza, by warunek
+f −1 (B) ∈ TZ był spełniony dla wszystkich zbiorów B z pewnej podbazy B0 topologii T .
+C. Generowanie przez przekształcenia z przestrzeni topologicznych.
+Niech Y będzie zbiorem, a (fs : Xs → Y )s∈S rodziną przekształceń, z których
+każde określone jest na odpowiedniej przestrzeni topologicznej (Xs , Ts ). Przyjmijmy
+−1
+T = {U ⊂ Y : fs (U ) ∈ Ts ∀s ∈ S}; wówczas z definicji i własności przeciwobrazów
+zbiorów wynika, że T jest topologią na zbiorze Y , i to najsilniejszą wśród topologii T ,
+dla których każde przekształcenie fs : (Xs , Ts ) → (Y, T ) jest ciągłe. „Najsilniejszą”
+oznacza tu, że T ma wymienioną własność i zawiera, jako rodzina zbiorów, każdą topo-
+logię T o tej własności.
+Zadanie 3. Przy powyższych oznaczeniach i dowolnej przestrzeni topologicznej (B, TB ),
+funkcja h : (Y, T ) → (B, TB ) ciągła wtedy i tylko wtedy, gdy ciągłe jest każde złożenie
+h ◦ fs : (Xs , Ts ) → (B, TB ).
+Uwaga 2. Już dla jednego surjektywnego przekształcenia f : X → Y z przestrzeni to-
+pologicznej (X, TX ) do zbioru Y , konstrukcja powyższa prowadzi do ważnej topologii
+ilorazowej na Y = im(f ); nazywamy ją też topologią wypchniętą przez f z X do Y .
+Wygodniej nam będzie omówić ją w §V.2, w oparciu o dalsze wiadomości. Poniżej ogra-
+niczymy się do przykładów, w których każde przekształcenie fs jest różnowartościowe.
+Przykład 3. Niech Y będzie sumą parami rozłącznych zbiorów Xs (s ∈ S), przy czym na
+każdym z nich zadana jest pewna topologia Ts . Przy fs : Xs → Y oznaczającym włożenia
+(s ∈ S), konstrukcja powyższa prowadzi do przestrzeni (Y, T ), nazywanej sumą roz-
+łączną rodziny przestrzeni {(Xs , Ts ) : s ∈ S}. Bazą topologii T jest rodzina s∈S Ts .
+Odnotujmy, że w topologii T zbiory Xs są zarazem otwarte i domknięte. Ponadto,
+II-19
+H. Toruńczyk, Wykład z Topologii I∗ , jesień 2013.
+jeśli każda z przestrzeni (Xs , Ts ) jest metryzowalna, a ds jest generującą ją metryką, to
+topologię T generuje metryka d opisana w przykładzie 1g) w §I.1.
+Przykład 4. Niech R∞ := {(xn ) ∈ RN : xn = 0 dla prawie wszystkich n}. Wówczas
+f
+∞
+∞
+k
+Rf = k=1 E , gdzie E k := {(xn ) ∈ RN : xn = 0 dla n > k}. Każdy zbiór E k
+identyfikujemy z Rk i wyposażamy w topologię euklidesową Tk . Przy fk : E k → RN
+f
+oznaczającym inkluzję, oznaczmy przez T opisaną wyżej najsilniejszą topologię, w której
+wszystkie przekształcenia fk : (E k , Tk ) → (RN , T ) są ciągłe. Zauważmy, że U ∈ T ⇔
+f
+k
+(U ∩ E ∈ Tk ∀k ∈ N}, lub równoważnie, zbiór A ⊂ Y jest domknięty w (RN , T ) jeśli
+f
+k
+k
+każde jego przecięcie z E , k ∈ N, jest domknięte w przestrzeni (E , Tk ).
+Otrzymana przestrzeń (RN , T ) nie jest metryzowalna. Istotnie, jeśliby T = T (d) dla
+f
+pewnej metryki d, to każda kula Bd (0, 1/k), bedąc zbiorem T –otwartym, przecinałaby
+E k wzdłuż zbioru otwartego (w topologii Tk ) – a tym samym zawierałaby punkt pk ∈ E k
+o niezerowej k-tej współrzędnej. Ponieważ d(0, pk ) < 1/k → 0, to zbiór A := {pk : k ∈
+N} nie byłby domknięty w T (d) (bo 0 ∈ A). Jednak każde przecięcie A∩E k jest zbiorem
+skończonym (mocy ≤ k), a więc domkniętym w (E k , Tk ) –wbrew temu, że T = T (d).
+D. Generowanie przez przekształcenia do przestrzeni topologicznych.
+Niech teraz X będzie zbiorem, a (fs : X → Ys )s∈S rodziną przekształceń, z których
+każde prowadzi do odpowiedniej przestrzeni topologicznej (Ys , Ts ). Tym razem celowe
+jest rozważenie najsłabszej topologii T na zbiorze X, dla której każde z przekształceń
+fs : (X, T ) → (Ys , Ts ) staje się ciągłe. Jest widoczne, że żądaną własność ma topologia,
+−1
+której podbazą jest rodzina B0 := {fs (U ) : s ∈ S, U ∈ Ts }.
+Uwaga 3. Gdy #S = 1, to rodzina B0 jest już topologią. Dla przekształcenia f : X →
+Y w przestrzeń topologiczną (Y, TY ), otrzymaną topologię T = {f −1 (U ) : U ∈ TY }
+na X (najsłabszą, czyniącą przekształcenie f : (X, T ) → (Y, TY ) ciągłym) nazywamy
+topologią cofniętą przez f (z Y do X).
+Zadanie 4. Przy powyższych oznaczeniach i dowolnej przestrzeni topologicznej (A, TA ),
+funkcja g : (A, TA ) → (X, T ) jest ciągła wtedy i tylko wtedy, gdy ciągłe jest każde
+złożenie fs ◦ g : (A, TA ) → (Xs , Ts ). (Wskazówka: zadanie 2.)
+Zadanie 5. Jeśli wyżej przekształcenie f jest różnowartościowe, a topologia TY jest
+generowana przez metrykę d, to topologia cofnięta jest generowana przez metrykę cof-
+niętą, zadaną wzorem dX (x1 , x2 ) := d(f (x1 ), f (x2 )) dla x1 , x2 ∈ X.
+Definicja. Niech X będzie podzbiorem przestrzeni topologicznej (Y, T ) i niech f : X →
+Y oznacza inkluzję. W tym przypadku topologią cofniętą jest {U ∩ X : U ∈ T };
+oznaczamy ją T|X i nazywamy topologią indukowaną na zbiorze X ⊂ Y przez
+topologię T przestrzeni (Y, T ). Podprzestrzenią przestrzeni (Y, T ) nazywamy każdy
+podzbiór zbioru Y , rozpatrywany z topologią indukowaną przez T .
+II § 3.
+II-20
+Uwaga 4. a) Przez przejście do dopełnień stwierdzamy, że zbiory domknięte w pod-
+przestrzeni (X, T|X ) są postaci A ∩ X, dla domkniętych podzbiorów A przestrzeni Y .
+b) Z zadania 5 wynika, że jeśli topologia T jest metryzowalna i T = T (d), dla pewnej
+metryki d na zbiorze Y , to topologia T|X jest metryzowalna i generuje ją metryka d|X ,
+indukowana przez d na zbiorze X. (Patrz §I.1, przed uwagą 1.)
+Przykład 5. Podprzestrzeń (0, 1]×{0} kwadratu leksykograficznego ([0, 1]2 , T ) nazwijmy
+strzałką. (W [BCPP] tak nazywana jest przestrzeń nieco inna.) Gdy (0, 1] × {0}
+utożsamić w naturalny sposób z (0, 1], to z definicji topologii indukowanej wynika (jak?),
+że bazę topologię strzałki tworzy rodzina przedziałów (a, b], gdzie 0 ≤ a < b ≤ 1.
+Zadanie 6. a) Niech A ⊂ X będą podzbiorami przestrzeni topologicznej (Y, T ), a T|A
+i T|X topologiami, indukowanymi przez T na A i X, odpowiednio. Wówczas topologia
+T|A jest indukowana na A przez T|X .
+b) Gdy wyżej zbiór X jest otwarty w Y , zaś A otwarty w (X, T|X ), to A jest otwarty
+w Y . Tak samo jest, gdy „otwarty” zmienić na „domknięty” (3 razy).
+Zadanie 7. Niech Xs (s ∈ S) będzie rodziną podzbiorów przestrzeni (Y, T ), a f :
+Y → Z taką funkcją w przestrzeń topologiczną (Z, TZ ), że każde z obcięć f|Xs jest
+ciągłe, gdy na Xs rozpatrzeć topologię podprzestrzeni. Jeśli s Xs = Y , to w każdym z
+następujących przypadków funkcja f : (Y, T ) → (Z, TZ ) jest ciągła: a) wszystkie zbiory
+Xs są otwarte w (Y, T ), lub b) #S < ∞ i wszystkie zbiory Xs są domknięte w (Y, T ).
+§ 3.
+Topologia produktowa.
+Specjalny przypadek sytuacji, opisanej w §2.D, wymaga dokładnego opisu. Niech dana
+będzie rodzina przestrzeni topologicznych {(Ys , Ts ) : s ∈ S} i niech X = s∈S Ys . Zbiór
+X wyposażony jest w rodzinę naturalnych rzutowań πs : X → Ys . Najsłabszą topologię
+T przestrzeni X, czyniącą każde z tych rzutowań ciągłym, nazywamy topologią produk-
+tową lub Tichonowa iloczynu kartezjańskiego X = s∈S Ys rodziny {(Ys , Ts ) : s ∈ S}.
+Z tego co napisane przed uwagą 3 w §2 wynika (jak?), że bazą topologii produktowej
+jest rodzina iloczynów kartezjańskich s∈S Us , takich, że Us ∈ Ts ∀s ∈ S i Us = Ys dla
+prawie wszystkich s ∈ S. Gdy nie powiedziano inaczej, iloczyny kartezjańskie przestrzeni
+topologicznych rozpatrywać będziemy z topologią produktową.
+Uwaga 1. Niech A będzie przestrzenią topologiczną, a f : A → s∈S Ys funkcją. Z
+zadania 4 w §2 wynika, że funkcja ta jest ciągła wtedy i tylko wtedy, gdy każde ze złożeń
+πs ◦ f : A → Ys (s ∈ S) jest ciągłe.
+Zadanie 1. a) Jaki jest warunek konieczny i dostateczny na to, by iloczyn kartezjański
+rodziny niepustych zbiorów As ⊂ Xs (s ∈ S) był otwarty w s Xs ? By był domknięty?
+b) Udowodnić, że domknięcie zbioru s As jest równe s As .
+II-21
+H. Toruńczyk, Wykład z Topologii I∗ , jesień 2013.
+Twierdzenie 1. Niech (Ys , Ts ) będzie rodziną przestrzeni topologicznych, przy czym Ts =
+T (ds ) dla danej metryki ds na przestrzeni Ys (s ∈ S). W każdym z następujących
+przypadków topologia produktowa na s∈S Ys jest generowana przez metrykę pudełkową
+ρ((ys ), (ys )) = sups d(ys , ys ):
+a) S jest zbiorem skończonym;
+b) S = N oraz dn ≤ cn dla n ∈ N i pewnego ciągu (cn ) liczb dodatnich, zbieżnego do 0.
+Dowód. Zajmimy się częścią b). By dowieść, że T = T (ρ), ustalmy punkt y = (yn )∞ ∈
+n=1
+n Yn ; wykażemy że: i) każde otoczenie punktu y w topologii produktowej T zawiera
+pewną kulę Bρ (y, ε), gdzie ε > 0, oraz ii) każda niepusta kula Bρ (y, r) zawiera pewne
+otoczenie punktu y w topologii T . Stąd wyniknie, że rodziny otoczeń punktu y w obu
+topologiach sa te same, więc – wobec dowolności tego punktu – obie topologie są równe.
+Ad i) Niech dane będzie otoczenie U ∈ T punktu y; zawiera ono otoczenie postaci
+n Un , gdzie Un ∈ Tn ∀n oraz Un = Yn dla n > N i pewnej liczby N . Z definicji
+otoczenia w topologii T (dn ) wynika istnienie liczb rn > 0 takich, że Bdn (yn , rn ) ⊂ Un .
+Ponieważ Un = Yn dla n > N , więc przy ε = min(r1 , ..., rn ) otrzymujemy Bρ (y, ε) ⊂
+∞
+n=1 Un ⊂ U .
+Ad ii) Niech dana będzie kula Bρ (y, r) wokół y. Obierzmy N tak duże, by dla n > N
+zachodziła nierówność cn < r; następnie, przyjmijmy Un = Bdn (yn , r) dla n = 1, ..., N ,
+zaś Un = Yn dla n > N . Wówczas U = n Un jest otoczeniem punktu y w topologii T
+i U ⊂ Bρ (y, r) – co kończy dowód ii) i b).
+Części a) dowodzimy analogicznie lub sprowadzamy ją do b), dołączając do wyjściowej
+rodziny przestrzeni przeliczalnie wiele przestrzeni jednopunktowych.
+Wniosek 1. Iloczyn kartezjański skończenie lub przeliczalnie wielu przestrzeni metry-
+zowalnych (odpowiednio: metryzowalnych w sposób zupełny) też jest taką przestrzenią,
+gdy rozpatrywać go z topologią produktową.
+Dowód. Znów możemy założyć, że czynniki rozważanego iloczynu są indeksowane licz-
+bami naturalnymi. Zastąpmy każdą metrykę ρn , zadającą topologię n–tego czynnika Yn ,
+przez dn := min(ρn , 1/n). Wówczas T (dn ) = T (ρn ) i metryka dn jest zupełna, gdy me-
+tryka ρn jest taka (pozostawiamy to jako zadanie). Żądaną metryką, wyznaczającą na
+n Yn topologię produktową, jest metryka pudełkowa ρ(y, y ) := supn dn (yn , yn ); patrz
+lemat 1 w §I.5 i twierdzenie 1.
+Uwaga 2. a) Topologia produktowa iloczynu kartezjańskiego nieprzeliczalnie wielu
+przestrzeni metryzowalnych na ogół nie jest metryzowalna; patrz dalej zadanie 6 w §4.
+b) Warunek z części b) twierdzenia jest istotny, np. metryka ρ(y, y ) = supn |yn − yn |
+zadaje na RN topologię różną od produktowej; patrz dalej zadanie 6b) w §4.
+c) Topologia produktowa na iloczynie n egzemplarzy prostej R, rozpatrywanej z to-
+pologią euklidesową, pokrywa się z topologią euklidesową T (de ) przestrzeni Rn . Wynika
+to z części a) twierdzenia, wraz z zadaniem 5 z §I.2.
+II § 4.
+II-22
+Zadanie 2. Niech danych będzie przeliczalnie wiele przestrzeni metrycznych (Yn , dn )
+i niech d będzie metryką, generującą na n Yn topologię produktową. Wówczas dla
+k 0
+punktów y 0 , y 1 , y 2 , ... iloczynu n Yn zachodzi d(y k , y 0 ) → 0 ⇔ (dn (yn , yn ) → 0∀n ∈ N).
+k
+(Tu, k → ∞, a yn oznacza n–tą współrzędną punktu y k . Wskazówka: twierdzenie 1.)
+Odnotujmy własności uniwersalności iloczynu kartezjańskiego i sumy rozłącznej.
+Uwaga 3. ∗ Gdy {(Xs , Ts )}s∈S jest rodziną przestrzeni topologicznych, to:
+a) Iloczyn kartezjański X = s Xs (z topologią produktową), wraz z rodziną rzuto-
+wań πs : X → Xs , ma następującą własność: rzutowania te są ciągłe i dla każdej rodziny
+przekształceń ciągłych us : A → Xs , gdzie A to przestrzeń topologiczna, istnieje jedyne
+przekształcenie ciągłe u : A → X takie, że πs ◦u = us ∀s ∈ S. (Jest nim przekształcenie
+A a → (us (a))s∈S ∈ X.)
+b) Suma rozłączna Y = s Xs (z topologią opisaną w przykładzie 3 w §2), wraz
+z rodziną włożeń is : Xs → Y , ma następującą własność: włożenia te są ciągłe i dla
+każdej rodziny przekształceń ciągłych us : Xs → A, gdzie A to przestrzeń topologiczna,
+istnieje jedyne przekształcenie ciągłe u : Y → A takie, że u ◦ is = us ∀s ∈ S. (Jest ono
+zdefiniowane wzorem Y y → us (y) ∈ A gdy y ∈ Ys .)
+Oboma razy, istnienie i jedyność przekształcenia zapewnia teoria zbiorów; nowością
+jest ciągłość we wprowadzonej w X czy w Y topologii. (Patrz zadanie 3 i 4 w §2.)
+Uwaga 4. Operacje „wypchnięcia” czy „cofnięcia” topologii, zdefiniowane w uwagach 2 i 3
+w §2, nie mają ogólnego odpowiednika dla metryk. Warto też odnotować, że choć istnieje
+naturalna topologia produktowa (Tichonowa), wyznaczona jednoznacznie przez produk-
+towane przestrzenie, to nie istnieje jednoznaczna „metryka produktowa”; patrz niżej.
+Zadanie 3. Dowieść, że gdy ciąg (cn ) w części b) twierdzenia spełnia warunek n cn <
+∞, to topologię produktową T generuje też metryka d((yn ), (yn )) := n dn (yn , yn ).
+§ 4.
+Warunki, nakładane na przestrzenie topologiczne.
+W dalszej części będziemy skracać zwrot „przestrzeń topologiczna (X, T )” do „przestrzeń
+topologiczna X”, traktując topologię T jako domyślną. (Podobnie, na GALu mowa jest
+o „przestrzeni wektorowej V ”, a domyślnie traktowane są operacje dodawania wektorów,
+operacja mnożenia wektory przez skalary, jak również samo ciało skalarów.)
+Przestrzenie topologiczne tak ogólne, jak zdefiniowano je w §2, mogą być bardzo
+„dzikie”. Wyrażać się to może niedostatkiem tak funkcji ciągłych, na nich określonych,
+jak i nawet zbiorów domkniętych (równoważnie: otwartych) w tych przestrzeniach.
+Przykład 1. Na każdym zbiorze X możemy określić topologię T = {X, ∅}, zwaną anty-
+dyskretną lub trywialną. Gdy #X > 1, to w przestrzeni tej żaden zbiór jednopunk-
+towy nie jest domknięty, a każda funkcja ciągła z (X, T ) do R jest stała.
+II-23
+H. Toruńczyk, Wykład z Topologii I∗ , jesień 2013.
+W związku z tym, na rozważaną przestrzeń topologiczną (X, T ) nakłada się często
+różnorakie warunki, zależne od rozpatrywanego zagadnienia. Dotyczy tego sześć tzw.
+„aksjomatów odzielania zbiorów domkniętych”, z których wymienię tylko trzy:
+(T1) Każdy zbiór jednopunktowy w X jest zbiorem domkniętym.
+(T2) Warunek Hausdorffa: Dla każdej pary różnych punktów x1 , x2 ∈ X istnieją
+rozłączne zbiory otwarte U1 , U2 ⊂ X takie, że xi ∈ Ui dla i = 1, 2.
+(T4) Warunek normalności: Spełniony jest warunek (T1) i dla każdych dwóch rozłącz-
+nych zbiorów domkniętych K1 , K2 ⊂ X istnieją rozłączne zbiory otwarte U1 , U2 takie,
+że Ki ⊂ Ui dla i = 1, 2.
+Zadanie 1. Dowieść, że dla zbiorów A, B ⊂ X warunek A ∩ B = ∅ jest równoważny
+istnieniu otoczenia zbioru B, które jest rozłączne z A. W związku z tym:
+a) Warunek (T1) jest równoważny następującemu: dla każdej pary różnych punktów
+x1 , x2 istnieje otoczenie U punktu x1 takie, że x2 ∈ U .
+b) Warunek (T2) jest równoważny następującemu: dla każdej pary różnych punktów
+x1 , x2 ∈ X istnieje otoczenie U punktu x1 takie, że x2 ∈ U .
+c) Dla przestrzeni X z własnością (T1), warunek (T4) jest równoważny następują-
+cemu: dla dla każdego zbioru domkniętego K i jego otoczenia G, istnieje zbiór otwarty U
+taki, że K ⊂ U ⊂ U ⊂ G.
+Odmienne są następujące dwa spotykane warunki:
+• „Drugi aksjomat przeliczalności”: Istnieje przeliczalna baza topologii T .
+• Warunek ośrodkowości: Istnieje zbiór przeliczalny, który jest gęsty w przestrzeni.
+(Przestrzeń spełniającą ten warunek nazywamy ośrodkową, a wymieniony zbiór - jej
+ośrodkiem; ośrodków może być wiele.)
+Zadanie 2. a) Przestrzeń z bazą przeliczalną jest ośrodkowa.
+b) Metryzowalna przestrzeń ośrodkowa ma bazę przeliczalną.
+c) Podprzestrzeń przestrzeni z bazą przeliczalną też ma taką bazę, wobec czego pod-
+przestrzeń metryzowalnej przestrzeni ośrodkowej jest ośrodkowa.
+d) Gdy topologia T ma bazę przeliczalną, to z każdej bazy topologii można wybrać
+bazę przeliczalną, a także z każdej rodziny U ⊂ T można wybrać przeliczalną podrodzinę
+U0 taką, że U0 = U. (Wskazówka: niech (Bi )i∈N będzie bazą przeliczalną i niech
+I = {i ∈ N : Bi ⊂ U dla pewnego U ∈ U}. Rozważyć rodzinę (Ui )i∈I , gdzie Ui ∈ U
+wybrano tak, by Bi ⊂ Ui dla i ∈ I.)
+Jako ostatni wymieńmy następujący warunek, nierzadko nakładany na przestrzeń:
+• „Pierwszy aksjomat przeliczalności”: Dla każdego punktu przestrzeni, istnieje prze-
+liczalna baza jego otoczeń. Tu przez bazę otoczeń punktu x rozumiemy taką rodzinę
+Bx jego otoczeń, że każde otoczenie punktu x zawiera otoczenie, należące do Bx .
+II § 4.
+II-24
+Jest oczywiste, że aksjomat ten spełnia każda przestrzeń z bazą przeliczalną, a także
+każda przestrzeń metryzowalna. Znaczenie przeliczalnych baz otoczeń uwidacznia nastę-
+pujące zadanie
+Zadanie 3. Dla przestrzeni topologicznej (X, T ) powiemy, że ciąg (xn )∞ jest zbieżny
+n=1
+do x ∈ X w topologii T (i piszemy x = limn xn lub xn → x), jeśli do każdego otoczenia
+punktu x należą prawie wszystkie wyrazy ciągu (xn )∞ . Udowodnić, że jeśli punkt x
+n=1
+ma przeliczalną bazę otoczeń, to dla każdego zbioru A ⊂ X zachodzi (x ∈ A) ⇔(pewien
+ciąg punktów z A zbiega do x). Patrz też niżej zadanie 7.
+Zbadajmy niektóre z poznanych przestrzeni pod względem wymienionych własności.
+Uwaga 1. a) W przestrzeni metryzowalnej X, dla każdych jej rozłącznych zbiorów
+domkniętych K, L istnieje funkcja ciągła f : X → [0, 1] taka, że f|K = 0 i f|L = 1.
+Istotnie, jeśli topologia przestrzeni jest generowana przez metrykę d, to możemy przyjąć
+f (x) = distd (x, K)/(distd (x, K) + distd (x, L)) dla x ∈ X; patrz zadanie 4b) w §I.1. Z
+ciągłości f wynika, że zbiory {x : f (x) < 1/2} i {x : f (x) > 1/2} są otwarte; sa też one
+rozłączne i zawierają K i L, odpowiednio.
+b) Stąd wynika łatwo, że przestrzenie metryzowalne mają własność (T4).
+c) Sprawdzanie własności (T4) dla przestrzeni niemetryzowalnych bywa trudne. Nie
+będziemy się nim zajmować, prócz dowodu własności (T4) przestrzeni zwartych w §III.2.
+Zadanie 4. Topologia T (<), wyznaczona przez dowolny porządek liniowy jak opisano
+w przykładzie 1a) w §3, ma własność (T2).
+Zadanie 5. „Strzałka” z przykładu 5 w §3 nie ma bazy przeliczalnej, lecz jest prze-
+strzenią ośrodkową i spełnia tzw. drugi aksjomat przeliczalności (każdy jej punkt ma
+przeliczalną bazę otoczeń). „Kwadrat leksykograficzny” nie jest przestrzenią ośrodkową.
+Zadanie 6. a) Obraz przestrzeni ośrodkowej przy przekształceniu ciągłym też jest taką
+przestrzenią.
+b) Przestrzenie Rn są ośrodkowe w topologii produktowej, i RN też; jednak przestrzeń
+(RN , T (dsup )) nie jest ośrodkowa. (Definicja dsup jest w przykładzie 1f) z §I.1.)
+c)∗ Przestrzeń NR jest ośrodkowa.
+d) Wywnioskować z a) i c), że iloczyn kartezjański continuum wielu (lub mniej) prze-
+strzeni ośrodkowych jest przestrzenią ośrodkową.
+Zadanie 7. Niech X := {0, 1}S (z topologią produktową), gdzie #S > א0 .
+a) Udowodnić, że przy A := {(xs )s∈S ∈ X : xs = 0 tylko dla skończenie wielu s ∈ S}
+zachodzi 0 ∈ A, choć żaden ciąg {a(n) }∞ ⊂ A nie jest zbieżny do 0.
+n=1
+b) Wywnioskować, że przestrzeń X nie jest metryzowalna, a punkt 0 nie ma w niej
+nawet przeliczalnej bazy otoczeń.
+c) Przy S = R zauważyć, że przestrzeń X jest ośrodkowa (patrz zad. 6d)) i zawiera
+H. Toruńczyk, Wykład z Topologii I∗ , jesień 2013.
+II-25
+nieprzeliczalną podprzestrzeń dyskretną {fs : s ∈ R}, gdzie fs jest funkcją przyjmującą
+wartość 1 w punkcie s, zaś 0 w pozostałych punktach s ∈ R. Wywnioskować, że
+ośrodkowość nie jest dziedziczona przez podprzestrzenie. (Por. zad. 2c).)
+d) Wywnioskować też, że gdy iloczyn s∈S Xs niepustych przestrzeni Xs jest prze-
+strzenią metryzowalną, to tylko przeliczalnie wiele zbiorów Xs nie jest jednopunktowych.
+Zadanie 8. Udowodnić, że a) iloczyn kartezjański rodziny przestrzeni, posiadających
+własność (T2), też ma tę własność, oraz b) własność (T4) zachowuje się przy przejściu
+do podprzestrzeni domkniętych, a (T2) – do dowolnych.
+Zadanie 9. a) Udowodnić, że Y jest przestrzenią Hausdorffa wtedy i tylko wtedy, gdy
+przekątna {(y, y) : y ∈ Y } jest domkniętym podzbiorem iloczynu Y × Y .
+b) Niech funkcje f, g : X → Y będą ciągłe, przy czym Y jest przestrzenią Hausdorffa.
+Udowodnić, że zbiór {x ∈ X : f (x) = g(x)} jest domknięty w X i wywnioskować, że
+jeśli zbiór ten jest gęsty w X, to f = g.
+§ 5.
+Lemat Urysohna.
+Zasadnicze w tym pragrafie jest następujące
+Twierdzenie 1 („lemat Urysohna”). Dla każdych dwóch rozłącznych zbiorów domknię-
+tych w przestrzeni normalnej, istnieje ciągła funkcja na tej przestrzeni, o wartościach
+w odcinku I = [0, 1], która na jednym z tych zbiorów stale jest równa 0, a na drugim 1.
+Przypomnijmy, patrz uwaga 1 w §4, że dla przestrzeni metryzowalnych żądaną funkcję
+można zadać jawnym wzorem.
+Rozważaną przestrzeń oznaczamy niżej przez X. Normalność zdefiniowana była wa-
+runkiem (T4) z §4. Wynika z niej że gdy G jest otoczeniem domkniętego zbioru K ⊂ X,
+to istnieje zbiór otwarty V taki, że K ⊂ V ⊂ V ⊂ G; patrz zadanie 1c) w §4.
+Dowód twierdzenia. Niech zbiory K, L ⊂ X będą domknięte i rozłączne. Dowód
+oparty jest na obserwacji, że jeśli każdej liczbie postaci t = k/2n , gdzie k, n ∈ Z≥0 i
+k ≤ 2n , przyporządkujemy zbiór otwarty Ut tak, by spełnione były warunki
+K ⊂ U0 , U1 ⊂ X \ L i Ut ⊂ Ut gdy t < t
+(5)
+to żądaną funkcję można będzie zadać wzorem
+f (x) = 1 gdy x ∈ U1 i f (x) = inf{t : x ∈ Ut }.
+(6)
+Istotnie, z (5) i (6) wynika, że f (L) = {1} i f (K) = {0}. By zaś dowieść ciągłości f ,
+pozostaje dla każdych x ∈ X i n ≥ 1 wskazać taki zbiór otwarty W , że x ∈ W i
+diamf (W ) ≤ 2/2n . Gdy x ∈ U1 \ U 21n , możemy w tym celu wziąć W := Ut \ Ut− 22n , gdzie
+II § 7.
+II-26
+t jest najmniejszą liczbą postaci k/2n (k ≤ 2n ), dla której x ∈ Ut . (Wtedy f (W ) ⊂
+[t − 22n , t] i x ∈ W , bo x ∈ Ut− 21n i Ut− 22n ⊂ Ut− 21n .) W pozostałych przypadkach
+można przyjąć W = U 21n gdy x ∈ U 21n (wtedy f (W ) ⊂ [0, 21n ]), zaś W = X \ U1− 21n gdy
+x ∈ U1 (wtedy f (W ) ⊂ [1 − 21n , 1] i x ∈ W , bo U1− 21n ⊂ U1 ).
+By dowieść istnienia zbiorów otwartych Ut , spełniających warunki (5), przyjmijmy
+U1 := X \ L i korzystając z normalności obierzmy zbiór otwarty U0 tak, by K ⊂ U0 ⊂
+U0 ⊂ U1 . Gdy dla pewnego n ≥ 0 znamy już zbiory Us dla s ∈ In := {k/2n : 0 ≤ k ≤
+2n } (wyżej n = 0), to dla każdych dwóch kolejnych liczb s, s ∈ In tworzymy taki zbiór
+otwarty Ut , t = (s + s )/2, by Us ⊂ Ut ⊂ Ut ⊂ Us . Wraz z {Us }s∈In da to kolekcję
+{Us }s∈In+1 , a przez indukcję – wszystkie żądane zbiory Ut .
+§ 6.
+Dwa zastosowania.
+Definicja. Iloczyn kartezjański nieskończenie wielu kopii odcinków [0, 1], z topologią
+produktową, nazywany jest kostką Tichonowa. Gdy odcinków jest przeliczalnie wiele,
+to mówimy o kostce Hilberta.
+Twierdzenie 1. Każda przestrzeń normalna jest homeomorficzna z podprzestrzenią
+pewnej kostki Tichonowa, a przestrzeń normalna z bazą przeliczalną – z podprzestrzenią
+kostki Hilberta.
+Dowód. Ustalmy bazę B topologii rozważanej przestrzeni X i przyjmijmy S := {(B, B ) ∈
+B × B : B ⊂ B }. Dla s = (B, B ) ∈ S niech Is = [0, 1] i niech fs : X → Is będzie
+funkcją ciągłą, równą 0 na B, a 1 na X \ B . Definiujemy f : X → s∈S Is wzorem
+f (x) = (fs (x))s∈S dla x ∈ X. Ciągłość f zapewnia uwaga 1 w §3, a różnowartościo-
+wość f i ciągłość przekształcenia f −1 : f (X) → X – poniższe zadanie:
+Zadanie 1. a) Niech przekształcenie f : X → Y oddziela punkty od zbiorów
+domkniętych, tzn. niech dla każdego punktu x ∈ X i jego otoczenia G zachodzi
+f (x) ∈ f (X \ G). Jeśli X ma własność (T1), tzn. zbiory jednopunktowe w X są
+domknięte, to f jest 1-1 i przekształcenie f −1 : f (X) → X jest ciągłe.
+b) Przekształcenie f z dowodu twierdzenia oddziela punkty od zbiorów domkniętych.
+Zbiór S z dowodu twierdzenia jest przeliczalny gdy baza B jest przeliczalna. A że
+każda podprzestrzeń kostki Hilberta jest metryzowalna, patrz w §3 twierdzenie 1b) i w
+§2 uwaga 4b), więc z twierdzenia 1 wynika
+Wniosek 1 (twierdzenie metryzacyjne Urysohna). Przestrzeń z bazą przeliczalną jest
+metryzowalna wtedy i tylko wtedy, gdy jest normalna.
+II-27
+§ 7.
+H. Toruńczyk, Wykład z Topologii I∗ , jesień 2013.
+Wersja twierdzenia Michaela o selekcji i twierdzenie Tietzego–Urysohna.
+Zasadniczą konsekwencją lematu Urysohna jest twierdzenie Tietzego – Urysohna o możli-
+wości przedłużania funkcji rzeczywistych, określonych na domkniętych podzbiorach prze-
+strzeni normalnych. Podobnie jak w [BCPP] i [P], uzyskamy je jako wniosek z bardziej
+ogólnego twierdzenia o istnieniu ciągłych selekcji pewnych „funkcji wieloznacznych”.
+Definicja. Niech X i Y będą przestrzeniami topologicznymi, a Φ : X → 2Y – funkcją,
+przyporządowującą punktom x ∈ X zbiory Φ(x) ⊂ Y . (Może być, że Φ(x) = ∅ dla
+pewnych x ∈ X.) Przyjmijmy
+Φ−1 (A) := {x ∈ X : Φ(x) ∩ A = ∅} dla A ⊂ Y.
+Funkcję Φ nazywamy półciągłą dolnie, jeśli dla każdego zbioru otwartego U ⊂ Y ,
+zbiór Φ−1 (U ) jest otwarty.
+Zadanie 1. a) Gdy funkcja Φ jest półciągła dolnie, to funkcja x → Φ(x) też jest taka.
+b) Φ−1 ( s∈S As ) = s∈S Φ−1 (As ), lecz może być Φ−1 (A1 ∩A2 ) = Φ−1 (A1 )∩Φ−1 (A2 ).
+c) Gdy funkcja Φ : X → 2Y jest półciągła dolnie, a zbiór W ⊂ X × Y jest otwarty,
+to wzór x → {y ∈ Φ(x) : (x, y) ∈ W } definiuje funkcję półciągłą dolnie.
+W szczególności, jeśli topologia przestrzeni Y jest generowana przez metryką d, funkcja
+f : X → Y jest ciągła, a Φ : X → 2Y półciągła dolnie, to dla r > 0 funkcja x →
+Φ(x) ∩ Bd (f (x), r) też jest półciągła dolnie.
+d) Gdy K ⊂ X jest podprzestrzenią domkniętą, a funkcja f : K → Y jest ciągła i
+ma wartości w zbiorze Y0 ⊂ Y , to wzór
+Φ(x) := {f (x)} dla x ∈ K i Φ(x) := Y0 dla x ∈ X \ K
+określa funkcję półciągłą dolnie.
+Twierdzenie 1 (wersja twierdzenia E. Michaela o selekcji). Niech Φ będzie półciągłą
+dolnie funkcją, przyporządkowującą punktom przestrzeni X niepuste, wypukłe podzbiory
+przestrzeni euklidesowej E = Rk . W każdym z następujących przypadków istnieje ciągła
+funkcja f : X → E, spełniająca warunek f (x) ∈ Φ(x) dla każdego punktu x ∈ X:
+a) przestrzeń X jest normalna i zbiór x∈X Φ(x) jest ograniczony;
+b) przestrzeń X jest metryzowalna.
+Przypomnijmy, że zbiór A ⊂ E jest wypukły, jeśli ty + (1 − t)y ∈ A dla wszystkich
+y, y ∈ A i t ∈ [0, 1].
+Wniosek 1 (twierdzenie Tietzego–Urysohna). 4 Każdą funkcję ciągłą f : K → J,
+gdzie K jest domkniętym podzbiorem przestrzeni normalnej X, a J – przedziałem w R,
+można przedłużyć do funkcji ciągłej f : X → J. (Na R rozpatrujemy topologię euklide-
+sową, a na Ki J – topologie podprzestrzeni.)
+4
+Tietze udowodnił tezę gdy X jest przestrzenią metryzowalną, a Urysohn –gdy jest normalną.
+II § 7.
+II-28
+Dowód. Gdy przedział J jest ograniczony i domknięty, to teza wynika z części a) twier-
+dzenia, zastosowanego do funkcji Φ : X → 2R danej wzorem Φ(x) = {f (x)} dla x ∈ K
+i Φ(x) := J dla x ∈ X \ K. (Patrz zadanie 1d).) Gdy J = (−1, 1] lub J = (−1, 1), to
+możemy więc f przedłużyć do funkcji ciągłej g : X → J, a za szukane przedłużenie f
+wziąć iloczyn gh, gdzie h : X → [0, 1] jest funkcją ciągłą, równą 0 na g −1 (J \ J) i 1 na
+K. (Istnienie h zapewnia lemat Urysohna.) W pozostałych przypadkach istnieje home-
+omorfizm φ : J → J , gdzie J to jeden z przedziałów (−1, 1) lub (−1, 1]. (Dlaczego?)
+Jak już wiemy, funkcję φ ◦ f : K → J można przedłużyć do funkcji ciągłej u : X → J ;
+pozostaje więc przyjąć f := φ−1 ◦ u.
+Dowód twierdzenia 1 wykorzystuje podziały jedynki na przestrzeni topologicznej X.
+Definicja. a) Rodzinę (λs )s∈S funkcji ciągłych λs : X → [0, 1] nazywamy podziałem
+jedynki, jeśli s λs (x) = 1 ∀x ∈ X.
+b) Powiemy, że podział ten jest podporządkowany rodzinie (As )s∈S zbiorów As ⊂
+X, jeśli λs (X \ As ) = {0} dla s ∈ S (tzn. każda funkcja λs zeruje się poza zbiorem As ).
+c) Rodzinę zbiorów (As )s∈S nazywamy pokryciem zbioru A ⊂ X, jeśli A ⊂ s As .
+Pokrycie to nazywamy otwartym, jeśli wszystkie zbiory As są otwarte w X.
+Lemat 1. Niech (Us )s∈S będzie skończonym pokryciem otwartym przestrzeni normal-
+nej X. Wówczas
+a) istnieje takie pokrycie otwarte (Vs )s∈S przestrzeni X, że Vs ⊂ Us ∀s ∈ S;
+b) istnieje podział jedynki (λs )s∈S , podporządkowany pokryciu (Us )s∈S .
+Dowód. Ad a). Możemy przyjąć, że S = {1, ..., n} dla pewnego n. Zadanie 1b) z §4,
+zastosowane przy K := X \ (U2 ∪ ... ∪ Un ) i U := U1 , zapewnia istnienie takiego zbioru
+otwartego V1 , że K ⊂ V1 ⊂ V1 ⊂ U1 . Wówczas (V1 , U2 , ..., Un ) jest pokryciem otwartym
+przestrzeni X, więc w ten sam sposób znajdziemy kolejne pokrycie (V1 , V2 , U3 , ..., Un ),
+dla którego V2 ⊂ U2 , a po dalszych n − 2 krokach –szukane pokrycie (V1 , ..., Vn ).
+Ad b). Niech (Vs )s∈S będzie pokryciem, danym częścią a) lematu. Na podstawie
+lematu Urysohna istnieją takie funkcje ciągłe fs : X → [0, 1] (s ∈ S), że fs (Vs ) = {1} i
+−1
+fs (X \ Us ) = {0}. Suma f := s fs przyjmuje tylko dodatnie wartości, bo (fs (1))s∈S
+jest pokryciem zbioru X i fs ≥ 0 ∀s ∈ S. Funkcje λs := fs /f, s ∈ S, są więc dobrze
+określone i tworzą szukany podział jedynki.
+Dowód twierdzenia 1. Przestrzeń E wyposażamy w metrykę euklidesową d. Ograniczymy
+się teraz do rozpatrzenia części a) tezy, odkładając b) do §8. Są trzy kroki rozumowania.
+I. W tym kroku dla zadanej liczby ε > 0 dowiedziemy słabszej tezy:
+(M) istnieje taka funkcja ciągła f : X → E, że distd (f (x), Φ(x)) < ε ∀x ∈ X.
+Ograniczony zbiór x∈X Φ(x) można pokryć skończenie wieloma kulami Bs = Bd (ys , ε),
+s ∈ S. (Ta własność metryki euklidesowej d jest geometrycznie oczywista; patrz też
+H. Toruńczyk, Wykład z Topologii I∗ , jesień 2013.
+II-29
+dalej przykład 1a) w §III.1.) Przyjmijmy Us := Φ−1 (Bs ). Otrzymamy skończone po-
+krycie otwarte (Us )s∈S przestrzeni X, któremu podporządkujmy pewien podział jedynki
+(λs )s∈S . Szukaną funkcję definiujemy wzorem
+λs (x)ys dla x ∈ X.
+f (x) :=
+(7)
+s∈S
+Funkcja ta jest ciągła, więc przy ustalonym x ∈ X pozostaje dowieść 5 istnienia
+punktu z ∈ Bd (f (x), ε) ∩ Φ(x). W tym celu oznaczmy T := {s ∈ S : λs (x) =
+0}. Ponieważ podział (λs )s∈S jest podporządkowany pokryciu (Us )s∈S , więc dla s ∈ T
+zachodzi x ∈ Us –co daje Φ(x)∩Bs = ∅ czy, równoważnie, ys −zs ∈ Bd (0, ε) dla pewnego
+zs ∈ Φ(x). A że s∈T λs (x) = s∈S λs (x) = 1 (bo λs (x) = 0 dla s ∈ S \ T ), to przy
+z := s∈T λs (x)zs otrzymujemy z wypukłości zbioru Φ(x) i kuli Bd (0, ε), co żądano:
+z ∈ Φ(x) i f (x) − z =
+λs (x)ys − z =
+s∈T
+λs (x)(ys − zs ) ∈ Bd (0, ε).
+s∈T
+II. W drugim kroku konstruujemy indukcyjnie funkcje ciągłe fn : X → E takie, że
+distd (fn (x), Φ(x)) < 1/2n i d(fn (x), fn+1 (x)) ≤ 3/2n dla x ∈ X i n ≥ 0. Funkcję f0
+otrzymujemy z (M) przy ε = 1. Gdy znamy już fn , przyjmujemy Ψ(x) := Φ(x) ∩
+Bd (f (x), 1/2n ). Nietrudno sprawdzić, że funkcja Ψ jest półciągła dolnie (patrz zadanie
+1c)), przy czym Ψ(x) = ∅ dla x ∈ X, bo dist(f (x), Φ(x)) < 1/2n . Niech funkcja fn+1
+będzie dana przez (M), przy ε := 1/2n+1 i Φ zastąpionym przez Ψ. Dla x ∈ X, oba
+punkty fn (x) i fn+1 (x) są wtedy 1/2n –blisko zbioru Ψ(x), mającego średnicę ≤ 2/2n+1 ,
+co daje d(fn (x), fn+1 (x)) ≤ 3/2n .
+III. Wreszcie, w trzecim kroku stwierdzamy, że ciąg (fn ) funkcji ciągłych spełnia
+warunek Cauchy’ego w metryce dsup – a zatem jest zbieżny do funkcji ciągłej f : X → E.
+Ponadto, dla x ∈ X zachodzi distd (f (x), Φ(x)) = limn distd (fn (x), Φ(x)) ≤ limn 1/2n =
+0, skąd f (x) ∈ Φ(x).
+Poniższy materiał uzupełniający dotyczy związku twierdzenia Michaela z twierdze-
+niem o przedzielaniu półciągłych funkcji rzeczywistych funkcjami ciągłymi.
+Definicja. Funkcję rzeczywistą w : X → R nazwiemy półciągłą dolnie (odp. górnie),
+jeśli półciągła dolnie jest funkcja x → w− (x) ∈ 2R (odp. x → w+ (x) ∈ 2R ), gdzie
+w− (x) := (−∞, w(x)],
+5
+w+ (x) := [w(x), ∞).
+Zapis dalszej części kroku I odpowiada przedstawionemu na wykładzie. Po wykładzie pomyślałem, że bardziej
+czytelny może dla Państwa być zapis taki: ...dowieść, że distd (f (x), Φ(x)) < ε. Jednak f (x) jest wypukłą kombinacją
+punktów ys , gdzie s przebiega zbiór T := {s ∈ S : λs (x) = 0} (wynika to z (7), bo λs (x) = 0 dla s ∈ T ); ponadto dla
+tych ys jest distd (ys , Φ(x)) < ε (bo skoro s ∈ T , to λs (x) = 0, skąd x ∈ Us i wobec tego Φ(x) ∩ B(ys , ε) = ∅). Żądana
+nierówność distd (f (x), Φ(x)) < ε wynika więc z zadania 5 w §I.1, które teraz dopisałem.
+II § 8.
+II-30
+Wniosek 2 (twierdzenie Hahna–Tonga–Katétova). Niech przestrzeń X będzie normalna,
+a funkcje u, v : X → R będą półciągłe górnie i dolnie, odpowiednio, przy czym u ≤ v.
+Wówczas istnieje taka ciągła funkcja f : X → R, że u ≤ f ≤ v.
+Zadanie 2. Udowodnić wniosek 2 na następującej drodze:
+a) Przy Φ(x) := [u(x), v(x)] zauważyć, że dla każdego niepustego przedziału (a, b) ⊂
+R zachodzi Φ−1 ((a, b)) = {x ∈ X : u+ (x)∩(a, ∞) = ∅}∩{x ∈ X : v− (x)∩(−∞, b) = ∅}.
+Wywnioskować, że funkcja Φ : X → 2R jest półciągła dolnie.
+b) Jeśli obie funkcje u i v są ograniczone, uzyskać tezę z części a) twierdzenia 1. Gdy
+nie są, złożyć je z odpowiednim homeomorfizmem, jak w dowodzie wniosku 1.
+Odnotujmy różnorakie charakteryzacje rzeczywistych funkcji półciągłych:
+Zadanie 3. Równoważne są warunki:
+a) Funkcja w : X → R jest półciągła dolnie.
+b) Dla każdej liczby r ∈ R, zbiór {x ∈ X : w(x) > r} jest otwarty w X.
+c) Zbiór {(x, t) : t < w(x)} jest otwarty w X × R (w topologii produktowej).
+d) Funkcja −w jest półciągła górnie.
+Zadanie 4. i) Gdy przestrzeń X jest normalna, a funkcja w jest ograniczona z dołu, to
+warunki te są rownoważne temu, by w była obwiednią górną pewnej rodziny F funkcji
+ciągłych, tzn., by w(x) = supf ∈F f (x) dla x ∈ X.
+ii)∗ Gdy ponadto przestrzeń X jest metryzowalna to można żądać, by ta rodzina F
+była przeliczalna. (Wskazówka: dowieść tezy, gdy w = 1U jest funkcją charakterystyczną
+M
+zbioru otwartego U ; zauważyć też, że jeśli w > 0, to dla g1 :=
+n=0 n · 1{x:w(x)>n}
+zachodzi f ≥ g1 ≥ f − 1.)
+§ 8.
+Lokalnie skończone podziały jedynki i parazwartość.
+Dotychczas udowodniliśmy tylko część a) twierdzenia 1 z §7. Kłopot z częścią b) bierze
+się stąd, że dla nieskończonego zbioru S, prawa strona w (7) może nie mieć sensu lub
+określać funkcję nieciągłą. Poniższe definicje mają zaradzić tej trudności.
+Definicja. a) Podział jedynki (λs )s∈S na przestrzeni X jest lokalnie skończony, jeśli
+każdy punkt x ∈ X ma otoczenie, na którym tylko skończenie wiele funkcji λs przyjmuje
+wartości różne od 0.
+b) Przestrzeń X jest parazwarta, jeśli ma własność (T1) i każdemu jej pokryciu
+otwartemu można podporządkować pewien lokalnie skończony podział jedynki. (Można
+stąd wywnioskować, że X jest przestrzenią normalną.)
+Uwaga 1. a) Gdy podział jedynki (λs )s∈S jest lokalnie skończony, to wzór (7) poprawnie
+określa funkcję ciągłą f : X → E, dla dowolnego układu punktów (ys )s∈S przestrzeni
+II-31
+H. Toruńczyk, Wykład z Topologii I∗ , jesień 2013.
+euklidesowej E. Wynika to stąd, że każdy punkt x0 ∈ X ma otoczenie, na którym f jest
+sumą skończenie wielu funkcji ciągłych.
+b) Rozumowanie z dowodu części a) twierdzenia z §7 pozostanie więc słuszne bez żad-
+nych założeń o x∈X Φ(x), jeśli podział (λs )s , podporządkowany pokryciu (Φ−1 (Bs ))s∈S ,
+będzie lokalnie skończony. Wolno też zakładać, iż #S ≤ א0 , bo przestrzeń euklidesową E
+można pokryć przeliczalnie wieloma kulami o promieniu ε (np. kulami, których środki
+mają wszystkie współrzędne wymierne). Część b) twierdzenia wynika więc z następują-
+cego lematu:
+Lemat 1. Przeliczalnemu pokryciu otwartemu (Un )n∈N przestrzeni metrycznej (X, d)
+można podporządkować lokalnie skończony podział jedynki.
+Dowód. Przyjmijmy φ(t) = max(1 − t, 0) dla t ∈ [0, ∞) oraz
+n−1
+φ(n · fi (x)) dla x ∈ X.
+fn (x) := distd (x, X \ Un ) i gn (x) = fn (x) ·
+i=1
+Wówczas gn (X \ Un ) = {0} oraz gn (x) > 0 dla x ∈ Un \ n−1 Uk ; a że n Un = X, to
+k=1
+dla każdego punktu x0 ∈ X można obrać taki indeks i = i(x0 ), że gi (x0 ) > 0. Indeks
+ten wyznacza otoczenie {x ∈ X : fi (x) > fi (x0 )/2} punktu x0 , na którym zerują się
+wszystkie funkcje gn z n > max(i, 2/fi (x0 )). Stąd funkcja g := n gn jest poprawnie
+określona, dodatnia i ciągła, zaś (gn /g)∞ jest żądanym podziałem jedynki.
+n=1
+Uwaga 2. a)∗ Kto jest zaznajomiony z definicją przestrzeni Banacha zauważy, że po-
+chodzące od Michaela rozumowanie z §7 dowodzi też oryginalnej wersji jego twierdzenia:
+jeśli przestrzeń X jest parazwarta, to funkcja, żądana w twierdzeniu z §7, istnieje gdy E
+jest dowolną przestrzenią Banacha (zamiast: euklidesową).
+b) Ze względu na rolę formuł zbliżonych do (7), warto wiedzieć, które przestrzenie
+są parazwarte. Bardzo ważne jest twierdzenie A.H. Stone’a mówiące, że każda prze-
+strzeń metryzowalna jest parazwarta; jego dowód można znaleźć w [BCPP]. Parazwar-
+tość ośrodkowych przestrzeni metryzowanych wynika z lematu 1 i zadania 2b),d) w §4.
+III § 1.
+III-32
+III Zwartość
+§ 1. Zwartość w przestrzeniach metrycznych.
+Definicja. Przestrzeń metryczną (X, d) nazwiemy całkowicie ograniczoną, jeśli dla
+każdego ε > 0 można ją pokryć skończenie wieloma zbiorami o średnicach < ε.
+Uwaga 1. a) Przestrzeń całkowicie ograniczona jest ośrodkowa (i wobec metryzowal-
+ności ma bazę przeliczalną). Gdy bowiem ustalić ε > 0 i wybrać po punkcie z każdego
+zbioru, o których mowa w definicji, to otrzymany zbiór skończony Aε będzie ε–gęsty w
+X tzn. taki, że distd (x, Aε ) < ε ∀x ∈ X; zbiór zaś n A1/n będzie ośrodkiem w X.
+b) Gdy podprzestrzeń (F, d|F ) przestrzeni (X, d) jest całkowicie ograniczona, to i jej
+domknięcie (F , d|F ) jest takie. Wynika to stąd, że dla każdego skończonego pokrycia
+F1 , ...Fn zbioru F , rodzina F 1 , ..., F n pokrywa F .
+Przykład 1. a) Ograniczony podzbiór prostej (R, de ) jest całkowicie ograniczony, bo jest
+zawarty w pewnym odcinku [−M, M ], który dla każdego n można pokryć 2n odcinkami
+[M i/n, M (i + 1)/n], gdzie i = −n, ..., n − 1, mającymi średnicę M/n. Podobnie, każdy
+ograniczony podzbiór przestrzeni euklidesowej (E, de ) jest całkowicie ograniczony.
+b) Tym niemniej, zbiór A := {(1, 0, 0, ...), (0, 1, 0, ...), ...} jest ograniczony w metryce
+pudełkowej ρ(x, y) = supn |xn − yn |, lecz nie jest w niej całkowicie ograniczony, bo
+ρ(x, y) = 1 dla każdych dwóch różnych punktów x, y ∈ A.
+Twierdzenie 1 (G. Cantora). Dla przestrzeni metrycznej (X, d) równoważne są wa-
+runki:
+i) z każdego ciągu punktów tej przestrzeni można wybrać podciąg zbieżny;
+ii) przestrzeń (X, d) jest całkowicie ograniczona i zupełna.
+Dowód. i)⇒ii). Zupełność przestrzeni (X, d), spełniającej warunek i), wynika stąd,
+że każdy ciąg Cauchy’ego, zawierający podciąg zbieżny, sam jest zbieżny. By dowieść
+całkowitej ograniczoności ustalmy ε > 0. Niech x1 ∈ X, a gdy znamy już An =
+{x1 , ..., xn }, obierzmy xn+1 ∈ X tak, by distd (xn+1 , An ) ≥ ε/2 –jeśli taki punkt istnieje.
+Dla pewnego n ∈ N proces ten się zakończy, bo w przeciwnym razie otrzymalibyśmy ciąg
+(xn )∞ , którego żaden podciąg nie spełnia warunku Cauchy’ego, wbrew i). Rodzina kul
+n=1
+{B(a, ε/2) : a ∈ An } jest skończona, składa się ze biorów o średnicy < ε, i pokrywa X
+(bo distd (x, An ) < ε/2 dla x ∈ X).
+ii)⇒i). Niech w ciągu (xn )∞ występuje nieskończenie wiele różnych punktów (ina-
+n=1
+czej wybór podciągu zbieżnego nie sprawia kłopotu). Z całkowitej ograniczoności prze-
+strzeni (X, d) wynika, że można zbiór {xn }∞ pokryć skończenie wieloma zbiorami o
+n=1
+średnicy < 1. Któryś z nich zawiera nieskończenie wiele elementów tego zbioru, co daje
+nieskończony zbiór A1 ⊂ {xn }∞ o średnicy < 1. Gdy znamy już nieskończony zbiór
+n=1
+III-33
+H. Toruńczyk, Wykład z Topologii I∗ , jesień 2013.
+An−1 , to w ten sam sposób wybieramy jego nieskończony podzbiór An o średnicy < 1/n.
+Szukany podciąg (xnk ) tworzymy biorąc n0 = 1 i indukcyjnie obierając nk > nk−1 tak,
+by xnk ∈ Ak . Ponieważ diam{xnk : k ≥ j} ≤ diamd Aj → 0, więc (xnk ) jest ciągiem
+d–Cauchy’ego, zbieżnym wobec zupełności przestrzeni (X, d).
+Twierdzenie 2. Warunek i) jest też równoważny każdemu z poniższych:
+iii) n Fn = ∅ dla każdego ciągu F1 ⊃ F2 ⊃ ... niepustych zbiorów Fn = Fn ⊂ X;
+iv) (warunek Heinego i Borela): z każdego otwartego przeliczalnego pokrycia prze-
+strzeni X można wybrać pokrycie skończone.
+Dowód. i)⇒iii). Z każdego zbioru Fn wybierzmy punkt xn . Ciąg (xn ) zawiera na
+podstawie i) podciąg, zbieżny do pewnego punktu x ∈ X. Z domkniętości zbiorów Fn i
+inkluzji F1 ⊃ F2 ... wynika, że x ∈ n Fn .
+iii)⇒i). Dla danego ciągu {xn }∞ ⊂ X przyjmijmy An := {xn , xn+1 , ...} i niech
+n=0
+x ∈ n An . Możemy wtedy obrać n0 = 0 i indukcyjnie obierać nk tak, by xnk ∈
+Bd (x, 1/k) ∩ Ank , otrzymując podciąg (xnk ) ciągu (xn ), zbieżny do x.
+iii)⇔iv). Tak warunek iii), jak i iv), jest równoważny temu, by dla każdego ciągu
+W1 ⊂ W2 ⊂ ... zbiorów otwartych, jeśli n Wn = X, to Wn = X dla pewnego n.
+Definicja. Przestrzeń metryczną (X, d) nazywamy zwartą, jeśli spełniony jest któryś z
+warunków od i) do iv) (a więc i wszystkie one).
+Uwaga 2. a) Podprzestrzeń przestrzeni Rn jest zwarta wtedy i tylko wtedy, gdy jest
+w (Rn , de ) ograniczona i domknięta. Wynika to z zupełności przestrzeni euklidesowych,
+twierdzenia 1 i przykładu 1.
+b) Jednak w przestrzeni (RN , dsup ), jednostkowa kula domknięta nie jest zwarta –
+również na podstawie przykładu 1.
+Uwaga 3. W obrębie przestrzeni metrycznych, warunki od i) do iv) implikują też, że
+v) z każdego pokrycia otwartego przestrzeni można wybrać pokrycie skończone.
+Istotnie, na podstawie ii) i uwagi 1, przestrzeń jest ośrodkowa, więc z zadanego jej
+pokrycia otwartego można wybrać pokrycie przeliczalne, a z niego – pokrycie skończone,
+na podstawie iii). (Wykorzystano zadanie 2 b), d) w §I.4.)
+Twierdzenie 3. Każdemu pokryciu otwartemu U zwartej przestrzeni metrycznej można
+przyporządkować jego liczbę Lebesgue’a – czyli taką liczbę dodatnią δ = δ(U), że każdy
+zbiór o średnicy < δ jest zawarty w pewnym elemencie pokrycia U.
+Dowód. Przypuśćmy, wbrew tezie, że dla każdego n ∈ N istnieje zbiór An ⊂ X, który
+nie jest zawarty w żadnym zbiorze U ∈ U i spełnia warunek diamd An ≤ 1/n. Obierzmy
+punkty an ∈ An i przez przejście do podciągu załóżmy, że otrzymany ciąg (an )∞
+n=1
+jest zbieżny do punktu x0 ∈ X. Dla pewnego U0 ∈ U zachodzi x0 ∈ U0 , a zatem i
+B(x0 , r) ⊂ U0 , gdzie r > 0. Stąd i z nierówności trójkąta wynika, że An ⊂ U0 gdy
+1
+n + d(an , x0 ) < r, co przeczy wyborowi zbiorów An . Sprzecznośc ta dowodzi tezy.
+III § 1.
+III-34
+Wniosek 1. Ciągłe przekształcenie f zwartej przestrzeni metrycznej (X, d) w przestrzeń
+metryczną (Y, ρ) jest jednostajnie ciągłe, tzn. spełnia warunek: dla każdej liczby
+ε > 0 istnieje liczba δ > 0, taka, że d(x1 , x2 ) < δ ⇒ ρ(f (x1 ), f (x2 )) < ε dla x1 , x2 ∈ X.
+Dowód. Wystarczy za δ przyjąć liczbę Lebesgue’a pokrycia otwartego U := {f −1 (B(y, ε/2) :
+y ∈ Y } przestrzeni X.
+Na koniec zastosujemy twierdzenie 1 do badania zwartości przestrzeni funkcyjnych.
+Ustalmy przestrzeń topologiczną X i metryczną (Y, d) oraz rodzinę funkcji F ⊂ Y X .
+Definicja. Rodzina F jest jednakowo ciągła, jeśli dla każdego x ∈ X i ε > 0 istnieje
+otoczenie U punktu x takie, że diamd (f (U )) < ε dla f ∈ F.
+Lemat 1. Niech X będzie przestrzenią zwartą, a (Y, d)– metryczną. Zbiór F ⊂ C(X, Y )
+wtedy i tyko wtedy jest całkowicie ograniczony w metryce dsup , gdy spełnione są warunki:
+a) dla każdego x ∈ X, zbiór F(x) := {f (x) : f ∈ F} jest całkowicie ograniczony w
+metryce d, oraz
+b) rodzina F jest jednakowo ciągła.
+Dowód. 1) Gdy zbiór (F, dsup ) jest całkowicie ograniczony, to zbiór (F(x), d) –też, bo
+jest obrazem F przy przekształceniu Y X
+f → f (x) ∈ Y , spełniającym warunek
+X
+Lipschitza ze stałą 1. (Tu, Y i Y wyposażone są w metryki dsup i d, odpowiednio.)
+Ponadto, rodzina F jest wtedy jednakowo ciągła. Istotnie, ustalmy ε > 0 i x ∈ X,
+przedstawmy F w postaci sumy zbiorów F1 , ..., Fn o średnicy < ε i obierzmy funkcje
+fi ∈ Fi ; ponieważ są one ciągłe, to dla i = 1, ..., n istnieją otoczenia Ui punktu x takie,
+że diamd fi (Ui ) < ε. Latwo zauważyć, że przy U = i Ui zachodzi diamd f (U ) < 3ε dla
+f ∈ F.
+2) Teraz założmy, że spełnione są warunki a) i b); dla danej liczby ε > 0 pokryjemy F
+skończenie wieloma zbiorami o średnicy < 3ε. W tym celu zauważmy, że każdy punkt x ∈
+X ma założenia takie otoczenie otwarte Ux , że diamd f (Ux ) < ε ∀f ∈ F. Korzystając
+z v), możemy z pokrycia (Ux )x∈X wybrać pokrycie skończone (Uxi )n . Każdy ze zbiorów
+i=1
+F(xi ) ⊂ Y możemy też przedstawić jako sumę skończonej rodziny Ai zbiorów o średnicy
+< ε. Dla każdego ciągu A = (A1 , ..., An ) ∈ n Ai niech FA = {f ∈ F : f (xi ) ∈
+i=1
+Ai dla i = 1, ..., n}. Takich ciągów A jest skończenie wiele i F = FA (sumowanie po
+wszystkich ciągach A). Pozostaje dowieść, że
+diamdsup (FA ) < 3ε dla każdego ciągu A = (A1 , ..., An ) jak wyżej.
+(8)
+W tym celu niech f, g ∈ FA i x ∈ X. Ponieważ i Uxi = X, więc x ∈ Uxi dla pew-
+nego i ∈ {1, ..., n}. Dalej, f (xi ), g(xi ) ∈ Ai , co daje d(f (xi ), g(xi )) ≤ diamd Ai < ε;
+zachodzi też d(f (xi ), f (x)) ≤ diamd (f (Uxi )) < ε i podobnie d(g(xi ), g(x)) < ε. Zatem
+(z nierówności trójkąta) d(f (x), g(x)) < 3ε dla x ∈ X i f, g ∈ FA , skąd wynika (8).
+III-35
+H. Toruńczyk, Wykład z Topologii I∗ , jesień 2013.
+Wniosek 2 (twierdzenie Arzeli i Ascoliego). Niech X będzie przestrzenią zwartą, (Y, d)–
+zupełną przestrzenia metryczną, a zbiór F ⊂ C(X, Y ) niech spełnia warunki a) i b)
+lematu. Wówczas domknięcie F zbioru F, w przestrzeni C(X, Y ), jest zbiorem zwartym.
+Dowód. Jak już wiemy, zbiór F jest całkowicie ograniczony w metryce dsup , więc zbiór
+F – też. A że przestrzeń (C(X, Y ), dsup ), a przez to i (F , dsup ) jest zupełna, to spełniony
+jest warunek (ii) z twierdzenia 1.
+Uważny Czytelnik zauważył może brak precyzji w sformułowaniu lematu i twierdze-
+nia: pozornie brak w nich założenia metryzowalności przestrzeni X, bez którego nie
+wiadomo jeszcze, co oznacza jej zwartość. Jednak założenie to jest zbędne, co wyjaśni
+pierwsza definicja następnego paragrafu – jeśli pamiętać, że w dowodzie grała rolę tylko
+własność v) przestrzeni X.
+Zadanie 1. a) Niech przestrzeń X będzie zwarta i metryzowalna, a zbiór P będzie
+gęsty w X. Dowieść, że jeśli (Y, d) jest przestrzenią metryczną zupełną, a funkcje fn :
+X → Y (n ∈ N) są jednakowo ciągłe i dla każdego p ∈ P ciąg (fn (p))n∈N jest zbieżny,
+to ciąg (fn ) jest jednostajnie zbieżny do pewnej (ciągłej) funkcji f : X → Y .
+b) Obierając za P zbior przeliczalny uzyskać z a) tezę twierdzenia Arzeli i Ascoliego
+przy dodatkowym założeniu metryzowalności przestrzeni X.
+c) Udowodnić też, że jeśli (X, d0 ) i (Y, d) są przestrzeniami metrycznymi, przy czym
+(X, d0 ) jest zwarta, to dla każdej jednakowo ciągłej rodziny F ⊂ C(X, Y ) istnieje funkcja
+δ : (0, 1) → (0, 1) taka, że dla f ∈ F i x1 , x2 ∈ X spełniających warunek d0 (x1 , x2 ) <
+δ(ε) zachodzi d(f (x1 ), f (x2 )) < ε (tzn., rodzina F jest „ jednakowo jednostajnie ciągła”).
+§ 2.
+Zwartość w ogólnych przestrzeniach topologicznych.
+Zaczniemy od uogólnienia pojęcia zwartości na przestrzenie, które nie są metryzowalne.
+Odnotujmy, że dla takich przestrzeni własności i), v) i iii) (inaczej: iv)) mogą nie być
+równoważne. Powszechnie przyjęta jest definicja oparta na własności v):
+Definicja. Przestrzeń topologiczna jest zwarta, jeśli ma własność Hausdorffa (T2) i z
+każdego jej pokrycia otwartego można wybrać pokrycie skończone.6
+Wygodne bywa wyrażenie własności v) w terminach zbiorów domkniętych:
+Stwierdzenie 1. Przestrzeń topologiczna ma własność v) wtedy i tylko wtedy, gdy
+vi) każda skierowana rodzina niepustych, domkniętych podzbiorów przestrzeni ma nie-
+puste przecięcie.
+Dowód. vi)⇒v). Niech U będzie otwartym pokryciem przestrzeni X i przyjmijmy
+U := {U1 ∪ ... ∪ Un : n ∈ N, U1 , ..., Un ∈ U} i F := {X \ U : U ∈ U}.
+6
+W podręcznikach angielskich i amerykańskich, własność (T2) nie jest włączana do definicji zwartości.
+III § 2.
+III-36
+Rodzina F jest skierowana (bo F1 ∩ F2 ∈ F dla F1 , F2 ∈ F) i składa się ze zbiorów
+domkniętych; ponadto F = ∅, bo U = X. Jeśli więc zachodzi vi), to pewien zbiór
+F ∈ F jest pusty, co oznacza, że X = U1 ∪ ... ∪ Un dla pewnych U1 , ..., Un ∈ U.
+v)⇒vi). Dążąc do sprzeczności przypuśćmy, że zachodzi v), lecz pewna rodzina F
+zaświadcza o fałszywości vi). Wtedy U := {X \ F : F ∈ F} jest otwartym pokryciem
+przestrzeni X zbiorami różnymi od X (bo F = ∅ i F = ∅ dla F ∈ F). Ponadto, dla
+każdych U1 , ..., Un ∈ U istnieje zbiór U ∈ U taki, że U1 ∪ ... ∪ Un ⊂ U (bo F = ∅
+i rodzina F jest skierowana). A że U = X, to z U nie można wybrać skończonego
+pokrycia przestrzeni, wbrew v).
+W poniższych dowodach będziemy starali się opierać na własności vi), by „przećwi-
+czyć” sposoby wykorzystania jej; nietrudno jednak zmienić te dowody tak, by oparte
+były na v), jak we wielu podręcznikach. Będziemy mówić, że K jest zbiorem zwartym
+w przestrzeni topologicznej (Y, T ), jeśli podprzestrzeń (K, T|K ) jest zwarta.
+Twierdzenie 1. a) Przestrzeń Hausdorffa, będąca obrazem przestrzeni zwartej przy
+przekształceniu ciągłym, jest zwarta.
+b) Domknięta podprzestrzeń przestrzeni zwartej jest przestrzenią zwartą.
+c) Zwarty podzbiór K przestrzeni Hausdorffa Y jest w niej domknięty; co więcej,
+każdy punkt y ∈ Y \ K ma otoczenie, rozłączne z pewnym otoczeniem zbioru K.
+d) Przestrzeń zwarta jest normalna, tzn. ma własność (T4) z §I.4.
+Dowód. Poniżej, X jest przestrzenią zwartą.
+Ad a). Niech f : X → Y będzie ciągłą surjekcją. Gdy F jest skierowaną rodziną
+niepustych zbiorów domkniętych F ⊂ Y , to rodzina F := {f −1 (F ) : F ∈ F} też ma te
+własności (przy Y zastąpionym przez X), ze względu na ciągłość i surjektywność f . Na
+podstawie zwartości przestrzeni X zachodzi F = ∅ i wobec tego F = ∅.
+Ad b). Gdy X0 jest domkniętą podprzestrzenią zwartej przestrzeni X, a F skierowaną
+rodziną niepustych zbiorów domkniętych F ⊂ X0 , to F ma analogiczne własności jako
+rodzina podzbiorów przestrzeni X –wobec czego F = ∅. Ponadto, X0 ma własność
+Hausdorffa (T2), więc jest przestrzenią zwartą. (Wykorzystano zadania 6b) w §II.3 i 8
+w §II.4.)
+Ad c). Niech y ∈ Y \K i F := {G∩K : G jest otoczeniem punktu y}. Rodzina F jest
+skierowana i składa się z domkniętych podzbiorów przestrzeni K. Ponadto, F = ∅
+– bo na podstawie własności (T2) przestrzeni Y , dla każdego punktu x ∈ K istnieje
+otoczenie Gx punktu y takie, że x ∈ Gx . Ponieważ podprzestrzeń K ma własność vi)
+na podstawie b), więc wynika stąd, że F = ∅ dla pewnego F ∈ F. To oznacza, że dla
+pewnego otoczenia G punktu y zachodzi G ∩ K = ∅. Zbiór U := X \ G jest otoczeniem
+zbioru K i U ∩ G = ∅ (a więc i y ∈ U , co wykorzystamy niżej).
+Ad d). Niech K i L będą rozłącznymi, domkniętymi podzbiorami przestrzeni zwar-
+tej X. Jak własnie dowiedliśmy, przy F := {U ∩ L : U jest otoczeniem zbioru K}
+III-37
+H. Toruńczyk, Wykład z Topologii I∗ , jesień 2013.
+zachodzi F = ∅. Z własności vi) podprzestrzeni L wynika więc, że U ∩ L = ∅ dla
+pewnego otoczenia U zbioru K – co dowodzi własności (T4) przestrzeni X, bo G := X\U
+jest otoczeniem zbioru L, rozłącznym z U .
+Wniosek 1 (twierdzenie Weierstrassa). Ciągła funkcja rzeczywista, określona na prze-
+strzeni zwartej, przyjmuje swe kresy.
+Dowód. Z a) i c) wynika, że obraz tej funkcji jest zbiorem domkniętym w R.
+Zadanie 1. W przestrzeni Hausdorffa, suma dwóch podzbiorów zwartych jest zbiorem
+zwartym, a każde dwa rozłączne zbiory zwarte mają rozłączne otoczenia.
+Zadanie 2. Gdy F jest rodziną zwartych podzbiorów przestrzeni i
+F ⊂ U , gdzie U
+jest zbiorem otwartym, to F0 ⊂ U dla pewnej skończonej podrodziny F0 rodziny F.
+Definicja. Niech X i Y będą przestrzeniami topologicznymi. Przekształcenie f : X →
+Y jest domknięte, jeśli dla każdego zbioru domkniętego w X, jego obraz przy f jest
+domknięty w Y . Analogicznie definiujemy przekształcenie otwarte.
+Twierdzenie 2. a) Ciągłe przekształcenie przestrzeni zwartej w przestrzeń Hausdorffa
+jest domknięte.
+b) Ciągła bijekcja przestrzeni zwartej na przestrzeń Hausdorffa jest homeomorfizmem.
+c) Niech przekształcenie f : X → Y będzie domknięte, przy czym przestrzeń Y i wszyst-
+kie zbiory f −1 (y), dla y ∈ Y , są zwarte. Jeśli przestrzeń X jest (T2), to jest zwarta.
+Dowód. Ad a) i b). Niech X będzie przestrzenią zwartą, a Y Hausdorffa, i niech prze-
+kształcenie f będzie ciągłe. Dla zbioru domkniętego K ⊂ X stwierdzmy kolejno, że 1)
+podprzestrzeń K jest zwarta, 2) jej obraz f (K) jest zwartą podprzestrzenią przestrzeni
+Y , 3) obraz ten jest więc domknięty w Y . (Wykorzystano kolejno części b),a),c) twier-
+dzenia 1.) Tym samym przekształcenie f jest domknięte. Gdy ponadto f jest bijekcją,
+to przekształcenie g := f −1 jest ciągłe, bo zbiory g −1 (K) = f (K) są domknięte w Y dla
+domkniętych K ⊂ X.
+Ad c). Niech K będzie skierowaną rodziną niepustych zbiorów domkniętych K ⊂ X.
+Rodzina K := {f (K) : K ∈ K} ma te same własności, z X zamienionym na Y (gra rolę
+domkniętość f ), wobec czego istnieje punkt y ∈ K . Rodzina {K ∩ f −1 (y) : K ∈ K}
+składa się więc z niepustych, domkniętych podzbiorów przestrzeni zwartej f −1 (y); a że
+jest skierowana, w ślad za K, to ma niepuste przecięcie. Tym samym K = ∅.
+Twierdzenie 3. Gdy przestrzeń topologiczna Y jest zwarta, a X – dowolna, to rzuto-
+wanie πX : X × Y → X jest domknięte.
+Dowód. Niech zbiór K będzie domknięty w X × Y i niech x ∈ πX (K); dowiedziemy, że
+x ∈ U ⊂ X \ πX (K) dla pewnego otoczenia U punktu x (w przestrzeni X). W tym celu
+zauważmy, że dla y ∈ Y mamy (x, y) ∈ K, więc z domkniętości K i definicji topologii
+III § 3.
+III-38
+produktowej wynika, że (x, y) ma otoczenie (w X × Y ), rozłączne z K i będące postaci
+Uy × Vy dla pewnych otoczeń Uy ∈ TX i Vy ∈ TY punktów x i y, odpowiednio. Dalej,
+z pokrycia otwartego {Vy : y ∈ Y } zwartej przestrzeni Y możemy wybrać pokrycie
+skończone (Vyi )n . Zbiór U := n Ui ma żądane własności, bo z (U × Vyi ) ∩ K = ∅
+i=1
+i=1
+dla i = 1, ..., n wynika, że (U × Y ) ∩ K = ∅ i tym samym U ∩ πX (K) = ∅.
+Zadanie 3. W przestrzeni zwartej, każdy nieskończony zbiór ma punt skupienia (tzn.
+punkt przestrzeni, którego każde otoczenie zawiera nieskończenie wiele elementów zbioru).
+Zadanie 4. a) (Twierdzenie Diniego.) Niech X będzie przestrzenią zwartą i ciąg funkcji
+fn : X → R będzie monotonicznie punktowo zbieżny do funkcji f : X → R. Dowieść,
+że jeśli f i wszystkie funkcje fn są ciągłe, to zbieżność jest jednostajna.
+1
+2
+b) Niech X = [0, 1] i przyjmijmy f0 = j oraz indukcyjnie fn+1 := fn + 2 (j −fn ), gdzie
+j(x) := x dla x ∈ [0, 1]. Udowodnić, że ciąg fn jest monotonicznie zbieżny do funkcji
+√
+√
+j i wywnioskować, że j jest jednostajną granicą ciągu funkcji wielomianowych.
+§ 3.
+Twierdzenie Tichonowa i uzwarcenie Čecha–Stone’a.
+Twierdzenie 1 (A. Tichonowa). Iloczyn kartezjański dowolnej rodziny przestrzeni zwar-
+tych jest przestrzenią zwartą.
+Istnieje wiele dowodów tego ważnego twierdzenia, lecz żaden ze znanych mi nie jest
+prosty. Warto więc rozwiązać nastepujące
+Zadanie 1. Udowodnić to twierdzenie, gdy rozważana rodzina
+a) jest skończona (wskazówka, gdy przestrzenie są dwie: twierdzenia 2c) i 3 w §2);
+b) składa się z przeliczalnie wielu przestrzeni metryzowalnych. (Wskazówka: użyć
+metody przekątniowej, w oparciu o warunek i) z §1.)
+Dowód twierdzenia 1 (w trzech krokach.) i) Niech F będzie skierowaną rodziną
+domkniętych, niepustych podzbiorów iloczynu X = s∈S Xs zwartych przestrzeni Xs ;
+dowiedziemy, że F = ∅. Zakończy to dowód, bo X jest (T2)–przestrzenią, patrz
+zadanie 8 w §II.4.
+W tym celu dla każdego s ∈ S oznaczmy przez πs : X → Xs naturalne rzutowanie. Ze
+względu na zwartość przestrzeni Xs , istnieje punkt ps ∈ {πs (F ) : F ∈ F} (domknięcie
+brane w Xs ). Oznaczmy przez p punkt (ps )s∈S ∈ X.
+Naiwne przypuszczenie, że zawsze p ∈ F, jest na ogół fałszywe, co widać na przy-
+kładzie S = {1, 2}, X1 = X2 = [0, 1] i F złożonego z jednego zbioru ∆ := {(t, t) : t ∈
+[0, 1]}. Można wówczas przyjąć p1 = 0, p2 = 1, choć (0, 1) ∈ ∆.
+ii) Dowiedziemy jednak niżej w iii), że przypuszczenie to jest prawdziwe przy założeniu
+maksymalności F (względem inkluzji) wśród skierowanych rodzin, składających się z
+III-39
+H. Toruńczyk, Wykład z Topologii I∗ , jesień 2013.
+niepustych, domkniętych podzbiorów przestrzeni X.7 Na mocy lematu Kuratowskiego–
+Zorna, F jest podrodziną takiej maksymalnej rodziny F; a że F = ∅ jeśli F = ∅,
+to możemy zastąpić F przez F. Od tej pory zakładamy więc maksymalność rodziny F.
+Zauważmy, że ze względu na nią, jeśli zbiór domknięty K przecina każdy zbiór F ∈ F,
+to K ∈ F –bo w przeciwnym razie rodzina F ∪ {K} ∪ {K ∩ F : F ∈ F} zaprzeczyłaby
+maksymalności F. W szczególności, dla F1 , ..., Fn ∈ F zachodzi n Fi ∈ F.
+i=1
+iii) Udowodnimy teraz, że p ∈ F. Wobec domkniętości zbiorów F ∈ F wystarczy
+dowieść, że gdy F ∈ F i U jest otoczeniem punktu p, to U ∩ F = ∅. Możemy
+−1
+zakładać, że otoczenie U jest bazowe, tzn. U = s∈S0 πs (Us ), gdzie S0 ⊂ S jest
+zbiorem skończonym i Us jest otoczeniem punktu ps dla s ∈ S0 .
+Ustalmy więc zbiory F, S0 i Us (s ∈ S0 ) jak wyżej. Korzystając z własności (T4)
+przestrzeni Xs , obierzmy dla s ∈ S0 domknięte otoczenia Ks punktu ps , zawarte w Us .
+Dla s ∈ S0 i F ∈ F, ponieważ ps ∈ πs (F ), to Ks ∩ πs (F ) = ∅, czy równoważnie
+−1
+F ∩ πs (Ks ) = ∅. Wobec dowolności F ∈ F i maksymalności F wynika stąd, że do F
+−1
+należy zbiór πs (Ks ), a ze względu na dowolność s ∈ S0 i skończoność S0 – także zbiór
+−1
+s∈S0 πs (Ks ) ∩ F . (Dwukrotnie patrz ii).) W szczególności, ostatni zbiór jest niepusty,
+a tym samym niepusty jest i zawierający go zbiór U ∩ F .
+Twierdzenie Tichonowa może być użyte do konstrukcji ważnego uzwarcenia.
+Definicja. Uzwarceniem przestrzeni X nazywamy każdą przestrzeń zwartą, zawiera-
+jącą X jako podprzestrzeń gęstą.
+Często, konstruując uzwarcenia, zastępujemy X przez homeomorficzną z X przestrzeń
+X , i tak postąpimy też niżej. W tym ujęciu uzwarceniem przestrzeni X jest przestrzeń
+zwarta, wraz z homeomorfizmem f : X → X na jej gęstą podprzestrzeń X .
+Twierdzenie 2 (E. Čech, M. Stone). ∗ Gdy przestrzeń X jest normalna,8 to istnieje jej
+uzwarcenie βX mające następującą własność:
+β) każda funkcja ciągła z X w [0, 1] przedłuża się do funkcji ciągłej z βX w [0, 1].
+Dowód. ∗ Oznaczmy przez Λ zbiór wszystkich funkcji ciągłych z X w odcinek I := [0, 1],
+wyposażmy I Λ w topologię produktowa i określmy przekształcenie f : X → I Λ wzorem
+f (x) = (λ(x))λ∈Λ dla x ∈ X.
+Z zadania 1 w §II.6 i własności (T3.5) przestrzeni X wynika, że f jest homeomorfizmem
+na podprzestrzeń X := f (X). Przyjmijmy za βX domknięcie, w przestrzeni I Λ , zbioru
+X . Dana funkcja μ ∈ C(X , I) jest na X równa rzutowaniu X na oś Iλ dla λ = μ ◦ f
+7
+Tzn., że F ⊂ F dla takich rodzin F, F , gdy F ∈ F dla każdego zbioru F ∈ F. Nietrudno zauważyć, że suma
+dowolnego łancucha rodzin skierowanych też jest rodziną skierowaną.
+8
+Twierdzenie i jego dowód, wraz z wynikami z §II.6, są prawdziwe przy założeniu normalności osłabionym tak: X jest
+(T1) i dla każdego punktu x ∈ X i jego otoczenia G istnieje funkcja ciągła z X do [0, 1], zerująca się w x i równa 1 na X \G.
+Jest to tzw. własność Tichonowa, oznaczana (T3.5); przestrzenie normalne ją mają, na podstawie lematu Urysohna.
+III § 5.
+III-40
+(bo złożenia obu przekształceń z surjekcją f : X → X są równe). A że rzutowanie na
+którąkolwiek z osi przedłuża się w sposób ciągły na I Λ i βX ⊂ I Λ , to μ przedłuża się
+w sposób ciągły na podprzestrzeń βX. Dowodzi to, że βX ma żądaną własność, gdy
+utożsamić X z X ⊂ βX przy pomocy homemorfizmu f .
+Zadanie 2. ∗ a) Uzwarceniu βX przysługuje też własność, otrzymana z β) przez zmianę
+[0, 1] na dowolną przestrzeń zwartą Y . (Wskazówka: gdy Y = I Γ dla pewnego zbioru Γ,
+to skorzystać z β); a przypadku ogólnym – z tego, że Y można traktować jako domkniętą
+podprzestrzeń pewnej kostki I Γ , patrz twierdzenie 1 w §II.6 i twierdzenie 2a) w §3.
+b) Wywnioskować, że uzwarcenie βX przestrzeni X jest wyznaczone jednoznacznie
+sformułowaną w β) własnością przedłużania: gdy uzwarcenia β1 X i β2 X ją mają, to
+istnieje homeomorfizm β1 X → β2 X, będący identycznościa na X. (Wskazówka: dowód
+twierdzenia 2b) w §I.5.)
+§ 4.
+∗
+Twierdzenie Stone’a–Weierstrassa. (Materiał na ćwiczenia.)
+Przez C(X) będziemy oznaczać zbiór wszystkich funkcji ciągłych z przestrzeni topolo-
+gicznej X do (R, Te ), traktowany jako pierścień z naturalnymi działaniami. Powiemy,
+że zbiór F ⊂ C(X) oddziela punkty, jeśli dla każdych różnych punktów x1 , x2 ∈ X
+istnieje taka funkcja f ∈ F, że f (x1 ) = f (x2 ).
+Twierdzenie 1 (M. Stone, K. Wierstrass). Niech X będzie przestrzenią zwartą, a F ⊂
+C(X) – zbiorem funkcji, który oddziela punkty, zawiera wszystkie stałe i jest zamknięty
+względem dodawania i mnożenia w C(X). Wówczas zbiór F jest gęsty w (C(X), dsup ).
+Twierdzenie to, udowodnione przez M. H. Stone’a, uogólnia twierdzenie K. Weier-
+strassa mówiące, że zbiór funkcji wielomianowych na [0, 1] jest gęsty w C([0, 1]).
+Dowód twierdzenia (w zadaniach). Domknięcie F zbioru F w (C(X), dsup ) nadal
+spełnia założenia twierdzenia. Zastępując F przez F uzyskamy więc, że F = F; należy
+dowieść, że F = C(X). Uzyskuje się to w kilku krokach, pozostawionych jako zadania:
+a) W oparciu o zadanie 2 z §I.3 lub 4b) z §2 dowieść, że |f | ∈ F dla f ∈ F.
+b) Wykorzystując równość min(s, t) = (s + t − |s − t|)/2 wywnioskować, że zbiór F
+jest zamknięty względem brania obwiedni górnej i dolnej każdych dwóch jego elementów.
+c) Niech u ∈ C(X) i ε > 0 będą dane. Wykorzystać założenia, by dla zadanych x, y ∈
+X uzyskać fx,y ∈ F z fxy (y) = u(y) i fxy (x) = u(x), a tym samym fxy (s) > u(s) − ε
+dla s z pewnego otoczenia Ux punktu x.
+d) Z b) i c) wywnioskować istnienie funkcji fy ∈ F (y ∈ Y ) takich, że fy > u − ε i
+fy (y) = u(y).
+e) Powtarzając to rozumowanie, uzyskać funkcję f ∈ F taką, że u − ε < f < u + ε.
+H. Toruńczyk, Wykład z Topologii I∗ , jesień 2013.
+III-41
+§ 5.
+∗
+Przestrzenie lokalnie zwarte i uzwarcenie Aleksandrowa (zadania).
+Zadanie 1. Niech (X, T ) będzie przestrzenią lokalnie zwartą, tzn. (T2) i taką, że
+każdy jej punkt posiada pewne zwarte otoczenie. (Przykładem jest przestrzeń euklide-
+sowa Rn .) Obierzmy punkt ∞ ∈ X, przyjmijmy αX = X ∪ {∞} i zdefiniujmy w αX
+topologię αT , generowaną przez T wraz ze wszystkimi zbiorami U ⊂ αX takimi, że
+∞ ∈ U i X \ U jest zwartą podprzestrzenią przestrzeni w X. Udowodnić, że:
+a) Przestrzeń (αX, αT ) jest zwarta, zaś jeśli przestrzeń X jest niezwarta, to X = αX.
+b) Jeśli X ma bazę przeliczalną, to i przestrzeń zwarta αX ma bazę przeliczalną, a
+przez to jest metryzowalna. (Patrz twierdzenie metryzacyjne Urysohna w II.6.)
+Zadanie 2. Niech podprzestrzeń X przestrzeni Hausdorffa Y będzie gęsta w Y i
+lokalnie zwarta (w topologii podprzestrzeni). Udowodnić, że:
+a) X jest zbiorem otwartym w Y ;
+b) Istnieje jedyne ciągłe przekształcenie f : Y → αX takie, że f (x) = x dla x ∈ X;
+spełnia ono warunek f −1 (∞) = Y \ X. W szczególności, jeśli #(Y \ X) = 1 i przestrzeń
+Y jest zwarta, to f jest homeomorfizmem.
+Uwaga 1. Z zadań tych wynika, że
+i) Niezwarta przestrzeń lokalnie zwarta X posiada jedyne uzwarcenie αX takie, że
+#(αX \ X) = 1; nazywane jest ono jej uzwarceniem jednopunktowym lub Alek-
+sandrowa. (Jedyność jest tu rozumiana analogicznie jak w zadaniu 2 z §3.)
+b) Gdy przestrzeń X ma bazę przeliczalną, uzwarcenie to jest metryzowalne.
+c) W szczególności, lokalnie zwarta, ośrodkowa przestrzeń metryzowalna jest metry-
+zowalna w sposób zupełny –bo jest homeomorficzna z otwartym podzbiorem przestrzeni
+αX, kóra jest metryzowalna i zwarta (a przez to zupełna w metryzującej ją metryce).
+Uwaga 2. Sfera S n jest jednopunktowym uzwarceniem przestrzeni euklidesowej Rn (czy
+też: przestrzeni, homeomorficznej z Rn ). Wynika to stąd, że rzut stereograficzny f z bie-
+guna p = (0, ..., 0, 1) wyznacza homeomorfizm zbioru S n \ {p} na kopię E = Rn × {0} ⊂
+Rn+1 przestrzeni Rn . Tu, S n := {(x1 , ..., xn+1 ) ∈ Rn+1 : i x2 = 1}, zaś f przyporząd-
+i
+n
+kowuje punktowi x ∈ S \ {p} punkt przecięcia prostej px z podprzestrzenią E.
+Zadanie 3. Twierdzenie Baire’a pozostaje słuszne dla przestrzeni lokalnie zwartych (w
+miejsce metryzowalnych w sposób zupełny).
+UWAGA: NIE WSZYSTKO, CO WYWIESZONO, PRZEDSTAWILEM –MATERIAL
+O UZWARCENIU ČECHA–STONE’A I DALSZY, JEŚLI BĘDZIE OMAWIANY, TO
+NA ĆWICZENIACH.
+IV § 1.
+IV-42
+IV Spójność
+§ 1. Definicja i podstawowe własności.
+Definicja. Przestrzeń topologiczna jest spójna, jeśli nie jest sumą dwóch niepu-
+stych, rozłącznych zbiorów otwartych (równoważnie: domkniętych). Gdy poprzestrzeń
+X0 przestrzeni X jest spójna to mówimy, że X0 jest zbiorem spójnym w X.
+Uwaga 1. a) Przestrzeń X jest spójna wtedy i tylko wtedy, gdy każda funkcja ciągła
+z X do przestrzeni dyskretnej {0, 1} jest stała. Wynika to stąd, że każda funkcja φ :
+X → {0, 1} wyznacza rozkład X = U ∪ V na rozłączne zbiory otwarte U := φ−1 (0) i
+V = φ−1 (1) – a także jest przez taki rozkład wyznaczona ostatnimi równościami.
+b) Również, przestrzeń X jest spójna wtedy i tylko wtedy, gdy jej jedynym podzbio-
+rami domknięto–otwartymi są X i ∅. (Dlaczego?) Ta charakteryzacja spójności jest
+użyteczna w zastosowaniach; patrz np. dalej dowód twierdzenia 2b) w §2.
+Przykład 1. a) Każdy przedział J w prostej euklidesowej R jest spójny. Istotnie, gdy
+funkcja φ : J → {0, 1} ⊂ R jest ciągła i nie jest stała, to 0, 1 ∈ φ(J), skąd φ(J) ⊃ [0, 1]
+na podstawie twierdzenia Darboux φ –wbrew temu, że φ(J) ⊂ {0, 1}.
+b) Odwrotnie, gdy zbiór S jest spójny w R, to jest przedziałem. By tego dowieść
+wystarczy zauwazyć, że dla a, b ∈ S, gdzie a < b, zachodzi [a, b] ⊂ S – co z kolei wynika
+stąd, że każdy punkt c ∈ [a, b] \ S wyznacza rozkład S = U ∪ V na rozłączne zbiory
+otwarte U := {x ∈ S : x < c} i V := {x ∈ S : x > c}.
+Twierdzenie 1. a) Obraz przestrzeni spójnej przy przekształceniu ciągłym jest prze-
+strzenią spójną.
+b) Gdy X = A, gdzie wszystkie zbiory A ∈ A są spójne i przecinają (niepusto)
+pewien zbiór A0 ∈ A, to przestrzeń X jest spojna.
+c) Przestrzeń, której pewien gęsty podzbiór jest spójny, sama jest spójna.
+Dowód. Ad a). Niech surjektywne przekształcenie f : X → Y będzie ciągłe. Jeśli
+φ : Y → {0, 1} jest niestałą funkcją ciągłą, to φ ◦ f jest niestałą funkcją ciągłą z X do
+{0, 1}. Stąd i z uwagi wynika teza a).
+Ad b). Funkcja ciągła φ : X → {0, 1} jest stała na zbiorach A ∈ A, bo są one spójne.
+A że A ∩ A0 = ∅, to na każdym zbiorze A ∈ A przyjmuje ona tę wartość, co na A0 .
+Funkcja φ jest więc stała, bo A = X.
+Ad c). Gdy X0 jest zbiorem spójnym w X i funkcja φ : X → {0, 1} jest ciągła, to
+φ(X0 ) = {c} dla pewnego c ∈ {0, 1}, skąd zbiór φ−1 (c) zawiera X0 i jest domknięty (z
+ciągłości f ). Jeśli więc zbiór X0 jest ponadto gęsty w X, to φ−1 (c) = X i f = c.
+Uwaga 2. a) Gdy X0 ⊂ X1 ⊂ X0 ⊂ X, to ze spójności X0 wynika spójność X1 . Jest
+tak, bo wypisane inkluzje pociągają za sobą, że zbiór X0 jest gęsty w podprzestrzeni X1
+– więc pozostaje skorzystać z twierdzenia 1c).
+IV-43
+H. Toruńczyk, Wykład z Topologii I∗ , jesień 2013.
+b) Zbiór X0 ⊂ X jest spójny wtedy i tylko wtedy, gdy nie można go przedstawić
+w postaci sumy rozłącznych, niepustych zbiorów A, B takich, że A ∩ B = A ∩ B = ∅
+(domknięcia są w X). Wynika to stąd, że gdy X0 = A ∪ B, to warunek A ∩ B = ∅ jest
+równoważny temu, by zbiór A był domknięty w podprzestrzeni X0 (jako ślad na niej
+zbioru domkniętego A), a warunek B ∩ A = ∅ – temu, by zbiór B był domknięty w X0 .
+Przykład 2. S := ({0} × [−1, 1]) ∪ {(t, sin(1/t)) : t ∈ (0, 1]} jest spójnym podzbiorem
+płaszczyzny R2 , bo zawiera gęsty (w S) podzbiór {(t, sin(1/t)) : t ∈ (0, 1]}, będący
+obrazem przdziału (0, 1] przy ciągłym przekształceniu t → (t, sin(1/t)).
+Twierdzenie 2. Niech f : X → Y będzie przekształceniem otwartym na przestrzeń
+spójną Y , takim, że wszystkie zbiory f −1 (y), y ∈ Y , są spójne. Wówczas X jest prze-
+strzenią spójną.
+Dowód. Niech funkcja φ : X → {0, 1} będzie ciągła. Zauważmy, że jest ona stała na
+każdym zbiorze f −1 (y), bo zbiór ten jest spójny. Możemy więc określić funkcję g : Y →
+{0, 1} tak, by φ = ψ ◦f . Dla otwartych zbiorów U ⊂ {0, 1} mamy ψ −1 (U ) = f (φ−1 (U ))
+–co jest zbiorem otwartym wobec ciągłości φ i otwartości f . Dowodzi to, że funkcja g jest
+ciągła. A że przestrzeń Y jest spójna, to ψ = const i wobec tego φ = ψ ◦ f = const.
+Uwaga 3. W założeniach twierdzenia 2, otwartość f można zastąpić domkniętością.
+Ogólniej, wystarcza założyć, że przekształcenie f jest ilorazowe – definicja będzie po-
+dana w §V.1 i powyższszy dowód ma być wskazówką do sformułowanego tam zadania 1.
+(Następujacą po tym zadaniu uwagę należy wykorzystać do dowodu twierdzenia dla
+przekształceń ilorazowych.)
+Twierdzenie 3. Iloczyn kartezjański rodziny przestrzeni spójnych jest spójny.
+Dowód. a) Dla iloczynu dwóch przestrzeni, teza wynika z twierdzenia 2, odniesionego do
+rzutowania rozważanego iloczynu na jeden z czynników. (Otwartość rzutowania odno-
+towano na ćwiczeniach.) Przez indukcję wynika stąd, że iloczyn kartezjański skończenie
+wielu przestrzeni spójnych jest spójny.
+b) Niech teraz X = s∈S Xs , gdzie przestrzenie Xs są spójne. Wybierzmy z każdej z
+nich pewien punkt ys i dla skończonych zbiorów T ⊂ S przyjmijmy
+YT := {(xs ) ∈ X : xs = ys dla wszystkich s ∈ S \ T }.
+Każdy zbiór YT zawiera punkt (ys )s∈S i jest spójny, bo jest homeomorficzny ze skoń-
+czonym iloczynem kartezjańskim t∈T Xt . Spójna jest więc suma Y = T YT , gdzie
+T przebiega wszystkie skończone podzbiory zbioru S, a także domknięcie Y tej sumy.
+(Korzystamy z twierdzenia 1.) Pozostaje zauważyć, że Y = X – co wynika stąd, że
+−1
+każde otoczenie bazowe t∈T πs (Us ), gdzie T ⊂ S jest zbiorem skończonym i zbiory
+Ut ⊂ Xt są niepuste i otwarte, przecina Y – o czym zaświadcza punkt (xs )s∈S , gdzie
+xs ∈ Us dla s ∈ T i xs = ys dla s ∈ S \ T .
+IV § 2.
+§ 2.
+IV-44
+Lokalna spójność, łukowa spójność, składowe.
+Definicja. Przestrzeń X jest łukowo spójna, jeśli dla każdych x, y ∈ X istnieje prze-
+kształcenie ciągłe γ : [0, 1] → X, dla którego γ(0) = x i γ(1) = y. Takie przekształce-
+nie γ nazywane jest ścieżką lub drogą od x do y.
+Uwaga 1. Jeśli istnieją w X ścieżki z x do y i z y do z (oznaczmy je λ i μ, odpowiednio),
+to istnieją też ścieżki z y do x i z x do z. Istotnie, ścieżkę z y do x można zadać wzorem
+[0, 1] t → λ(1 − t), a z x do z – wzorem t → λ(2t) dla t ∈ [0, 1/2] i t → μ(2t − 1) dla
+t ∈ [1/2, 1]. (Dlaczego ostatnia ścieżka jest ciągła w punkcie 1/2?)
+Przykład 1. Rozważmy przestrzeń S z przykładu 2 w §1. Udowodnimy, że nie jest ona
+łukowo spójna, bo żadnego punktu p ∈ {0} × [−1, 1] nie można w S połączyć ścieżką z
+punktem (1, sin 1). W tym celu oznaczmy przez π1 i π2 rzutowania płaszczyzny R2 na
+osi ox i oy, odpowiednio, i przypuśćmy, że γ : [0, 1] → S jest ścieżką taką, że π1 γ(0) = 0
+i π1 γ(1) = 0. Niech t0 := sup{t : γ(t) ∈ {0} × [−1, 1]}; zachodzi przy tym t0 < 1, bo
+π1 γ(1) = 0. Obierzmy y ∈ [−1, 1] tak, by y = π2 γ(t0 ). Z ciągłości γ wynika, że dla
+pewnego t1 ∈ (t1 , 1] zbiór γ([t0 , t1 ]), zawarty w S, jest rozłączny z Z := S ∩([0, 1]×{y}).
+(Wykorzystaliśmy to, że rzutowanie π1 jest różnowartościowe na S \ {0} × [−1, 1].) Tym
+samym zbiór T := π1 γ([t0 , t1 ]) ⊂ [0, 1] jest rozłączny ze zbiorem π1 (Z), jest przedziałem
+(bo jest spójny) i zawiera zero. Ponieważ jednak inf π1 (Z) = 0 (dlaczego?), to wynika
+stąd, że T = {0}, wbrew temu, że π1 γ(t1 ) = 0. Sprzeczność ta dowodzi tezy.
+Ponieważ zbiór S \ ({0} × [−1, 1)]) jest łukowo spójny i gęsty w S, więc odpowied-
+nik części c) twierdzenia 1 byłby dla łukowej spójności nieprawdziwy. Tym niemniej,
+prawdziwe pozostają odpowiedniki innych wyników z §1:
+Twierdzenie 1. i) Gdy X = A, gdzie wszystkie zbiory A ∈ A są łukowo spójne i
+przecinają (niepusto) pewien zbiór A0 ∈ A, to przestrzeń X jest łukowo spojna.
+ii) Obraz przestrzeni łukowo spójnej przy przekształceniu ciągłym jest przestrzenią
+łukowo spójną.
+iii) Iloczyn kartezjański rodziny przestrzeni łukowo spójnych jest łukowo spójny.
+Dowód. Ad i). Niech wpierw istnieje punkt x0 ∈ A. Gdy x1 ∈ A1 i x2 ∈ A2 , gdzie
+A1 , A2 ∈ A, to wobec łukowej spójności zbiorów Ai istnieją w X ścieżki z x0 do x1 i
+z x0 do x2 . Z uwagi 1 wynika więc istnienie ścieżki z x1 do x2 , co dowodzi tezy przy
+poczynionym dodatkowym założeniu. Gdy założenie to nie jest spełnione, to w miejsce
+wyjściowej rodziny A rozważamy rodzinę zbiorów A0 ∪ A (A ∈ A), która już je spełnia
+i nadal składa się ze zbiorów łukowo spójnych (na podstawie tego, co dowiedziono).
+Tezy ii) i iii) wynikają łatwo z przyjętych definicji.
+Definicja. Podzbiór A przestrzeni X nazywamy jej składową spójności, jeśli A jest
+maksymalnym zbiorem spójnym w X (tzn. nie istnieje zbiór spójny, zawierający A i
+IV-45
+H. Toruńczyk, Wykład z Topologii I∗ , jesień 2013.
+różny od A). Analogicznie definiujemy składową łukowej spójności.
+Przykład 2. Przestrzeń S z przykładu 1 ma jedna składową spójności (nią samą), lecz
+dwie składowe łukowej spójności: są nimi {0} × [−1, 1] i {(t, sin(1/t)) : t ∈ (0, 1]}.
+Uwaga 2. a) Składowa spójności jest zbiorem domkniętym, bo jej domknięcie jest
+zbiorem spójnym i ją zawiera – więc jest jej równe.
+b) Przykład 1 pokazuje, że składowa łukowej spójności może nie być domknięta.
+Uwaga 3. Składowe spójności są klasami abstrakcji relacji
+(x1 ∼ x2 ) ⇔(zbiór {x1 , x2 } jest zawarty w pewnym spójnym podzbiorze przestrzeni).
+Istotnie, z twierdzenia 1b) z §1 wynika, że jest to relacja równoważności, i że klasa abs-
+trakcji punktu x jest maksymalnym zbiorem spojnym, zawierającym {x}. Analogicznie
+jest, gdy zastąpić spójność przez łukową spójność.
+Wniosek 1. Rodzina składowych spójności jest pokryciem przestrzeni, złożonym ze zbio-
+rów parami rozłącznych, i tak samo jest dla składowych łukowej spójności.
+Uwaga 4. Istnieje więc jedyna składowa spójności, zawierająca dany punkt p prze-
+strzeni, i jest ona sumą wszystkich spójnych podzbiorów tej przestrzeni, zawierających p.
+Tak samo, istnieje jedyna składowa łukowej spójności, zawierająca dany punkt p prze-
+strzeni, i jest ona (dlaczego?) zbiorem tych punktów, które można połączyć ścieżką z p.
+Te jedyne składowe nazywamy składową spójności punktu p i składową łukowej
+spójności punktu p, odpowiednio.
+Stwierdzenie 1. W przestrzeni zwartej, składowa spójności jest przecięciem zawiera-
+jących ją zbiorów domknięto–otwartych (tzn. takich, które są zarazem domknięte i
+otwarte w przestrzeni). Założenie zwartości jest istotne. (Dowód na ćwiczeniach.)
+Na koniec powiedzmy jeszcze kilka słów o lokalnej spójności.
+Definicja. Przestrzeń X jest lokalnie spójna, jeśli każdy jej punkt ma bazę otoczeń,
+złożoną ze zbiorów spójnych (czyli dla każdego x ∈ X i jego otoczenia G istnieje zbiór
+spójny G ⊂ G, będący otoczeniem punktu x).
+Przykład 3. W przestrzeni S z przykładu 2 w §1, żaden punkt x ∈ {0} × [−1, 1] nie bazy
+otoczeń, złożonej ze zbiorów spójnych.
+Stwierdzenie 2. W przestrzeni lokalnie spójnej, niech A będzie zbiorem spójnym, a G
+jego otoczeniem. Wówczas istnieje spójny zbiór otwarty U taki, że A ⊂ U ⊂ G.
+Dowód. Przyjmijmy A0 = A, a gdy znamy już spójny zbiór An ⊂ IntG, weźmy dla każ-
+dego punktu x ∈ An jego spójne otoczenie Gx ⊂ IntG i przyjmijmy An+1 := x∈An Gx .
+Z konstrukcji, An+1 jest spójnym otoczeniem zbioru An w IntG. Zbiór U := n An ma
+więc żądane własności. (Spójność oboma razy wynika z twierdzenia 1b) z §1.)
+IV § 2.
+IV-46
+Wniosek 2. Składowe spójności lokalnie spójnej przestrzeni X są zbiorami otwartymi.
+Dowód. Ustalmy składową A. Gdy zastosować stwierdzenie przy G = X, uzyskamy
+spójny zbiór otwarty, zawierający A. Jest on równy A, bo A jest maksymalnym zbiorem
+spójnym. Wobec tego zbiór A jest otwarty.
+Twierdzenie 2. a) Składowa spójności otwartego podzbioru przestrzeni euklidesowej Rn
+jest zbiorem otwartym w Rn .
+b) Każde dwa punkty spójnego zbioru otwartego U ⊂ Rn można w U połączyć łamaną
+(a więc i ścieżką).
+Dowód. Ad a). Przestrzeń euklidesowa jest lokalnie spójna, bo kule w niej są zbiorami
+spójnymi. Teza a) wynika więc z twierdzenia 1.
+Ad b) Zauważmy, że punkty x, y ∈ U , spełniające warunek de (x, y) < distde (x, Rn \
+U ), można w U połączyć odcinkiem [x, y]. Wynika stąd łatwo, że dla ustalonego punktu
+p ∈ U , zarówno zbiór {x ∈ U : w U istnieje łamana z p do x}, jak i jego dopełnienie
+(w U ) są zbiorami otwartymi w U . Jednak pierwszy z nich jest niepusty, bo zawiera
+punkt p, więc jest wobec spójności U równy U – co oznacza, że można p połączyć łamaną
+w U z dowolnym punktem q ∈ U .
+Zadanie 1. Dopełnienie ograniczonego podzbioru przestrzeni Rn ma dokładnie jedną
+nieograniczoną składową spójności.
+Zadanie 2. Gdy przestrzeń niespójna jest sumą dwóch swych spójnych i rozłącznych
+podzbiorów, to są one jej składowymi.
+H. Toruńczyk, Wykład z Topologii I∗ , jesień 2013.
+V-47
+V
+Varia: przekształcenia ilorazowe, (nie)homeomorficzność prze-
+strzeni i przestrzenie funkcyjne
+Ten eklektyczny rozdział dotyczy trzech kręgów wyników, czy zagadnień, które w topo-
+logii ogólnej odgrywają istotną rolę, lecz nie są bezpośrednio związane ze sobą czy też z
+materiałem wcześniej omawianym. Sporą część rozdziału omówimy na ćwiczeniach.
+§ 1.
+Przekształcenia ilorazowe.
+Definicja. Przekształcenie f : X → Y przestrzeni topologicznych nazywamy ilorazo-
+wym, jeśli jest „na” i spełniony jest warunek
+(zbiór W ⊂ Y jest otwarty w Y )⇔(zbiór f −1 (W ) jest otwarty w X).
+(9)
+Uwaga 1. a) Jeśli w (9) zmienimy dwukrotnie słowo „otwarty” na „domknięty”, otrzy-
+mamy warunek równoważny (bo f −1 (Y \ A) = X \ f −1 (A) dla A ⊂ Y ).
+b) Przekształcenie ilorazowe jest ciągłe.
+c) Różnowartościowe przekształcenie ilorazowe jest homeomorfizmem.
+d) Ciągłe przekształcenie „na”, które jest otwarte lub jest domknięte, jest ilorazowe.
+Zadanie 1. Niech dane będą funkcje f : X → Y i g : Y → Z. Dowieść, że:
+a) Gdy przekształcenie f jest ilorazowe, a g ◦ f jest ciągłe, to i g jest ciągłe. (Wska-
+zówka: dowód twierdzenia 2 w §IV.1.)
+b) Gdy przekształcenia f i g ◦ f są ilorazowe, to g też jest.
+c) Gdy przekształcenia f i g są ilorazowe, to g ◦ f też jest.
+Uwaga 2. Często, zadanie wygodnie jest wykorzystać w takiej postaci: niech prze-
+kształcenie f : X → Y będzie ilorazowe, a h : X → Z niech będzie stałe na każdym
+zbiorze f −1 (y), dla y ∈ Y , wobec czego h = g ◦ f dla pewnego jednoznacznie wyznaczo-
+nego przekształcenia g : Y → Z. Wówczas przekształcenie g jest ciągłe, względnie jest
+ilorazowe, wtedy i tylko wtedy, gdy h jest ma tę własność.
+Definicja. a) Rozkładem zbioru X nazywamy pokrycie D tego zbioru, złożone ze
+zbiorów parami rozłącznych. Wyznaczone jest naturalne rzutowanie πD : X → D,
+które każdemu punktowi x ∈ X przyporządkowuje jedyny zbiór D ∈ D taki, że x ∈ D.
+c) Gdy ponadto X jest przestrzenią topologiczną, to zbiór D (będący zbiorem zbio-
+rów) można wyposażyć w topologię T wypchniętą przez πD z X do D, jedyną, czy-
+niącą πD przekształceniem ilorazowym. Przestrzeń (D, T ) nazywamy przestrzenią
+rozkładu D i oznaczamy przez X/D, myśląc o niej jako o przestrzeni powstałej z X
+przez „zgniecienie” każdego zbioru D ∈ D do punktu, przy czym różnych zbiorów z D
+do różnych punktów. (Bezpośredni opis topologii w X/D jest taki: zbiór U jest otwarty
+−1
+w X/D wtedy i tylko wtedy, gdy otwarty w X jest zbiór πD (U ) = {D : D ∈ U }.)
+V § 1.
+V-48
+d) Nierzadko, gdy mowa o przestrzeni rozkładu D, wymienia się tylko zbiory D ∈ D,
+liczące więcej niż jeden punkt. I tak, dla rodziny D0 parami rozłącznych podzbiorów
+przestrzeni X, pisze się X/D0 w miejsce X/D, gdzie D := D0 ∪ {{x} : x ∈ X \ D0 }.
+Przykład 1. a) Dla A ⊂ X, zbiór X/A można utożsamić z {A} ∪ (X \ A). (Dlaczego?)
+Przy tej reprezentacji, zbior U ⊂ X/A jest otwarty, jeśli jest podzbiorem przestrzeni
+X \ A, otwartym w X, lub jeśli {A} ∈ U i zbiór (U \ {A}) ∪ A jest otwarty w X. Stąd
+naturalne rzutowanie X → X/A przekształca zbiór X\A homeomorficznie na X/A\{A};
+ponadto, X/A jest przestrzenią normmalną, jeśli X jest przestrzenią normalną i A = A
+(dlaczego?). W szczególności, gdy A = A i przestrzeń X jest zwarta, to X/A też jest
+zwarta, jako obraz zwartej przestrzeni X przy rzutowniu π : X → X/A.
+b) Przestrzeń Z := B n /S n−1 , gdzie B n to różna od punktu kula domknięta w prze-
+strzeni Rn , a S n−1 to jej brzeg, jest homeomorficzna ze sferą S n . Wynika to stąd, że Z
+jest przestrzenią zwartą, a Z \ {S n−1 } jest przestrzenią homeomorficzną z kulą otwartą
+B n \ S n−1 , patrz a). Tym samym Z jest jednopunktowym uzwarceniem tej kuli, podob-
+nie jak jest nim sfera S n . (Korzystamy z uwagi 2 w §III.5 i tego, że kula otwarta jest
+homeomorficzna z Rn .) Teza wynika więc z jedyności takiego uzwarcenia; patrz §III.5.
+Uwaga 3. Gdy przestrzeń X jest spójna, to X/D też jest, jako obraz przestrzeni spójnej
+przy ciągłym przekształceniu πD . Implikacja odwrotna jest prawdziwa jeśli wszystkie
+zbiory D ∈ D są spójne; patrz twierdzenie 2 w §IV.1 i uwaga po nim.
+Przestrzeń X/D, z uwzględnieniem jej topologii, nie zawsze łatwo jest sobie wyobra-
+zić. Może ona mieć złe własności (np. nie być przestrzenią Hausdorffa), nawet, gdy
+przestrzeń X jest „porządna”. Sporym ułatwieniem bywa następujący lemat:
+Lemat 1. Niech D = {h−1 (z) : z ∈ Z} dla pewnego ciągłego przekształcenia h : X → Z
+przestrzeni X w przestrzeń Hausdorffa Z. Wówczas:
+a) X/D jest przestrzenią Hausdorffa, przy tym homeomorficzną z h(X) jeśli prze-
+kształcenie h jest ilorazowe.
+b) Jeśli istnieje taki zwarty zbiór K ⊂ X, że K ∩ D = ∅ dla każdego D ∈ D, to
+przestrzeń X/D jest zwarta (i homeomorficzna z h(X) = h(K)).
+Dowód. Z założenia wynika istnienie bijekcji g : X/D → h(X) takiej, że g ◦ πD = h. Na
+podstawie uwagi 2, bijekcja ta jest ciągła (wobec czego przestrzeń X/D jest Hausdorffa,
+w ślad za Z), zaś gdy przekształcenie h jest ilorazowe, to jest homeomorfizmem. To
+dowodzi a). By uzyskać b) pozostaje zauważyć, że gdy D ∩ K = ∅ ∀D ∈ D, to h(K) =
+h(X) i πD (K) = πD (X), przy czym ze zwartości K i własności (T2) przestrzeni Z i
+X/D wynika, że przekształcenia h|K i (πD )|K są ilorazowe (bo są domknięte).
+Wniosek 1. Gdy X/D jest przestrzenią Hausdorffa, to dla każdego zbioru zwartego
+L ⊂ X, jego obraz w X/D jest homeomorficzny z L/D , gdzie D = {D ∩ L : D ∈ D}.
+H. Toruńczyk, Wykład z Topologii I∗ , jesień 2013.
+V-49
+Dowód. Przy Z := πD (L) i h := (πD )|L : L → Z zachodzi D = {h−1 (z) : z ∈ Z}.
+Przykład 2. a) Przestrzeń [0, 1]/{0, 1} jest homemomorficzna z okręgiem S 1 = {(x, y) :
+x2 +y 2 = 1} na płaszczyźnie (R2 , Te ). Wynika to tak z przykładu 1b), jak i z lematu, przy
+h(t) = (cos(2πt), sin(2πt)) dla t ∈ [0, 1] – bo {h−1 (s)}s∈S 1 = {0, 1} ∪ {{t}}t∈(0,1) .
+b) Niech D = {Dt : t ∈ [0, 1)}, gdzie Dt = {t + n : n ∈ Z}. Przestrzeń R/D jest
+nadal homeomorficzna z okręgiem S 1 –co w podobny sposób wynika z części c) lematu,
+przy K = [0, 1] i h(t) = (cos(2πt), sin(2πt)) dla t ∈ R.
+c) W sferze B n rozważmy rodzinę zbiorów D = {{x, −x} : x ∈ S n }. Przestrzeń S n /D
+nazywana jest n–wymiarową przestrzenią rzutową i oznaczana przez P n . Gdy przy-
+jąć h(x) = (xi xj )i≤j dla x = (xi )n+1 ∈ S n ⊂ Rn , to przy m = 1 (n + 1)(n + 2)
+i=1
+2
+otrzymamy takie ciągłe przekształcenie h : S n → Rm , że D = {h−1 (y) : y ∈ im(h)}.
+Ponieważ Rm jest przestrzenią Hausdorffa, więc wynika stąd, że przestrzeń P n jest ho-
+meomorficzna ze zwartą (ze względu na zwartość kuli B n ) podprzestrzenią im(h) prze-
+strzeni Rm , a więc jest zwarta i metryzowalna.
+Zadanie 2. Gdy n = 2, to samo pozostaje prawdą przy m = 6 zastąpionym przez 4,
+a h określonym wzorem h(x1 , x2 , x3 ) = (x2 − x2 , x1 x2 , x1 x3 , x2 x3 ).
+2
+1
+W sferze S n = {x ∈ Rn : ||x|| ≤ 1} zbiór K = {x ∈ S n : xn+1 ≥ 0} przecina każdy
+zbiór {−x, x} rozkładu D, wobec czego przestrzeń P n jest homeomorficzna z K/D ,
+gdzie D = {D ∩ K : D ∈ D}. Elementami rozkładu D przestrzeni K, zawierajacymi
+więcej niż 1 punkt, są zbiory {x, −x}, dla x = (x1 , ..., xn , 0) ∈ K. Traktując kulę
+domkniętą B n jako obraz zbioru K przy rzutowaniu wdłuż osi Oxn+1 stwierdzamy więc,
+że P n = B n /E, gdzie E = {{x, −x} : x ∈ S n−1 }.
+Przykład 3. a) Weżmy wyżej n = 2. Ponieważ istnieje homeomorfizm kuli B 2 na kwa-
+drat [−1, 1]2 , który zachowuje antypodyzm względem zera, więc przestrzeń P 2 jest ho-
+meomorficzna z [−1, 1]2 /F, gdzie F = {{x, −x} : max(|x1 |, |x2 |) = 1}. Oddajemy to
+rysunkiem oznaczajacym, że identyfikujemy każdy punkt x z u(x), gdzie u jest afinicz-
+nym homeomorfizmem odcinka a na a lub odcinka b na b , zachowującym zaznaczone
+orientacje odcinków. (W dalszych rysunkach „primy” będą opuszczane.)
+b’
+=
+top
+a’
+a
+b
+powierzchnia rzutowa P 2
+b) Wziąć poniższe rysunki jako definicje podpisanych pod nimi zbiorów:
+V § 1.
+V-50
+b
+a
+a
+a
+d
+a
+a
+b
+a
+b
+a
+a
+b
+powierzchnia
+boczna walca
+Zadanie 3. a) Sprawdzić, że funkcja h : [0, 1]2 → R3 , zadana wzorem h(s, t) =
+(cos(2πs), sin(2πs), t) wyznacza na [0, 1]2 ten sam rozkład {h−1 (z) : z ∈ im(h)}, co użyty
+wyżej do zdefiniowania powierzchni bocznej walca. Stąd i z lematu 1 wywnioskować, że
+powierzchnia ta jest homeomorficzna z podprzestrzenią im(h) przestrzeni R3 .
+b) To samo, przy powierzchni bocznej walca zastąpionej przez torus, zaś funkcji h
+zdefiniowanej wzorem h(s, t) = ......
+c) Dowieść, że „powierzchnia boczna walca” jest homeomorficzna z S 1 × [0, 1], a torus
+– z S 1 × S 1.
+Definicja. Niech X i Y będą rozłącznymi przestrzeniami topologicznymi i niech f :
+A → Y będzie ciągłym przekształceniem domkniętej podprzestrzeni A przestrzeni X.
+Możemy wtedy utworzyć sumę rozlączną X ∪Y przestrzeni X i Y , jak opisano w przykła-
+dzie 3 z §II.2, oraz rozważyć następującą rodzinę D jej parami rozłącznych podzbiorów:
+D = {f −1 (y) ∪ {y} : y ∈ Y }
+Przestrzeń ilorazową X ∪ Y /D nazywamy wynikiem doklejenia przestrzeni X do Y
+wzdłuż przekształcenia f . Przestrzeń tę oznaczamy X ∪f Y .
+Założenie rozłączności zbiorów X i Y można łatwo ominąć, zastępując X przez X :=
+X ×{0}, a Y przez Y := Y ×{1}. (Dlatego na ogół nie żąda się, by było ono spełnione.)
+Określone jest naturalne rzutowanie X ∪ Y → X ∪f Y .
+Przykład 4. Niech X i Y będą domkniętymi podzbiorami przestrzeni Z i A := X ∩ Y .
+Dla iA : A → Y oznaczającego naturalne włożenie twierdzimy, że przestrzeń X ∪iA Y jest
+homeomorficzna z X ∪Y . Wynika to z lematu 1, bo przekształcenie h : X ∪Y → X ∪Y ,
+gdzie X i Y są jak wyżej i h(x, 0) = x, h(y, 1) = y, jest domknięte i ma te same
+przeciwobrazy punktów, co naturalne rzutowanie X ∪ Y → X ∪iA Y . Teza jest też
+prawdziwa, gdy oba zbiory X, Y są otwarte w Z (bo wtedy h jest otwarte).
+Zadanie 4. a) Na podstawie poniższego rysunku stwierdzić, że butelka Kleina K jest
+homeomorficzna z sumą dwóch wstęg Moebiusa, mającymi wspólny brzeg (względem K).
+b) Stwierdzić podobnie, że płaszczyzna rzutowa P 2 jest sumą wstęgi Moebiusa i dysku,
+mającymi wspólny brzeg (w P 2 ). W a) i b), wspólny brzeg jest homeomorficzny z S 1 .
+H. Toruńczyk, Wykład z Topologii I∗ , jesień 2013.
+V-51
+b1
+b2 b3
+a
+a
+b3 b2
+b1
+c) Co otrzymamy ze wstęgi Moebiusa, gdy ją rozetniemy wzdłuż linii d? Jakich iden-
+tyfikacji można dokonać w powierzchni bocznej walca, by otrzymać wstęgę Moebiusa?
+d) Co otrzymamy z przestrzeni P 2 , torusa i butelki Kleina, gdy je podobnie roze-
+tniemy? (Przy butelce Kleina są dwa przypadki.)
+Zadanie 5. a) Niech D = I 2 ⊂ R2 . Korzystając ze wzoru
+Fr(D × D) = Fr(D) × D ∪ D × Fr(D)
+dowieść, że sfera S 3 jest sumą dwóch pełnych torusów, sklejonych brzegami.
+b)* Wywnioskować, że gdy z przestrzeni R3 wyjąć wnętrze standardowo położonego
+pełnego torusa, to otrzymamy przestrzeń homeomorficzną z pełnym torusem bez punktu.
+c)∗ Sprobować wyobrazić to sobie!
+Problem 4. W torusie T = S 1 × S 1 ⊂ R4 definiujemy rodzinę zbiorów D = {{x, −x} :
+x ∈ T }. (Tu − odnosi się do R4 .) Z czym jest homeomorficzna przestrzeń T /D?
+Problem 5. Wobrazić sobie trąbkę Borsuka, zdefiniowaną na rysunku, lub zrobić jej
+model plastelinowy. Czy trąbka ta jest przestrzenią ściągalną (definicja w §VI.1)?
+Uwaga 4. Na koniec zauważmy, że każda relacja równoważności ∼ w X wyznacza
+rozkład zbioru X na klasy abstrakcji tej relacji. Przestrzeń tego rozkładu oznaczamy
+X/ ∼ i nazywamy przestrzenią ilorazową, wyznaczoną przez relację ∼.
+§ 2.
+(Nie)homeomorficzność przestrzeni – zadania z ćwiczeń.
+1. Ustalić, czy któreś dwie z poniższych przestrzeni są ze sobą homeomorficzne: okrąg
+x2 +y 2 = 1, zbiór liczb wymiernych, zbiór licz niewymiernych, odcinki [0, 1], [0, 1), (0, 1),
+V § 2.
+V-52
+kostka [0, 1]2 (wszystkie traktowane jako poprzestrzenie (R2 , de ) lub (R, de ), odpowied-
+nio), kostka Hilberta [0, 1]N i kostki Tichonowa [0, 1]R i [0, 1]A , gdzie #A > #R.
+(Odpowiedź: nie, choć dla pary [0, 1]2 , [0, 1]N może to wymagać dodatkowych środków.)
+Część dotycząca zbioru Cantora:
+2. Niech X i Y będą zwartymi przestrzeniami metrycznymi, a F i G – bazami topologii
+TX i TY , odpowiednio, złożonymi ze zbiorów domknięto–otwartych. (Dalece nie każda
+przestrzeń ma taką bazę!) Niech dalej Φ : F → G będzie bijekcją taką, że
+a) dla każdej skończonej rodziny F ⊂ F zachodzi F = ∅ ⇔ Φ(F ) = ∅, oraz
+b) dla każdych F1 , F2 , ... ∈ F zachodzi diam(Fn ) → 0 ⇔ diam(Φ(Fn )) → 0.
+Udowodnić, że wzór φ(x) = {Φ(F ) : F ∈ F i x ∈ F } poprawnie określa home-
+omorfizm φ : X → Y . (Wskazówka: dowieść ciągłości φ i wykorzystać ją też przy Φ
+zastąpionym przez Φ−1 .)
+3. Niech X będzie zwartą, niepustą przestrzenią metryzowalną bez punktów izolowa-
+nych, taką, że każdy jej punkt ma dowolnie małe otoczenia domknięto–otwarte. Niech
+dalej przestrzeń Y ma te same własności. Udowodnić, że przestrzenie te są homeomor-
+ficzne, na następującej drodze:
+a) Dowieść, że gdy Z jest niepustym domknięto–otwartym podzbiorem w X lub w Y ,
+to Z można rozbić na dwa niepuste zbiory domknięto–otwarte, a także dla każdego
+ε > 0 można Z rozbić na skończenie wiele zbiorów domknięto–otwartych o średnicach
+< ε. („Rozbić” oznacza tu „pokryć rodziną zbiorów parami rozłącznych”.)
+b) Wywnioskować, że gdy Z jest jak wyżej i ε > 0, to dla prawie wszystkich n można Z
+rozbić na dokładnie n niepustych zbiorów domknięto–otwartych o średnicach < ε.
+c) W oparciu o to, skonstruować rodziny F i G domknięto–otwartych podzbiorów w
+X i w Y , odpowiednio, oraz bijekcję Φ : F → G, spełniające warunki a) i b) zadania 1.
+4. Wywnioskować z poprzedniego zadania, że zbiór Cantora C jest homeomorficzny z
+iloczynem kartezjańskim przeliczalnie wielu dowolnych zbiorów skończonych, z których
+każdy liczy więcej niż jeden punkt, a także jest homeomorficzny z przestrzenią C × H,
+dla dowolnego niepustego zbioru domkniętego H ⊂ C.
+5. Niech X będzie zwartą przestrzenią metryzowalną.
+a) Dla każdego n ∈ N obierzmy skończone pokrycie Fn przestrzeni X, złożone ze
+zbiorów domkniętych o średnicach < 1/n, i niech C = n Fn i H = {(Fn ) ∈ C :
+Fn = ∅}. Dowieść ciągłości i surjektywności przekształcenia u : H → X, określonego
+wzorem u(F ) = n Fn dla F = (Fn ) ∈ H.
+b) W oparciu o zadanie 3 wywnioskować istnienie ciągłej surjekcji zbioru Cantora na X.
+6. Niech X będzie zwartym zbiorem wypukłym w Rn lub w RN . Skonstruować ciągłą
+surjekcję odcinka [0, 1] na X, na następującej drodze: obrać ciągłą surjekcję z C na X,
+gdzie C jest zbiorem Cantora, reprezentowanym tym razem w standardowy sposób jako
+H. Toruńczyk, Wykład z Topologii I∗ , jesień 2013.
+V-53
+podzbiór odcinka I = [0, 1], i rozszerzyć ją liniowo na każdą składową zbioru I \ C.
+§ 3.
+Przestrzenie funkcyjne
+Może będą omówione na ostatnim wykładzie.
+VI § 1.
+VI
+VI-54
+Elementy topologii sfer i przestrzeni euklidesowych
+Zawsze w tym rozdziale, „przekształcenie” oznacza funkcję ciągłą między przestrzeniami
+topologicznymi, a zbiór Rn wyposażamy w metrykę euklidesową de i w wyznaczoną przez
+nią topologię. Często zamiast de (0, x) piszemy ||x|| dla x ∈ Rn . Przyjmujemy
+I = [0, 1],
+B n := {x ∈ Rn : ||x|| ≤ 1},
+S n := {x ∈ Rn+1 : ||x|| = 1},
+C to ciało liczb zespolonych, C∗ := C \ {0},
+§ 1.
+Rn := Rn \ {0}.
+∗
+Homotopijność przekształceń.
+Niżej, X, Y i Z są przestrzeniami topologicznymi. Wiele wyników tego rozdziału ma
+związek z pojęciem homotopii:
+Definicja. a) Przekształcenia f, g : X → Y nazywamy homotopijnymi, jeśli istnieje
+przekształcenie H : X × I → Y takie, że dla każdego punktu x ∈ X zachodzi H(x, 0) =
+f (x) i H(x, 1) = g(x). Przekształcenie H nazywamy homotopią między f i g. Gdy
+można ją obrać tak, by przyjmowała wartości w danej podprzestrzeni Y0 przestrzeni Y
+to mówimy, że f i g są homotopijne w Y0 . (Oczywiście wtedy f i g też przyjmują
+wartości w Y0 .)
+b) Przekształcenie nazywamy nieistotnym, jeśli jest homotopijne z (jakimś) prze-
+kształceniem stałym; w przeciwnym razie nazywamy je istotnym. Jak w a), możemy
+też mówić o istotności (lub nieistotności) w Y0 , gdzie Y0 ⊂ Y .
+c) Przestrzeń X jest ściągalna, jeśli przekształcenie identycznościowe idX : X → X
+jest nieistotne.
+Bardziej poglądowo, o homotopii między f i g możemy myśleć jako o rodzinie (ht )t∈I
+przekształceń ht : X → Y . Związek ht (x) = H(x, t) dla x ∈ X i t ∈ I pozwala
+wyznaczyć H przy pomocy rodziny (ht )t∈I i odwrotnie. Warunek, nakładany na rodzinę
+(ht )t∈I jest taki, by odpowiadająca jej funkcja H była ciągła oraz by h0 = f i h1 = g.
+Przykład 1. a) Twierdzimy, że jeśli przekształcenia f, g : X → Rn \ {0} spełniają wa-
+runek ||f (x) − g(x)|| < ||f (x)|| + ||g(x|| dla każdego x ∈ X, to są one homotopijne w
+Rn \ {0}. Istotnie, wzór X × I (x, t) → tg(x) + (1 − t)f (x) określa homotopię łączącą
+f z g, która nie przyjmuje 0 (dlaczego?).
+b) Każdy wypukły zbiór X ⊂ Rn jest ściągalny. Homotopię pomiędzy f := idX a
+przeksztalceniem stałym g(x) = x0 (x ∈ X) zadajemy tym samym wzorem, co wyżej.
+Zadanie 1. a) Niech f, f : X → Y i g, g : Y → Z. Jeśli przekształcenie f jest
+homotopijne z f , a g z g , to g ◦ f jest homotopijne z g ◦ f .
+b) Wywnioskować, że jeśli któraś z przestrzeni X, Y jest ściągalna, to każde prze-
+kształcenie f : X → Y jest nieistotne.
+VI-55
+H. Toruńczyk, Wykład z Topologii I∗ , jesień 2013.
+c) Wywnioskować też, że obcięcie nieistotnego przekształcenia jest nieistotne.
+d) Homotopijność przekształceń jest relacją równoważności w zbiorze C(X, Y ).
+e) Jeśli przestrzeń Y jest łukowo spójna, to każde dwa przekształcenia stałe z X do Y
+są homotopijne.
+W dalszej części, przedciwdziedziną Y rozważanych przekształceń będą na ogół pod-
+zbiory przestrzeni Rn . Karol Borsuk wyodrębnił klasę szczególnie „dobrych” takich pod-
+zbiorów; są nimi retrakty zbiorów otwartych w Rn (w tym zbiory otwarte w Rn ).
+Definicja. Retrakcją przestrzeni Y na jej podprzestrzeń Y0 nazywamy każde prze-
+kształcenie r : Y → Y0 spełniające warunek r(y) = y dla wszystkich y ∈ Y0 . Jeśli taka
+retrakcja istnieje, to mówimy, że Y0 jest retraktem przestrzeni Y .
+Przykład 2. a) Sfera S n−1 jest retraktem zbioru otwartego Rn \ {0}. Żądaną retrakcję
+można określić wzorem x → x/||x|| dla x = 0. 9
+b) Retrakcja zbioru B n \ {p} na S n−1 istnieje dla każdego punktu p ∈ B n . Można
+ją określić, przyporządkowując każdemu punktowi x ∈ B n \ {p} punkt przecięcia S n−1
+z półprostą o początku p, przechodzącą przez x.
+UWAGA: TU SKOŃCZYLEM WYKLAD 11. Część następnego wykładu zamiesz-
+czam awansem.
+Twierdzenie 1 (Borsuka o przedłużaniu). Niech X0 będzie zbiorem domkniętym w prze-
+strzeni metryzowalnej X, a Y retraktem zbioru otwartego w Rn . Gdy przekształcenia
+f0 , g0 : X0 → Y są homotopijne i f0 można przedłużyć do (ciągłego) przekształcenia z
+X do Y , to g0 też można tak przedłużyć.
+Dowód. Obierzmy retrakcję r : W → Y zbioru otwartego W ⊂ Rn i homotopię
+H0 : X0 × I → Y między f0 a g0 (tzn. H0 jest ciągłe oraz H0 (x, 0) = f0 (x) i
+H0 (x, 1) = g0 (x) dla x ∈ X0 ). Określmy funkcję G : X0 × I ∪ X × {0} → Y wzorem
+G|X0 ×I = H i G(x, 0) = f (x) dla x ∈ X, gdzie przekształcenie f : X → Y przedłuża f0 .
+(Poprawność definicji i ciągłość G wynika stąd, że H0 (x, 0) = f (x) dla x ∈ X0 .) Na
+podstawie twierdzenia Tietzego istnieje ciągłe przedłużenie G : X × I → Rn przekształ-
+cenia G. Niech K = G−1 (Rn \ U ); zbiór ten jest domknięty w X × I i rozłączny z
+X0 × I. Jego rzut πX (K) na X (wzdłuż osi I) jest więc rozłączny z X0 i domknięty, na
+podstawie twierdzenia Kuratowskiego o rzutowaniu wzdłuż osi zwartej. Obierzmy taką
+funkcję α : X → I, że α|X0 = 1 i α(x) = 0 dla x ∈ πX (K). Wzór g(x) = r ◦ G(x, α(x))
+definiuje szukane przedłużenie funkcji g0 .
+Uwaga 1. ∗ Nietrudno też uzyskać homotopię między f z g, przedłużającą homoto-
+pię H0 . Dlatego na ogół mówi się o „twierdzeniu o przedłużaniu homotopii”.
+Rn \{0} i S n−1 będą jedynymi wykorzystywanymi tu retraktami otwartych pozbiorów przestrzeni Rn , a dalsze wyniki
+tego paragrafu będą zastosowane tylko przy Y = Rn . Można więc założyć przy pierwszym czytaniu twierdzenia 1 i jego
+∗
+dowodu, że Y = W = Rn i r = id; podobnie przy następnych wynikach.
+∗
+9
+VI § 1.
+VI-56
+Wniosek 1. Jeśli X, X0 , Y są jak wyżej, to każde nieistotne przekształcenie g0 : X0 → Y
+przedłuża się do przekształcenia g : X → Y .
+Dowód. Niech f0 będzie przekształceniem stałym, z którym homotopijne jest przekształ-
+cenie g0 . Ponieważ f0 można przedłużyć na X, więc g0 też można.
+Wniosek 2. Przekształcenie f : S n → Y , gdzie Y jest jak wyżej, jest nieistotne wtedy
+i tylko wtedy, gdy przedłuża się do przekształcenia f : B n+1 → Y .
+Dowód.
+10
+Wynika to z wniosku 1 oraz części b) i c) zadania 1.
+Retrakty zbiorów otwartych w Rn mają jeszcze jedną dogodną własność:
+Stwierdzenie 1. Niech Y będzie retraktem zbioru otwartego U ⊂ Rn , a f : X → Y
+przkształceniem przestrzeni zwartej X. Wówczas istnieje liczba ε > 0 taka, że każde
+przekształcenie g : X → Y , spełniające warunek dsup (f, g) < ε, jest z f homotopijne.
+Dowód. Przyjmujemy ε = dist(f (X), Rn \ U ), a żądaną homotopię określamy wzorem
+H(x, t) = r(tf (x) + (1 − t)g(x)) dla x ∈ X, t ∈ I, gdzie r : U → X jest retrakcją.
+10
+Teza jest prawdziwa bez założeń o Y (co można pozostawić jako zadanie); nałożono je tylko dla skrócenia dowodu.
+

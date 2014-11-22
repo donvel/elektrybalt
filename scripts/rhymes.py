@@ -1,5 +1,5 @@
 from collections import defaultdict
-from utils import VOWELS
+from utils import VOWELS, normalize
 import random
 
 def is_vowel(char):
@@ -23,7 +23,7 @@ class Rhymes:
         self.words = list(words)
         self.rhymes = defaultdict(set)
         for w in self.words:
-            end = get_end(w, span)
+            end = get_end(normalize(w), span)
             self.rhymes[end].add(w)
         self.rhymes = [list(l) for (k, l) in self.rhymes.items() if len(l) > 1]
 

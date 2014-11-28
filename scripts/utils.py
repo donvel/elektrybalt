@@ -1,11 +1,19 @@
 import re
 
+def ivow(word, i):
+    return i + 1 < len(word) and word[i] == 'i' and is_vowel(word[i + 1])
+
+RULES = [ivow]
+
 VOWELS = set(
         ['a', 'e', 'i', 'o', 'u', 'y', 'ą', 'ę']
         )
 
+def is_vowel(char):
+    return char in VOWELS
+
 def get_words(line):
-    return [w for w in re.split(r'\s|\d|[^\w,.]', line) if any(c.isalpha() for c in w)]
+    return [normalize(w) for w in re.split(r'\s|\d|[^\w,.]', line) if any(c.isalpha() for c in w)]
 
 def normalize(word):
     w = word.lower()
@@ -14,4 +22,6 @@ def normalize(word):
     return w
 
 def syl_len(word):
-    return len([c for c in word if c in VOWELS])
+    return len([c for (i, c) in enumerate(word) if (c in VOWELS
+        and not any(r(word, i) for r in RULES))])
+

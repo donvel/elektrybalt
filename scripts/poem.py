@@ -25,7 +25,6 @@ if __name__ == '__main__':
     with codecs.open(args.source_text, 'rb', encoding='utf8') as f:
         for l in f:
             words += utils.get_words(l.rstrip())
-    print(words)
     wg = graph.from_file(words)
     rhs = rhymes.from_file(words, args.rhyme_span)
     poem = generator.create_poem(wg, rhs, args.syllable_count, args.length)

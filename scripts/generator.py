@@ -25,15 +25,18 @@ def create_inside(left, right, wg, syl_count):
     res = []
     i = syl_count
     w = right
-    for (k, v) in best.items():
-        print (k, v)
-    print(dp[i, w][0])
+    #for (k, v) in best.items():
+    #    print (k, v)
+   # print(dp[i, w][0])
     while i > 0:
         print(i, w, dp[i, w])
         res += [w]
         nw = dp[i, w][1]
+        if wg.probs[nw, w] == wg.probs['kokoak', 'lolol']:
+            print('XXXX')
         i -= syl_len(w)
         w = nw
+    print()
     return list(reversed(res))
 
 

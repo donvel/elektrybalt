@@ -1,9 +1,7 @@
 from collections import defaultdict
-from utils import VOWELS, normalize
+from utils import is_vowel, RULES, normalize
 import random
 
-def is_vowel(char):
-    return char in VOWELS
 
 
 def get_end(word, span):
@@ -11,7 +9,7 @@ def get_end(word, span):
     cnt = 0
     while True:
         i -= 1
-        if is_vowel(word[i]):
+        if is_vowel(word[i]) and not any(r(word, i) for r in RULES):
             cnt += 1
         if i == 0 or cnt == span:
             break
@@ -23,14 +21,20 @@ class Rhymes:
         self.words = list(words)
         self.rhymes = defaultdict(set)
         for w in self.words:
+            #if w[-1] in ('.', ','):
             end = get_end(normalize(w), span)
             self.rhymes[end].add(w)
         self.rhymes = [list(l) for (k, l) in self.rhymes.items() if len(l) > 1]
 
     def random_rhyme(self):
-        choices = random.choice(self.rhymes)[:]
-        random.shuffle(choices)
-        return (choices[0], choices[1])
+        c1 = 'a'
+        c2 = 'a'
+        while normalize(c1) == normalize(c2):
+            choices = random.choice(self.rhymes)[:]
+            random.shuffle(choices)
+            c1 = choices[0]
+            c2 = choices[1]
+        return (c1, c2)
 
 
 

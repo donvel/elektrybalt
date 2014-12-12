@@ -1,6 +1,7 @@
 from collections import defaultdict
 from utils import is_vowel, RULES, normalize
 import random
+import sys
 
 
 
@@ -45,8 +46,8 @@ class Rhymes:
         c1 = 'a'
         c2 = 'a'
         while not rhymes_with(c1, c2, self.span):
-            c1 = random.choice(self.words)
-            c2 = random.choice(self.words)
+            c1 = normalize(random.choice(self.words))
+            c2 = normalize(random.choice(self.words))
         return (c1, c2)
 
 

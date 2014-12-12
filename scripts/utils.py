@@ -6,14 +6,20 @@ def ivow(word, i):
 RULES = [ivow]
 
 VOWELS = set(
-        ['a', 'e', 'i', 'o', 'u', 'y', 'ą', 'ę']
+        ['a', 'e', 'i', 'o', 'u', 'y', 'ą', 'ę', 'ó']
         )
+
+HYPHENS = set('-')
 
 def is_vowel(char):
     return char in VOWELS
 
+def clean_hyphens(w):
+    res = [c for c in w if c not in HYPHENS]
+    return ''.join(res)
+
 def get_words(line):
-    return [normalize(w) for w in re.split(r'\s|\d|[^\w,.]', line) if any(c.isalpha() for c in w)]
+    return [clean_hyphens(w) for w in re.split(r'\s|\d|[^\w,.-]', line) if any(c.isalpha() for c in w)]
 
 def normalize(word):
     w = word.lower()

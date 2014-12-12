@@ -13,9 +13,9 @@ def get_args():
     parser.add_argument('--syllable_count', type=int, default=13)
     parser.add_argument('--rhyme_span', type=int, default=2)
     parser.add_argument('--length', type=int, default=4)
+    parser.add_argument('--markov_order', type=int, default=1)
 # parser.add_argument('--rhyme_pattern')
 # parser.add_argument('--keyword_file')
-# parser.add_argument('--markov_order')
 
     return parser.parse_args()
 
@@ -25,7 +25,7 @@ if __name__ == '__main__':
     with codecs.open(args.source_text, 'rb', encoding='utf8') as f:
         for l in f:
             words += utils.get_words(l.rstrip())
-    wg = graph.from_file(words)
+    wg = graph.from_file(words, args.markov_order)
     rhs = rhymes.from_file(words, args.rhyme_span)
     poem = generator.create_poem(wg, rhs, args.syllable_count, args.length)
     

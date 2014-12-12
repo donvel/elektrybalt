@@ -17,7 +17,7 @@ def get_words(line):
 
 def normalize(word):
     w = word.lower()
-    if w[-1] in ['.', ',']:
+    while w[-1] in ['.', ',']:
         w = w[:-1]
     return w
 
